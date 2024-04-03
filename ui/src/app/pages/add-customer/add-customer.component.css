@@ -1,0 +1,8 @@
+.file-upload {
+    display: none; /* Hide the default file input */
+  }
+  
+  .file-upload-button {
+    margin-top: 25px;
+  }
+  

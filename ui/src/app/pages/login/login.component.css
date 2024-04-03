@@ -1,0 +1,16 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .login-card {
+    width: 300px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  

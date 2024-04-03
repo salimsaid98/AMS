@@ -1,0 +1,147 @@
+	<!-- Color Changer -->
+	<div class="theme-settings" id="switcher">
+		<span class="theme-click">
+			<span class="ti-settings"></span>
+		</span>
+		<span class="theme-color theme-default theme-active" data-color="green"></span>
+		<span class="theme-color theme-blue" data-color="blue"></span>
+		<span class="theme-color theme-red" data-color="red"></span>
+		<span class="theme-color theme-violet" data-color="violet"></span>
+		<span class="theme-color theme-yellow" data-color="yellow"></span>
+	</div>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="proclinic-bg">
+        <div class="sidebar-header">
+            <a href="index.html">AirFox Management</a>
+        </div>
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a [routerLink]="['darsh']" >
+                    <span class="ti-home"></span> Dashboard
+                </a>
+                <!-- <ul class="collapse list-unstyled show" id="nav-dashboard">
+                    <li>
+                        <a [routerLink]="['/home/darsh']">Vertical</a>
+                    </li>
+                    <li>
+                        <a href="https://www.konnectplugins.com/proclinic/Vertical-RTL/index.html">Vertical RTL</a>
+                    </li>
+                    <li>
+                        <a href="https://www.konnectplugins.com/proclinic/Horizontal/index.html">Horizantal</a>
+                    </li>
+                </ul> -->
+            </li>
+            <li>
+                <a href="#nav-patients" data-toggle="collapse" aria-expanded="false">
+                    <span class="ti-wheelchair"></span> Applicant
+                </a>
+                <ul class="collapse list-unstyled" id="nav-patients">
+                    <li>
+                        <a [routerLink]="['add-cust']">Add Applicant</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['all-cust']">All Applicants</a>
+                    </li>
+               
+                </ul>
+            </li>
+   
+        </ul>
+        <!-- <div class="nav-help animated fadeIn">
+            <h5><span class="ti-comments"></span> Need Help</h5>
+            <h6>
+                <span class="ti-mobile"></span> +1 1234 567 890</h6>
+            <h6>
+                <span class="ti-email"></span> email@site.com</h6>
+            <p class="copyright-text">Copy rights &copy; 2018</p>
+        </div> -->
+    </nav>
+    <!-- /Sidebar -->
+    <!-- Page Content -->
+    <div id="content">
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="responsive-logo">
+                    <a href="index.html"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <span class="ti-menu" id="sidebarCollapse"></span>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <span title="Fullscreen" class="ti-fullscreen fullscreen"></span>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a  data-toggle="modal" data-target=".proclinic-modal-lg">
+                            <span class="ti-search"></span>
+                        </a>
+                        <div class="modal fade proclinic-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lorvens">
+                                <div class="modal-content proclinic-box-shadow2">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Search Patient/Doctor:</h5>
+                                        <span class="ti-close" data-dismiss="modal" aria-label="Close">
+                                        </span>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="search-term" placeholder="Type text here">
+                                                <button type="button" class="btn btn-lorvens proclinic-bg">
+                                                    <span class="ti-location-arrow"></span> Search</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="ti-announcement"></span>
+                        </a>
+                        <div class="dropdown-menu proclinic-box-shadow2 notifications animated flipInY">
+                            <h5>Notifications</h5>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-wheelchair"></span> New Patient Added</a>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-money"></span> Patient payment done</a>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-time"></span>Patient Appointment booked</a>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-wheelchair"></span> New Patient Added</a>
+                        </div>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="ti-user"></span>
+                        </a>
+                        <div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
+                            <h5>John Willing</h5>
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-settings"></span> Settings</a>
+                            <!-- <a class="dropdown-item" href="#">
+                                <span class="ti-help-alt"></span> Help</a> -->
+                            <a class="dropdown-item" href="#">
+                                <span class="ti-power-off"></span> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            
+            </div>
+        </nav>
+        <!-- /Top Navigation -->
+            <!-- Main -->
+
+            <router-outlet>
+                
+            </router-outlet>
+    </div>
+    <!-- /Page Content -->
+</div>
+	<!-- Back to Top -->
+	<a id="back-to-top" href="#" class="back-to-top">
+		<span class="ti-angle-up"></span>
+	</a>

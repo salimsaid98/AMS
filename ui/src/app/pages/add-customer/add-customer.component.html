@@ -1,0 +1,301 @@
+<div id="content">
+    <!-- Top Navigation -->
+  
+    <!-- /Top Navigation -->
+    <!-- Breadcrumb -->
+    <!-- Page Title -->
+    <div class="row no-margin-padding">
+        <div class="col-md-6">
+            <h3 class="block-title">Add Applicant</h3>
+        </div>
+        <div class="col-md-6">
+            <ol class="breadcrumb">						
+                <li class="breadcrumb-item">
+                    <a href="index.html">
+                        <span class="ti-home"></span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">Applicants</li>
+                <li class="breadcrumb-item active">Add Applicant</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /Page Title -->
+
+    <!-- /Breadcrumb -->
+    <!-- Main Content -->
+    <div class="container-fluid">
+
+        <div class="row">
+            <!-- Widget Item -->
+            <div class="col-md-12">
+                <div class="widget-area-2 proclinic-box-shadow">
+                    <h3 class="widget-title">Add Applicant</h3>
+                    <form #stepperForm="ngForm">
+                        <mat-horizontal-stepper #stepper>
+                          <!-- Step 1: Applicant Details -->
+                          <mat-step>
+                            <!-- <form (ngSubmit)="uploadFile()" enctype="multipart/form-data"> -->
+
+                            <ng-template matStepLabel>Applicant Details</ng-template>
+                            <div class="row">
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Full Name</mat-label>
+                                  <input matInput placeholder="Full Name" name="fullName" [(ngModel)]="applicantDetails.applicantfullName" required>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Email</mat-label>
+                                  <input matInput placeholder="Email" name="email" [(ngModel)]="applicantDetails.applicantemailAddress" required>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Home Address</mat-label>
+                                  <input matInput placeholder="Home Address" name="homeAddress" [(ngModel)]="applicantDetails.applicanthomeAddress" required>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Business Number</mat-label>
+                                  <input matInput placeholder="Business Number" name="businessNumber" [(ngModel)]="applicantDetails.applicantbusinessNumber">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Phone Number</mat-label>
+                                  <input matInput placeholder="Phone Number" name="phoneNumber" [(ngModel)]="applicantDetails.applicantphoneNumber">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Website</mat-label>
+                                  <input matInput placeholder="Website" name="website" [(ngModel)]="applicantDetails.applicantwebsite">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>National ID Number</mat-label>
+                                  <input matInput placeholder="National ID Number" name="nationalIdNumber" [(ngModel)]="applicantDetails.applicantnationalIdNumber">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Passport Number</mat-label>
+                                  <input matInput placeholder="Passport Number" name="passportNumber" [(ngModel)]="applicantDetails.applicantpassportNumber">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Occupation</mat-label>
+                                  <input matInput placeholder="Occupation" name="occupation" [(ngModel)]="applicantDetails.applicantoccupation">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Marital Status</mat-label>
+                                  <mat-select placeholder="Marital Status" name="maritalStatus" [(ngModel)]="applicantDetails.applicantmarriedStatus">
+                                    <mat-option value="married">Married</mat-option>
+                                    <mat-option value="single">Single</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                             
+
+                                <!-- <div class="col-md-3">
+                                  <label for="profileImage">Upload National ID pdf</label>
+                                  <input type="file" name="file" (change)="onFileSelected($event)" />
+                                  <button type="submit">Upload</button>
+                                </div> -->
+                            
+                                 
+                                </div>
+                                
+                                
+                            
+                              
+                              
+                           
+                            <div>
+                              <button mat-button (click)="stepper.next()">Next</button>
+
+                            </div>
+                          <!-- </form> -->
+                          </mat-step>
+                      
+                          <!-- Step 2: Wife Details (if applicable) -->
+                          <mat-step>
+                            <ng-template matStepLabel>Wife Details</ng-template>
+                            <div class="row">
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Wife Name</mat-label>
+                                  <input matInput placeholder="Wife Name" name="wifeName" [(ngModel)]="wifeDetails.wifeName">
+                                </mat-form-field>
+                              </div>                           
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Nationality</mat-label>
+                                  <mat-select placeholder="Nationality" name="wifeNationality" [(ngModel)]="wifeDetails.wifenationality">
+                                    <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Home Address</mat-label>
+                                  <input matInput placeholder="Home Address" name="wifeHomeAddress" [(ngModel)]="wifeDetails.wifehomeAddress">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Occupation</mat-label>
+                                  <input matInput placeholder="Occupation" name="wifeOccupation" [(ngModel)]="wifeDetails.wifeoccupation">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-6">
+                                <mat-form-field>
+                                  <mat-label>Date of Birth</mat-label>
+                                  <input matInput [matDatepicker]="picker" placeholder="Date of Birth" name="wifeDateOfBirth" [(ngModel)]="wifeDetails.wifedateOfBirth">
+                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                              </div>
+                              
+                            </div>
+                            <div>
+                              <button mat-button (click)="stepper.previous()">Back</button>
+                              <button mat-button (click)="stepper.next()">Next</button>
+
+                            </div>
+                     
+                          </mat-step>
+                      
+                          <!-- Step 3: Applicant Father's Details -->
+                          <mat-step>
+                            <ng-template matStepLabel>Applicant Father's Details</ng-template>
+                            <div class="row">
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Full Name</mat-label>
+                                  <input matInput placeholder="Full Name" name="fatherFullName" [(ngModel)]="fatherDetails.fatherfullName">
+                                </mat-form-field>
+                              </div>
+                         
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Marriage Status</mat-label>
+                                  <mat-select placeholder="Marriage Status" name="fathermarriedStatus" [(ngModel)]="fatherDetails.fathermarriedStatus">
+                                    <mat-option value="married">Married</mat-option>
+                                    <mat-option value="single">Single</mat-option>
+                                    <mat-option value="divorced">Divorced</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Nationality</mat-label>
+                                  <mat-select placeholder="Nationality" name="fathernationality" [(ngModel)]="fatherDetails.fathernationality">
+                                    <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Home Address</mat-label>
+                                  <input matInput placeholder="Home Address" name="fatherHomeAddress" [(ngModel)]="fatherDetails.fatherhomeAddress">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Occupation</mat-label>
+                                  <input matInput placeholder="Occupation" name="fatherOccupation" [(ngModel)]="fatherDetails.fatheroccupation">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-5">
+                                <mat-form-field>
+                                  <mat-label>Date of Birth</mat-label>
+                                  <input matInput [matDatepicker]="picker2" placeholder="Date of Birth" name="fatherDateOfBirth" [(ngModel)]="fatherDetails.fatherdateOfBirth">
+                                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker2></mat-datepicker>
+                                </mat-form-field>
+                              </div>
+                              
+                            </div>
+                            <div>
+                              <button mat-button (click)="stepper.previous()">Back</button>
+                              <button mat-button (click)="stepper.next()">Next</button>
+                            </div>
+                          </mat-step>
+                      
+                          <!-- Step 4: Applicant Mother's Details -->
+                          <mat-step>
+                            <ng-template matStepLabel>Applicant Mother's Details</ng-template>
+                            <div class="row">
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Full Name</mat-label>
+                                  <input matInput placeholder="Full Name" name="motherFullName" [(ngModel)]="motherDetails.motherfullName">
+                                </mat-form-field>
+                              </div>
+                             
+                              
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Marriage Status</mat-label>
+                                  <mat-select placeholder="Marriage Status" name="motherMarriageStatus" [(ngModel)]="motherDetails.mothermarriedStatus">
+                                    <mat-option value="married">Married</mat-option>
+                                    <mat-option value="single">Single</mat-option>
+                                    <mat-option value="divorced">Divorced</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Nationality</mat-label>
+                                  <mat-select placeholder="Nationality" name="mothernationality" [(ngModel)]="motherDetails.mothernationality">
+                                    <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Home Address</mat-label>
+                                  <input matInput placeholder="Home Address" name="motherHomeAddress" [(ngModel)]="motherDetails.motherhomeAddress">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Occupation</mat-label>
+                                  <input matInput placeholder="Occupation" name="motherOccupation" [(ngModel)]="motherDetails.motheroccupation">
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-6">
+                                <mat-form-field>
+                                  <mat-label>Date of Birth</mat-label>
+                                  <input matInput [matDatepicker]="picker3" placeholder="Date of Birth" name="motherDateOfBirth" [(ngModel)]="motherDetails.motherdateOfBirth">
+                                  <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker3></mat-datepicker>
+                                </mat-form-field>
+                              </div>
+                            </div>
+                            <div>
+                              <button mat-button (click)="stepper.previous()">Back</button>
+                              <button mat-button type="submit" (click)="Save()">Submit</button>
+                            </div>
+                          </mat-step>
+                        </mat-horizontal-stepper>
+                      </form>
+                      
+                      
+                </div>
+            </div>
+            <!-- /Widget Item -->
+        </div>
+    </div>
+    <!-- /Main Content -->
+</div>
