@@ -7,12 +7,12 @@
         <form>
           <mat-form-field class="full-width">
             <mat-label>Username</mat-label>
-            <input matInput placeholder="Enter your username" name="username" required>
+            <input matInput placeholder="Enter your username" name="username" required  [(ngModel)]="login_model.username">
             <mat-icon matSuffix>person</mat-icon>
           </mat-form-field>
           <mat-form-field class="full-width">
             <mat-label>Password</mat-label>
-            <input matInput type="password" placeholder="Enter your password" name="password" required>
+            <input matInput type="password" placeholder="Enter your password" name="password" required  [(ngModel)]="login_model.password">
             <mat-icon matSuffix>lock</mat-icon>
           </mat-form-field>
           <button mat-raised-button color="primary" class="full-width" (click)="login()">Login</button>

@@ -13,4 +13,11 @@
   .full-width {
     width: 100%;
   }
+  .toast-success-title, .toast-error-title {
+    color: white !important;
+  }
+  
+  .toast-success-icon, .toast-error-icon {
+    color: white !important;
+  }
   

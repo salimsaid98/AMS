@@ -7,11 +7,12 @@ import { AddCustomerComponent } from './pages/add-customer/add-customer.componen
 import { AllCustomerComponent } from './pages/all-customer/all-customer.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CustomerDetailsComponent } from './pages/customer-details/customer-details.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {path:'',redirectTo:"login",pathMatch:'full'},
   {path:'login',component:LoginComponent},
-  {path:'home',component:AssideComponent,children:[
+  {path:'home',component:AssideComponent,canActivate: [AuthGuard],children:[
     {path:'',redirectTo:"darsh",pathMatch:'full'},
     {path:'darsh',component:DarshComponent},
     {path:'add-cust',component:AddCustomerComponent},

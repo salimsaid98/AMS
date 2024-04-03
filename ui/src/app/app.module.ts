@@ -27,6 +27,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CustomerDetailsComponent } from './pages/customer-details/customer-details.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import Swal from 'sweetalert2';
+
 @NgModule({
   declarations: [
     AppComponent,

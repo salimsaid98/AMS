@@ -15,6 +15,7 @@ public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long fileID;
+    @Column(unique = true)
     private String filename;
     private String filetype;
      @Column(length = 50000000)
