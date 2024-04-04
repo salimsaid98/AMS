@@ -1,5 +1,6 @@
 package com.example.todo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,13 +11,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "ApplicantDetails_and_File_table")
-public class ApplicantDetails_and_File {
+@Table(name = "preparedFile_table")
+public class PreparedFile {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long appDtails_and_appFiles_ID;
-    private Long applicantID;
-    private Long fileID;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long preparedFileID;
+    @Column(unique = true)
     private String file_name;
+
 }

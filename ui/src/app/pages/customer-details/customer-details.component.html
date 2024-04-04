@@ -47,7 +47,15 @@
                               </div>
                               <!-- <input type="file" (change)="onFileSelected2($event)" accept="image/*" class="file-input" /> -->
                             </div><hr>
-                            <button mat-raised-button color="success" (click)="saveImage()">Edit</button>
+                          
+                         <div class="d-flex justify-content-between">
+                            <button mat-mini-fab matTooltip="Warn" color="primary"
+                            (click)="saveImage() ">
+                            <mat-icon>image</mat-icon></button>  <button mat-mini-fab matTooltip="Warn" color="primary"
+                            (click)="saveImage() ">
+                            <mat-icon>edit</mat-icon></button> 
+                         </div>
+                         
 
                           </div>
                           <hr>
@@ -128,7 +136,12 @@
                                             <td>{{ fatherDetail.fatheroccupation }}</td>
                                             <td>{{ fatherDetail.fatherdate_of_birth | date: 'yyyy-MM-dd' }}</td>
     
-                                            <td>  <button type="button" class="btn btn-success "><span class="ti-pencil-alt"></span> Edit </button></td>
+                                            <td>
+                                                <button mat-icon-button color="primary"
+                                                (click)="openDialogUpdateFile(fatherDetail) ">
+                                                <mat-icon>edit</mat-icon>
+                                            </button>
+                                            </td>
     
                                         </tr>						
                                     </tbody>
@@ -157,8 +170,12 @@
                                             <td>{{ motherDetail.mothermarried_status }}</td>
                                             <td>{{ motherDetail.motheroccupation }}</td>
                                             <td>{{ motherDetail.motherdate_of_birth | date: 'yyyy-MM-dd' }}</td>
-                                            <td> <button type="button" class="btn btn-success "><span class="ti-pencil-alt"></span> Edit </button>                                        </td>
-    
+                                            <td>
+                                                <button mat-icon-button color="primary"
+                                                (click)="openDialogUpdateFile(motherDetail) ">
+                                                <mat-icon>edit</mat-icon>
+                                            </button>
+                                            </td>    
                                         </tr>						
                                     </tbody>
                                 </table>
@@ -184,8 +201,12 @@
                                             <td>{{ wifeDetail.wifehome_address}}</td>
                                             <td>{{ wifeDetail.wifeoccupation }}</td>
                                             <td>{{ wifeDetail.wifedate_of_birth | date: 'yyyy-MM-dd' }}</td>
-                                            <td> <button type="button" class="btn btn-success "><span class="ti-pencil-alt"></span> Edit </button>                                        </td>
-    
+                                            <td>
+                                                <button mat-icon-button color="primary"
+                                                (click)="openDialogUpdateFile(wifeDetail) ">
+                                                <mat-icon>edit</mat-icon>
+                                            </button>
+                                            </td>    
                                         </tr>						
                                     </tbody>
                                 </table>
@@ -199,8 +220,9 @@
                         <div class="widget-area-2 proclinic-box-shadow">
                            <div class="d-flex justify-content-between">
                             <h3 class="widget-title">Applicant Attachment</h3>
-                            <button type="button" class="btn btn-success " (click)="openDialogAddFile() "><span class="ti-pencil"></span> Add File </button>
-                           </div>
+                            <button mat-mini-fab matTooltip="Warn" color="primary"
+                            (click)="openDialogAddFile() ">
+                            <mat-icon>add</mat-icon></button>                           </div>
                             <div class="table-responsive">
                                 <!-- <input matInput (keyup)="applyFilter($event)" placeholder="Search"> -->
                                 <mat-form-field appearance="outline" style="width: 25%;">
@@ -242,10 +264,10 @@
                         </div>
                     </div>
                 </mat-tab>
-                <mat-tab label="Prepered Files">
+                <mat-tab *ngIf="addminOnly" label="Prepered Files">
                  <p></p>
                 </mat-tab>
-                <mat-tab label="IRCC Files">
+                <mat-tab *ngIf="addminOnly" label="IRCC Files">
                     <p></p>
                    </mat-tab>
               </mat-tab-group>

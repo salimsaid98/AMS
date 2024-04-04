@@ -25,5 +25,7 @@ public class ApplicantDetails {
     private String applicantpassportNumber;
     private String applicantoccupation;
     private String applicantmarriedStatus;
+    private String registeredBy;
+    private String Status;
 
 }

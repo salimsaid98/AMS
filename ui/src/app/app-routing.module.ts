@@ -8,6 +8,9 @@ import { AllCustomerComponent } from './pages/all-customer/all-customer.componen
 import { LoginComponent } from './pages/login/login.component';
 import { CustomerDetailsComponent } from './pages/customer-details/customer-details.component';
 import { AuthGuard } from './auth.guard';
+import { PreparedFileComponent } from './pages/prepared-file/prepared-file.component';
+import { IrccFileComponent } from './pages/ircc-file/ircc-file.component';
+import { ApplicantFileComponent } from './pages/applicant-file/applicant-file.component';
 
 const routes: Routes = [
   {path:'',redirectTo:"login",pathMatch:'full'},
@@ -17,7 +20,10 @@ const routes: Routes = [
     {path:'darsh',component:DarshComponent},
     {path:'add-cust',component:AddCustomerComponent},
     {path:'all-cust',component:AllCustomerComponent},
-    {path:'applicant-details',component:CustomerDetailsComponent}
+    {path:'applicant-details',component:CustomerDetailsComponent},
+    {path:'prepared-file',component:PreparedFileComponent},
+    {path:'ircc-file',component:IrccFileComponent},
+    {path:'applicant-file',component:ApplicantFileComponent}
   ]}
 ];
 

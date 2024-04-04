@@ -28,12 +28,15 @@ wifeDetailsArray: any[] = [];
 applicantDetailsArray!:any[]
 applicantDetailsModel:applicantDetailsModel = new applicantDetailsModel()
 file_model:File_models=new File_models()
-
+username:any
+roles:any
 applicantandfile_model: any = {
   applicantID: '',
   fileID:'',
   file_name:'',
 };
+userOnly:boolean = false
+addminOnly:boolean = false
   constructor(private route : ActivatedRoute,
     private fatherServices:FatherServicesService,
     private motherServices:MotherServicesService,
@@ -62,6 +65,18 @@ applicantandfile_model: any = {
     this.getWifeByApplicantId(this.id)
     this.getApplicantDetailsByID(this.id)
     this.getAllApplicantFiles(this.id);
+    this.username = sessionStorage.getItem("username");
+    this.roles= sessionStorage.getItem("roles");
+    if(this.roles=="Admin"){
+      this.userOnly=false
+  }else{
+    this.userOnly=true
+  }
+  if(this.roles=="Staff"){
+    this.addminOnly =false
+  }else{
+    this.addminOnly=true
+  }
   }
 
   getApplicantDetailsByID(id:any){
@@ -213,8 +228,7 @@ getBase64Image(image: any): string {
 
 
 profileImage: string | ArrayBuffer | null = null;
-username: string = 'John Doe'; // Replace with actual username
-email: string = 'john.doe@example.com'; // Replace with actual email
+
 
 onFileSelected2(event: any): void {
   const file: File = event.target.files[0];
@@ -231,6 +245,8 @@ saveImage(): void {
   // Implement logic to save the image here
   console.log('Image saved');
 }
-
+openDialogUpdateFile(element:any){
+  console.log(element);
+}
 
 }

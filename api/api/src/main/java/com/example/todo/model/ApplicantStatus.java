@@ -7,16 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
-
 @Data
 @Entity
-@Table(name = "ApplicantDetails_and_File_table")
-public class ApplicantDetails_and_File {
+@Table(name = "applicant_status_table")
+public class ApplicantStatus {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long appDtails_and_appFiles_ID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long applicantStatusID;
+    private String status;
     private Long applicantID;
-    private Long fileID;
-
-    private String file_name;
 }

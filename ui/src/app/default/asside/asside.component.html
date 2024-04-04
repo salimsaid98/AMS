@@ -40,14 +40,17 @@
             </li>
             <li *ngIf="addminOnly">
                 <a href="#nav-doctors" data-toggle="collapse" aria-expanded="false">
-                    <span class="ti-files"></span> Files Categories
+                    <span class="ti-files"></span> Files Configuration
                 </a>
                 <ul class="collapse list-unstyled" id="nav-doctors">
                     <li>
-                        <a href="add-doctor.html">IRCC Files</a>
+                        <a [routerLink]="['ircc-file']">IRCC Files</a>
                     </li>
                     <li>
-                        <a href="doctors.html">Prepered Files</a>
+                        <a [routerLink]="['prepared-file']">Prepered Files</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['applicant-file']">Applicant Files</a>
                     </li>
 
                 </ul>

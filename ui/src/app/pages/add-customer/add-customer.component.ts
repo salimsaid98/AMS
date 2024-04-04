@@ -7,6 +7,8 @@ import { File_models } from 'src/app/model/File_models';
 import { FatherServicesService } from 'src/app/services/applicant/fatherDetails/father-services.service';
 import { MotherServicesService } from 'src/app/services/applicant/motherDetails/mother-services.service';
 import { WifeServicesService } from 'src/app/services/applicant/wifeDetails/wife-services.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-customer',
@@ -73,7 +75,8 @@ constructor(private applicantDetailsServicers:ApplicantDetailsServicesService,
   private fileServices:FilesServicesService,
   private fatherservice:FatherServicesService,
   private motherservice:MotherServicesService,
-  private wifeservice:WifeServicesService) {}
+  private wifeservice:WifeServicesService,
+  private route:Router) {}
 selectFile(event: any) {
   this.fileDetails = event.target.files[0]; // Assign the selected file to profileImage variable
 }
@@ -106,10 +109,39 @@ saveFunction(data1:any,data2:any,data3:any,data4:any){
           console.log("Mother response  "+mother_response)
         }
       )
-   
+      Swal.fire({
+        position: 'top-right',
+        icon: 'success',
+        text: 'Applicant Information created successfully.',
+        toast: true,
+        timer: 1800,
+        showConfirmButton: false,
+        timerProgressBar: true,
+        width: '350px',
+        customClass: {
+          title: 'toast-success-title',
+          icon: 'toast-success-icon'
+        }
+      });
+      // Perform any additional actions after successful creation
+      this.route.navigate(['/home/all-cust'])
 
+    },
+    error => {
+      console.error(error);
+      // Show error message
+      Swal.fire({
+        title: 'Error!',
+        text: 'An error occurred while creating the applicant Infomation. Please try again later.',
+        icon: 'error',
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
     }
-  )
+
+   
+  );
 }
 Save(){
  this.saveFunction(this.applicantDetails,this.fatherDetails,this.motherDetails,this.wifeDetails,);

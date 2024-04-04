@@ -10,6 +10,6 @@ import com.example.todo.model.FatherDetails;
 
 public interface FatherRepo extends JpaRepository<FatherDetails,Long>{
     
-         @Query(value = "SELECT * FROM public.father_details_table Where applicantid =  ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM public.father_details_table Where applicantid =  ?1", nativeQuery = true)
      List<Map<String, Object>> getFatherByApplicantID(Long applicantid);
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.todo.model.ApplicantDetails;
 import com.example.todo.model.ApplicantDetails_and_File;
 import com.example.todo.services.ApplicantDetails_and_File_Services;
 @CrossOrigin

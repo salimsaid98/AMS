@@ -28,6 +28,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CustomerDetailsComponent } from './pages/customer-details/customer-details.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import Swal from 'sweetalert2';
+import { IrccFileComponent } from './pages/ircc-file/ircc-file.component';
+import { PreparedFileComponent } from './pages/prepared-file/prepared-file.component';
+import { ApplicantFileComponent } from './pages/applicant-file/applicant-file.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,9 @@ import Swal from 'sweetalert2';
     AllCustomerComponent,
     LoginComponent,
     CustomerDetailsComponent,
+    IrccFileComponent,
+    PreparedFileComponent,
+    ApplicantFileComponent,
     
   ],
   imports: [
