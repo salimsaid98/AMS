@@ -1,20 +1,21 @@
 <!-- Color Changer -->
-<div class="theme-settings" id="switcher">
+<!-- <div class="theme-settings" id="switcher">
     <span class="theme-click">
         <span class="ti-settings"></span>
     </span>
-    <span class="theme-color theme-default theme-active" data-color="green"></span>
+    <span class="theme-color theme-default theme-active" data-color="blue"></span>
     <span class="theme-color theme-blue" data-color="blue"></span>
     <span class="theme-color theme-red" data-color="red"></span>
     <span class="theme-color theme-violet" data-color="violet"></span>
     <span class="theme-color theme-yellow" data-color="yellow"></span>
-</div>
-<div class="wrapper">
+</div> -->
+<div class="wrapper"  [ngClass]="{'sidebar-collapsed': sidebarCollapsed}">
     <!-- Sidebar -->
-    <nav id="sidebar" class="proclinic-bg">
+    <nav id="sidebar" class="bg bg-primary" style="width: 50px;">
         <div class="sidebar-header">
-            <a href="index.html">AirFox Management</a>
+            <img src="../../../assets/images/airfox.png" alt="Logo" class="logo">
         </div>
+        
         <ul class="list-unstyled components">
             <li class="active">
                 <a [routerLink]="['darsh']">
@@ -79,11 +80,11 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="responsive-logo">
-                    <a href="index.html"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
+                    <img src="../../../assets/images/airfox-removebg-preview.png" alt="Logo" class="logo">
                 </div>
                 <ul class="nav">
-                    <li class="nav-item">
-                        <span class="ti-menu" id="sidebarCollapse"></span>
+                    <li class="nav-item" (click)="toggleSidebar()">
+                        <span class="ti-menu"></span>
                     </li>
                     <li class="nav-item">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"

@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ApplicantDetailsServicesService } from 'src/app/services/applicant/applicantDetails/applicant-details-services.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-all-customer',
@@ -30,6 +31,7 @@ export class AllCustomerComponent implements OnInit {
   ngOnInit(): void {
     this.getAllApplicant();
   }
+  isLoading: boolean = true; // Flag to track loading state
 
   getAllApplicant() {
     this.applicantService.getAllApplicants().subscribe(
@@ -37,6 +39,10 @@ export class AllCustomerComponent implements OnInit {
         this.dataSource.data = applicant_response;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+            // Introduce a delay before hiding the spinner
+       timer(1000).subscribe(() => {
+        this.isLoading = false; // Set isLoading to false after a delay
+      });  
       }
     );
   }

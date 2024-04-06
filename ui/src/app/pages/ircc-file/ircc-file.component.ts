@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { timer } from 'rxjs';
 import { IrccFileServicesService } from 'src/app/services/files/irccFile/ircc-file-services.service';
 import Swal from 'sweetalert2';
 
@@ -50,6 +51,7 @@ openDialogAddFile():void{
   this.dialog.open(this.addFile,{width:'400px'});
 }
 
+isLoading: boolean = true; // Flag to track loading state
 
 currentIndex = 0;
 getIRCCFile(){
@@ -63,6 +65,10 @@ getIRCCFile(){
       this.dataSource = new  MatTableDataSource<any>(respo);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      // Introduce a delay before hiding the spinner
+      timer(1000).subscribe(() => {
+        this.isLoading = false; // Set isLoading to false after a delay
+      });  
     }
   )
 }

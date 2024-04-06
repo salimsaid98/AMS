@@ -1,0 +1,9 @@
+#header{
+    background-color: #e28743;
+}
+.loading-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4px; /* Adjust the height of the loading bar */
+  }

@@ -1,0 +1,40 @@
+
+#sidebar {
+    width: 50px;
+    transition: width 0.3s ease;
+}
+
+.sidebar-collapsed #sidebar {
+    width: 50px;
+}
+
+#content {
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar-collapsed #content {
+    margin-left: 50px;
+}
+
+.sidebar-header {
+    text-align: center;
+}
+
+.logo-wrapper {
+    width: 50px; /* Adjust the width of the wrapper as needed */
+    height: 50px; /* Adjust the height of the wrapper as needed */
+    border-radius: 50%; /* Make the wrapper circular */
+    background-color: white; /* Set background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0; /* Remove top padding */
+}
+
+.logo {
+    width: 40px; /* Adjust the width of the logo as needed */
+    height: 40px; /* Adjust the height of the logo as needed */
+    border-radius: 50%; /* Make the logo circular */
+    object-fit: cover; /* Ensure the image covers the entire circle */
+}
+

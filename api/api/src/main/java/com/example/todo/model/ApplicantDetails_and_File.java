@@ -1,5 +1,6 @@
 package com.example.todo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class ApplicantDetails_and_File {
     private Long appDtails_and_appFiles_ID;
     private Long applicantID;
     private Long fileID;
-
-    private String file_name;
+    @Column(unique = true)
+    private Long applicantFileID;
+    // private String file_name;
 }

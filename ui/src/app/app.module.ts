@@ -31,7 +31,8 @@ import Swal from 'sweetalert2';
 import { IrccFileComponent } from './pages/ircc-file/ircc-file.component';
 import { PreparedFileComponent } from './pages/prepared-file/prepared-file.component';
 import { ApplicantFileComponent } from './pages/applicant-file/applicant-file.component';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +68,9 @@ import { ApplicantFileComponent } from './pages/applicant-file/applicant-file.co
     MatTableModule ,
     MatPaginatorModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressSpinnerModule,MatProgressBarModule
+    
     
   ],
   providers: [],

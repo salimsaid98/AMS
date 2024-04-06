@@ -26,6 +26,6 @@ public class ApplicantDetails {
     private String applicantoccupation;
     private String applicantmarriedStatus;
     private String registeredBy;
-    private String Status;
+  
 
 }

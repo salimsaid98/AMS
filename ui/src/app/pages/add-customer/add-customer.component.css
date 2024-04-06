@@ -5,4 +5,9 @@
   .file-upload-button {
     margin-top: 25px;
   }
-  
+  #header{
+    background-color: #e28743;
+}
+mat-step{
+  width: 5px;
+}

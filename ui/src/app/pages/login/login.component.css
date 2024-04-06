@@ -4,6 +4,11 @@
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
+    background-image: url("../../../assets/images/airfox-removebg-preview.png");
+    background-image: url("../../../assets/images/airfox-removebg-preview.png");
+    background-size: contain; /* Adjust the value to customize how the image fits */
+    background-position: center; /* Adjust the value to position the image */
+    background-repeat: no-repeat; 
   }
   
   .login-card {

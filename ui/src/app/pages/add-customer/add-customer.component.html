@@ -4,8 +4,8 @@
     <!-- /Top Navigation -->
     <!-- Breadcrumb -->
     <!-- Page Title -->
-    <div class="row no-margin-padding">
-        <div class="col-md-6">
+    <div class="row no-margin-padding" id="header">
+      <div class="col-md-6">
             <h3 class="block-title">Add Applicant</h3>
         </div>
         <div class="col-md-6">
@@ -37,7 +37,7 @@
                           <mat-step>
                             <!-- <form (ngSubmit)="uploadFile()" enctype="multipart/form-data"> -->
 
-                            <ng-template matStepLabel>Applicant Details</ng-template>
+                            <ng-template matStepLabel>Applicant</ng-template>
                             <div class="row">
                               <div class="col-md-3">
                                 <mat-form-field>
@@ -127,7 +127,7 @@
                       
                           <!-- Step 2: Wife Details (if applicable) -->
                           <mat-step>
-                            <ng-template matStepLabel>Wife Details</ng-template>
+                            <ng-template matStepLabel>Wife</ng-template>
                             <div class="row">
                               <div class="col-md-3">
                                 <mat-form-field>
@@ -176,7 +176,7 @@
                       
                           <!-- Step 3: Applicant Father's Details -->
                           <mat-step>
-                            <ng-template matStepLabel>Applicant Father's Details</ng-template>
+                            <ng-template matStepLabel>Father</ng-template>
                             <div class="row">
                               <div class="col-md-3">
                                 <mat-form-field>
@@ -234,7 +234,7 @@
                       
                           <!-- Step 4: Applicant Mother's Details -->
                           <mat-step>
-                            <ng-template matStepLabel>Applicant Mother's Details</ng-template>
+                            <ng-template matStepLabel>Mother</ng-template>
                             <div class="row">
                               <div class="col-md-3">
                                 <mat-form-field>
@@ -288,6 +288,7 @@
                               <button mat-button type="submit" (click)="Save()">Submit</button>
                             </div>
                           </mat-step>
+                          
                         </mat-horizontal-stepper>
                       </form>
                       

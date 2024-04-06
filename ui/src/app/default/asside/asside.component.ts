@@ -34,4 +34,10 @@ logout(): void {
   sessionStorage.clear();
   this.router.navigateByUrl('/login');
 }
+sidebarCollapsed: boolean = false;
+
+// Method to toggle sidebar visibility
+toggleSidebar() {
+  this.sidebarCollapsed = !this.sidebarCollapsed;
+}
 }
