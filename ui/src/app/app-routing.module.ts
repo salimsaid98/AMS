@@ -11,6 +11,8 @@ import { AuthGuard } from './auth.guard';
 import { PreparedFileComponent } from './pages/prepared-file/prepared-file.component';
 import { IrccFileComponent } from './pages/ircc-file/ircc-file.component';
 import { ApplicantFileComponent } from './pages/applicant-file/applicant-file.component';
+import { RegisterUsersComponent } from './pages/register-users/register-users.component';
+import { ManageUsersComponent } from './pages/manage-users/manage-users.component';
 
 const routes: Routes = [
   {path:'',redirectTo:"login",pathMatch:'full'},
@@ -23,7 +25,9 @@ const routes: Routes = [
     {path:'applicant-details',component:CustomerDetailsComponent},
     {path:'prepared-file',component:PreparedFileComponent},
     {path:'ircc-file',component:IrccFileComponent},
-    {path:'applicant-file',component:ApplicantFileComponent}
+    {path:'applicant-file',component:ApplicantFileComponent},
+    {path:'register-users',component:RegisterUsersComponent},
+    {path:'manage-users',component:ManageUsersComponent}
   ]}
 ];
 

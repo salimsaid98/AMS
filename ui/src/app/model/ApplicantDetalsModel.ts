@@ -10,6 +10,9 @@ export class applicantDetailsModel {
       applicantpassportNumber: any
       applicantoccupation: any
       applicantmarriedStatus: any
+      bank_name:any
+      bankAccount_no :any
+      registeredBy:any
     
   }
   

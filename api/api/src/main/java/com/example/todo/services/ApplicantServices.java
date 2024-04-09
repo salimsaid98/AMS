@@ -1,6 +1,7 @@
 package com.example.todo.services;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class ApplicantServices {
     public Optional<ApplicantDetails> getUserById(long id) {
         return applicantRepo.findById( id);
     }
-
+    public List<Map<String,Object>> CountAllApplicant(){
+        return applicantRepo.CountAllApplicant();
+}
 
 }

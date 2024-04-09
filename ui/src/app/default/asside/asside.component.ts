@@ -38,6 +38,6 @@ sidebarCollapsed: boolean = false;
 
 // Method to toggle sidebar visibility
 toggleSidebar() {
-  this.sidebarCollapsed = !this.sidebarCollapsed;
+  this.sidebarCollapsed = this.sidebarCollapsed;
 }
 }

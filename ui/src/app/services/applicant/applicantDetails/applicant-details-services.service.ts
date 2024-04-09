@@ -15,6 +15,9 @@ export class ApplicantDetailsServicesService {
   getAllApplicants():Observable<any>{
     return this.http.get(this.applicantDetails + "/getAllApplicant");
   }
+  getCountAllApplicant():Observable<any>{
+    return this.http.get(this.applicantDetails + "/CountAllApplicant/");
+  }
 
   getgeApplicantById(id:any):Observable<any>{
     return this.http.get(this.applicantDetails + "/getApplicantByID/" + id);

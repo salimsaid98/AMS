@@ -1,5 +1,6 @@
 package com.example.todo.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +27,10 @@ public class ApplicantDetails {
     private String applicantoccupation;
     private String applicantmarriedStatus;
     private String registeredBy;
+    private String registeredDate;
+    private String bank_name;
+    private String bankAccount_no;
+    private String country_to_visit;
   
 
 }

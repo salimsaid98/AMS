@@ -1,6 +1,7 @@
 package com.example.todo.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,14 @@ public class ApplicantImageFileServices {
         return this.applicantImageFileRepo.save(applicantImageFile);
 
     }
+
     public List<ApplicantImageFile> getAllApplicantImageFile(){
         return this.applicantImageFileRepo.findAll();
     }
+    public void deleteApplicanImagetFile(long id) {
+        applicantImageFileRepo.deleteById( id);
+    }
+    public List<Map<String,Object>> getApplicantImageFileByID(Long applicantid){
+        return this.applicantImageFileRepo.getAllImageFileByApplicantID(applicantid);
+}
 }

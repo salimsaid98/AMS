@@ -33,7 +33,7 @@
                     <div class="card">
                         <div class="card-body">
                             <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-                                <mat-tab label="Personal Information">
+                                <mat-tab label="Personal">
                                     <mat-card class="profile-card">
                                         <mat-card-header>
                                             <!-- <mat-card-title>{{ username }}</mat-card-title> -->
@@ -41,33 +41,32 @@
                                         <mat-card-content fxLayout="row">
                                             <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30">
                                                 <div class="avatar-container">
-                                                    <img *ngIf="profileImage" [src]="profileImage" class="profile-img"
-                                                        alt="Profile Image" />
-                                                    <div *ngIf="!profileImage"
-                                                        class="avatar-placeholder mat-elevation-z2">
-                                                        <mat-icon>account_circle</mat-icon>
+                                                    <img *ngIf="profileImage" [src]="getBase64Image(imageFile[0])" class="profile-img" alt="Profile Image" />
+                                                    <div *ngIf="!profileImage" class="avatar-placeholder mat-elevation-z2">
+                                                      <mat-icon>account_circle</mat-icon>
                                                     </div>
-                                                    <!-- <input type="file" (change)="onFileSelected2($event)" accept="image/*" class="file-input" /> -->
-                                                </div>
+                                                  </div>
+                                                  
+                                                  
                                                 <hr>
 
                                                 <div class="d-flex justify-content-between">
                                                     <div class="col">
                                                         <button mat-mini-fab matTooltip="Warn" color="primary"
-                                                            (click)="uploadImage() ">
+                                                            (click)="uploadImage() " *ngIf="imageAvailable">
                                                             <mat-icon>upload</mat-icon></button>
-                                                        <button mat-mini-fab matTooltip="Warn" color="warn"
-                                                            (click)="saveImage() ">
-                                                            <mat-icon>delete</mat-icon></button>
-                                                        <button mat-mini-fab matTooltip="Warn" color="primary"
-                                                            (click)="saveImage() ">
-                                                            <mat-icon>download</mat-icon></button>
+                                                        <button  mat-mini-fab matTooltip="Warn" color="warn"
+                                                            (click)="deleteImage(applicantImageFile_model.applicant_image_fileid) "*ngIf="imageunAvailable">
+                                                            <mat-icon >delete</mat-icon></button>
+                                                            <button mat-mini-fab matTooltip="Download Image" color="primary" (click)="saveImage()" *ngIf="imageunAvailable">
+                                                                <mat-icon>save_alt</mat-icon>
+                                                              </button>
                                                     </div>
-                                                    <div class="col">
+                                                    <!-- <div class="col">
                                                         <button mat-mini-fab matTooltip="Warn" color="primary"
                                                             (click)="saveImage() ">
                                                             <mat-icon>edit</mat-icon></button>
-                                                    </div>
+                                                    </div> -->
 
                                                 </div>
 
@@ -118,7 +117,14 @@
                                                             <td><strong>Business Number</strong></td>
                                                             <td>{{ applicantDetailsModel.applicantbusinessNumber }}</td>
                                                         </tr>
-
+                                                        <tr>
+                                                            <td><strong>Bank Name</strong></td>
+                                                            <td>{{ applicantDetailsModel.bank_name }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Bank Account No.</strong></td>
+                                                            <td>{{ applicantDetailsModel.bankAccount_no }}</td>
+                                                        </tr>
                                                         <!-- Add more rows as needed for other fields -->
                                                     </tbody>
                                                 </table>
@@ -127,7 +133,7 @@
 
                                     </mat-card>
                                 </mat-tab>
-                                <mat-tab label="Kin Information">
+                                <mat-tab label="Kin ">
                                     <div class="col-md-12">
                                         <div class="widget-area-2 proclinic-box-shadow" >
                                             <h3 class="text-center"><b>Father Details</b></h3>
@@ -229,69 +235,47 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <h3 class="text-center"><b>Brother</b></h3>
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Full Name</th>
-                                                            <th>Nationality </th>
-                                                            <th>Address</th>
-                                                            <th>Occupation</th>
-                                                            <th>DOB</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr *ngFor="let wifeDetail of wifeDetailsArray">
-                                                            <td>{{ wifeDetail.wife_name }}</td>
-                                                            <td>{{ wifeDetail.wifenationality }}</td>
-                                                            <td>{{ wifeDetail.wifehome_address}}</td>
-                                                            <td>{{ wifeDetail.wifeoccupation }}</td>
-                                                            <td>{{ wifeDetail.wifedate_of_birth | date: 'yyyy-MM-dd' }}
-                                                            </td>
-                                                            <td>
-                                                                <button mat-icon-button color="primary"
-                                                                    (click)="openDialogUpdateFile(wifeDetail) ">
-                                                                    <mat-icon>edit</mat-icon>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <h3 class="text-center"><b>Sister</b></h3>
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Full Name</th>
-                                                            <th>Nationality </th>
-                                                            <th>Address</th>
-                                                            <th>Occupation</th>
-                                                            <th>DOB</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr *ngFor="let wifeDetail of wifeDetailsArray">
-                                                            <td>{{ wifeDetail.wife_name }}</td>
-                                                            <td>{{ wifeDetail.wifenationality }}</td>
-                                                            <td>{{ wifeDetail.wifehome_address}}</td>
-                                                            <td>{{ wifeDetail.wifeoccupation }}</td>
-                                                            <td>{{ wifeDetail.wifedate_of_birth | date: 'yyyy-MM-dd' }}
-                                                            </td>
-                                                            <td>
-                                                                <button mat-icon-button color="primary"
-                                                                    (click)="openDialogUpdateFile(wifeDetail) ">
-                                                                    <mat-icon>edit</mat-icon>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                      
                                         </div>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab  label="Relative ">
+                                    <div class="d-flex justify-content-between">
+                                        <h3 class="widget-title">Relative Information</h3>
+                                        <button mat-mini-fab matTooltip="Warn" color="primary"
+                                            (click)="openDialogRelative() ">
+                                            <mat-icon>add</mat-icon></button>
+                                    </div>  
+                                     <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Relative Type</th>
+                                                    <th>Full Name</th>
+                                                    <th>Nationality </th>
+                                                    <th>Address</th>
+                                                    <th>Occupation</th>
+                                                    <th>DOB</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let relativeDetails of relativeDetailsArray">
+                                                    <td>{{relativeDetails.relative_types}}</td>
+                                                    <td>{{relativeDetails.relativefull_name}}</td>
+                                                    <td>{{relativeDetails.relativenationality}}</td>
+                                                    <td>{{relativeDetails.relativehome_address}}</td>
+                                                    <td>{{relativeDetails.relativeoccupation}}</td>
+                                                    <td>{{ relativeDetails.relativedate_of_birth | date: 'yyyy-MM-dd' }}
+                                                    <td>
+                                                        <button mat-icon-button color="primary"
+                                                            (click)="openDialogUpdateFile(relativeDetails) ">
+                                                            <mat-icon>edit</mat-icon>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </mat-tab>
                                 <mat-tab label="Applicant Files">
@@ -403,7 +387,7 @@
                                         </div>
                                     </div>
                                 </mat-tab>
-                                <mat-tab *ngIf="addminOnly" label="IRCC Files">
+                                <mat-tab *ngIf="addminOnly" label="Embassy Files">
                                     <p></p>
                                 </mat-tab>
                             </mat-tab-group>
@@ -427,7 +411,7 @@
                             <mat-form-field>
                                 <mat-label>Select File Name</mat-label>
                                 <mat-select placeholder="File Name" name="applicantFileID"
-                                    [(ngModel)]="applicantFile.applicantFileID">
+                                    [(ngModel)]="applicantFile.applicantFileID" required>
                                     <mat-option *ngFor="let applicantFileData of applicantFile"
                                         value="{{applicantFileData.applicantFileID}}">{{applicantFileData.file_name}}</mat-option>
 
@@ -437,8 +421,7 @@
                             <input class="form-control" type="file" name="file" (change)="onFileSelected($event)" />
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-success" type="submit" [disabled]="!myForm.valid">Upload</button>
-
+                            <button mat-button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid"> <mat-icon>upload-file</mat-icon></button>
                         </div>
                     </form>
                 </div>
@@ -464,9 +447,103 @@
                             <input class="form-control" type="file" name="file" (change)="onFileSelected2($event)" />
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-success" type="submit" [disabled]="!myForm2.valid">Upload</button>
+                            <button mat-button mat-raised-button color="primary" type="submit" [disabled]="!myForm2.valid"> <mat-icon>upload-file</mat-icon></button>
 
                         </div>
+                    </form>
+                </div>
+            </ng-template>
+            <ng-template #addImageFile>
+                <div class="card">
+                    <form #myImageForm="ngForm" (ngSubmit)="saveImageFile()" enctype="multipart/form-data">
+
+                        <div class="card-header">
+                            <h4>Upload File</h4>
+                        </div>
+                        <div class="card-body">
+                           
+                            <hr>
+                            <input class="form-control" type="file" name="file" (change)="onImageFileSelected($event)" />
+                        </div>
+                        <div class="card-footer">
+                            <button mat-button mat-raised-button color="primary" type="submit" [disabled]="!myImageForm.valid"> <mat-icon>upload-file</mat-icon></button>
+                        </div>
+                    </form>
+                </div>
+            </ng-template>
+            <ng-template #addRelative>
+                <div class="card">
+                    <form #myRelativeForm="ngForm" >
+
+                        <mat-card-header>
+                            <mat-card-title>Add Relative</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field>
+                                    <mat-label>Full Name</mat-label>
+                                    <input matInput placeholder="Full Name" name="relativeFullName" [(ngModel)]="relativeDetails.relativefullName" required>
+                                  </mat-form-field>
+                                </div>
+                               
+                                
+                                <div class="col-md-6">
+                                  <mat-form-field>
+                                    <mat-label>Marriage Status</mat-label>
+                                    <mat-select placeholder="Marriage Status" name="motherMarriageStatus" [(ngModel)]="relativeDetails.relativemarriedStatus" required>
+                                      <mat-option value="married">Married</mat-option>
+                                      <mat-option value="single">Single</mat-option>
+                                      <mat-option value="divorced">Divorced</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                      <mat-label>Relative Types</mat-label>
+                                      <mat-select placeholder="Relative Type" name="relativeTypes" [(ngModel)]="relativeDetails.relativeTypes" required>
+                                        <mat-option value="Sister">Siter</mat-option>
+                                        <mat-option value="Brother">Brother</mat-option>
+                                        <mat-option value="Cousin">Cousin</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </div>
+                                <div class="col-md-6">
+                                  <mat-form-field>
+                                    <mat-label>Nationality</mat-label>
+                                    <mat-select placeholder="Nationality" name="relativenationality" [(ngModel)]="relativeDetails.relativenationality" required>
+                                      <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                  <mat-form-field>
+                                    <mat-label>Home Address</mat-label>
+                                    <input matInput placeholder="Home Address" name="relativeHomeAddress" [(ngModel)]="relativeDetails.relativehomeAddress"required>
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                  <mat-form-field>
+                                    <mat-label>Occupation</mat-label>
+                                    <input matInput placeholder="Occupation" name="relativeOccupation" [(ngModel)]="relativeDetails.relativeoccupation" required>
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                  <mat-form-field>
+                                    <mat-label>Date of Birth</mat-label>
+                                    <input matInput [matDatepicker]="picker3" placeholder="Date of Birth" name="relativeDateOfBirth" [(ngModel)]="relativeDetails.relativedateOfBirth" required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker3></mat-datepicker>
+                                  </mat-form-field>
+                                </div>
+                              </div>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <mat-card-actions>
+                                <button mat-button mat-raised-button color="primary" [disabled]="!myRelativeForm.valid"
+                                    (click)="saveRelative()"> <mat-icon>save</mat-icon></button>
+                            </mat-card-actions>
+                        </mat-card-actions>
                     </form>
                 </div>
             </ng-template>

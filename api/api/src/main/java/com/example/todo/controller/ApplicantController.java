@@ -1,6 +1,7 @@
 package com.example.todo.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -42,5 +43,9 @@ public class ApplicantController {
         return applicant.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
+    @GetMapping("/CountAllApplicant/")
+    public ResponseEntity<List<Map<String, Object>>> GetApplicantFileByApplicantID() {
+        List<Map<String, Object>> applicant = applicantServices.CountAllApplicant();
+        return ResponseEntity.ok(applicant);
+    }
 }

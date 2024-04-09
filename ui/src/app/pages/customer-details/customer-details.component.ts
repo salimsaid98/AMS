@@ -15,6 +15,10 @@ import { FilesServicesService } from 'src/app/services/files/files/files-service
 import { ApplicantFileServicesService } from 'src/app/services/files/applicantFile/applicant-file-services.service';
 import { PreparedFileServicesService } from 'src/app/services/files/preparedFile/prepared-file-services.service';
 import { ApplicantPreparedFileServicesService } from 'src/app/services/files/applicantPreparedFile/applicant-prepared-file-services.service';
+import { ApplicantImageFileServicesService } from 'src/app/services/files/aplicantImageFile/applicant-image-file-services.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import Swal from 'sweetalert2';
+import { RelativeServicesService } from 'src/app/services/applicant/relative/relative-services.service';
 
 @Component({
   selector: 'app-customer-details',
@@ -29,6 +33,7 @@ fileData!: FormData;
 fatherDetailsArray: any[] = []; 
 motherDetailsArray: any[] = []; 
 wifeDetailsArray: any[] = []; 
+relativeDetailsArray: any[] = []; 
 applicantDetailsArray!:any[]
 applicantDetailsModel:applicantDetailsModel = new applicantDetailsModel()
 file_model:File_models=new File_models()
@@ -46,8 +51,25 @@ applicantPreparedFile_model: any = {
   // file_name:'',
   preparedFileID:''
 };
+applicantImageFile_model: any = {
+  applicantID: '',
+  fileID:'',
+  pplicant_image_fileid:''
+  // file_name:'',
+};
+relativeDetails: any = {
+  relativefullName: '',
+  relativedateOfBirth: '',
+  relativemarriedStatus: '',
+  relativenationality: '',
+  relativehomeAddress: '',
+  relativeoccupation: '',
+  relativeapplicantID:'',
+  relativeTypes:''
+};
 applicantFile:any
 preparedFile:any
+ImageFile:any
 userOnly:boolean = false
 addminOnly:boolean = false
   constructor(private route : ActivatedRoute,
@@ -60,7 +82,10 @@ addminOnly:boolean = false
     private applicantandfileService:ApplicAndFileServicesService,
     private applicantFileService:ApplicantFileServicesService,
     private preparedFileService:PreparedFileServicesService,
-    private applicantPreparedFileServices:ApplicantPreparedFileServicesService ){
+    private applicantPreparedFileServices:ApplicantPreparedFileServicesService ,
+    private applicantImageFileServices :ApplicantImageFileServicesService,
+  private sanitizer :DomSanitizer ,
+  private relativeServices:RelativeServicesService ){
 
   }
   displayedColumns: string[] = ['fileid', 'file_name', 'filetype', 'actions']; // Define the columns you want to display
@@ -72,13 +97,22 @@ addminOnly:boolean = false
   @ViewChild(MatPaginator) paginator2!: MatPaginator
   @ViewChild('addFile') addFile!: TemplateRef<any>;
   @ViewChild('addFile2') addFile2!: TemplateRef<any>;
+  @ViewChild('addImageFile') addImageFile!: TemplateRef<any>;
+  @ViewChild('addRelative') addRelative!: TemplateRef<any>;
+
+
   @ViewChild('myForm') myForm!: NgForm;
+  @ViewChild('myRelativeForm') myRelativeForm!:NgForm;
+  @ViewChild('myImageForm') myImageForm!: NgForm;
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.id = this.route.snapshot.params['id'];
     this.applicantandfile_model.applicantID =  this.id = this.route.snapshot.params['id'];
     this.applicantPreparedFile_model.applicantID = this.id
+    this.relativeDetails.applicantID = this.id;
+    this.applicantImageFile_model.applicantID = this.id
+
     console.log(this.id)
     this.getFatherByApplicantId(this.id)
     this.getMoherByApplicantId(this.id)
@@ -86,6 +120,8 @@ addminOnly:boolean = false
     this.getApplicantDetailsByID(this.id)
     this.getAllApplicantFiles(this.id);
     this.getAllApplicantPreparedFiles(this.id);
+    this.getApplicantImageFile(this.id)
+    this.getRelativebyApplicantID(this.id)
     this.username = sessionStorage.getItem("username");
     this.roles= sessionStorage.getItem("roles");
     if(this.roles=="Admin"){
@@ -134,6 +170,57 @@ addminOnly:boolean = false
       }
     )
   }
+  imageAvailable:boolean=true
+  imageFile:any
+  imageunAvailable:boolean=false
+  getApplicantImageFile(id: any): void {
+    this.applicantImageFileServices.getAllApplicantImageFileByApplicantID(id).subscribe(
+      respo => {
+        respo.forEach((array:any) => {
+          this.applicantImageFile_model.applicant_image_fileid = array.applicant_image_fileid
+          this.applicantImageFile_model.applicantID = array.applicantID
+
+        });
+        console.log("Applicant Image File", respo);
+        this.imageFile = respo;
+        this.setProfileImage();
+
+        if( this.applicantImageFile_model.applicantID==this.id){
+          this.imageAvailable = true
+          
+          this.imageunAvailable =false
+
+        }else{
+          this.imageAvailable = false
+          this.imageunAvailable =true
+        }
+       
+      },
+      error => {
+        console.error('Error retrieving applicant image file:', error);
+        this.imageAvailable = true
+      }
+    );
+  }
+getRelativebyApplicantID(id:any){
+  return this.relativeServices.getRelativeByApplicantID(id).subscribe(
+    respo =>{
+      this.relativeDetailsArray = respo
+      console.log("Relative " ,this.relativeDetailsArray)
+    }
+  )
+}
+  setProfileImage(): void {
+    if (this.imageFile && this.imageFile.length > 0) {
+      const imageFile = this.imageFile[0]; // Assuming you only want to display the first image
+      this.profileImage = this.sanitizer.bypassSecurityTrustUrl(this.getBase64Image(imageFile));
+    }
+  }
+
+  getBase64Image(image: any): string {
+    return 'data:' + image.file_type + ';base64,' + image.file_byte;
+  }
+  
   // open dialog for add user
 openDialogAddFile():void{
 
@@ -156,6 +243,9 @@ onFileSelected(event: any) {
   this.selectedFile = event.target.files[0];
 }
 onFileSelected2(event: any) {
+  this.selectedFile = event.target.files[0];
+}
+onImageFileSelected(event: any) {
   this.selectedFile = event.target.files[0];
 }
 getAllApplicantFile(){
@@ -309,11 +399,82 @@ applyFilter2(event: Event): void {
 //     this.dataSource.paginator.firstPage();
 //   }
 // }
-downloadFile(file: any): void {
+shareFile(file: any): void {
   // Implement your file download logic here
   console.log('Downloading file:', file);
 }
-
+// deleteFunction(id:any){
+//   return this.applicantImageFileServices.deleteApplicantImageFile(id).subscribe(
+//     respo=>{
+//       console.log(respo)
+//       location.reload()
+//     }
+//   )
+// }
+deleteFunction(id: any): void {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You will not be able to recover this image!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, keep it'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // User confirmed, proceed with deletion
+      this.applicantImageFileServices.deleteApplicantImageFile(id).subscribe(
+            respo=>{
+          console.log(respo);
+          location.reload()
+          // Show success message
+          // Swal.fire({
+          //   title: 'Deleted!',
+          //   text: 'Your file name has been deleted.',
+          //   icon: 'success',
+          //   timer: 1500,
+          //   timerProgressBar: true,
+          //   showConfirmButton: false
+          // });
+          Swal.fire({
+            position: 'top-right',
+            icon: 'success',
+            text: 'Your file name has been deleted.',
+            toast: true,
+            timer: 1800,
+            showConfirmButton: false,
+            timerProgressBar: true,
+            width: '350px',
+            customClass: {
+              title: 'toast-success-title',
+              icon: 'toast-success-icon'
+            }
+          });
+          
+          // Perform any additional actions after successful deletion
+          // this.getIRCCFile();
+        },
+        error => {
+          console.error(error);
+          // Show error message
+          Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred while deleting the file. Please try again later.',
+            icon: 'error',
+            timer: 1500,
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
+        }
+      );
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      // User canceled, do nothing
+    }
+  });
+}
+deleteImage(element:any){
+  // console.log(element)
+  this.deleteFunction(element)
+}
 deleteFile(file: any): void {
   // Implement your file delete logic here
   console.log('Deleting file:', file);
@@ -347,14 +508,20 @@ openPDFInIFrame(dataURL: string): void {
   document.body.appendChild(iframe);
 }
 
-images: any
-getBase64Image(image: any): string {
-  // Assuming image_byte is a base64 encoded string in the backend
-  return 'data:' + image.file_typ + ';base64,' + image.file_byte;
+saveImage(): void {
+  if (this.imageFile && this.imageFile.length > 0) {
+    const imageFile = this.imageFile[0]; // Assuming you only want to download the first image
+    const link = document.createElement('a');
+    const imageUrl = 'data:' + imageFile.file_type + ';base64,' + imageFile.file_byte;
+    link.href = imageUrl;
+    link.download = 'profile_image.png'; // You can specify the filename here
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 }
 
-
-profileImage: string | ArrayBuffer | null = null;
+profileImage: any
 
 
 // onFileSelected2(event: any): void {
@@ -368,16 +535,260 @@ profileImage: string | ArrayBuffer | null = null;
 //   }
 // }
 
-saveImage(): void {
-  // Implement logic to save the image here
-  console.log('Image saved');
-}
+
 openDialogUpdateFile(element:any){
   console.log(element);
 }
 
 uploadImage(){
-  
+  this.dialog.open(this.addImageFile,{width:'400px'});
+
+}
+uploadImageFile(file:File){
+  return this.fileServices.uploadFile(file).subscribe(
+    respo=>{
+      if (Array.isArray(respo)) {
+        // Loop through the array of objects
+        respo.forEach((item: any) => {
+          // Log each object's properties
+          console.log('File ID:', item.fileID);
+          location.reload()
+          this.applicantImageFile_model.fileID = item.fileID;
+        });
+        this.applicantImageFileServices.creatApplicantImageFile(this.applicantImageFile_model).subscribe(
+          respo=>{
+            console.log(respo)
+            this.dialog.closeAll();
+            // this.getAllApplicantPreparedFiles(this.id);
+
+          }
+        )
+      }
+    }
+  )
+}
+saveImageFile(){
+  // console.log(this.selectedFile)
+  if (this.selectedFile) {
+    console.log('Selected file:', this.selectedFile);
+      this.uploadImageFile(this.selectedFile)
+  } else {
+    console.log('No file selected.');
+  }
 }
 
+openDialogRelative(){
+  this.dialog.open(this.addRelative,{width:'400px'});
+}
+saveRelativeFuntion(data:any){
+  return this.relativeServices.creatRelative(data).subscribe(
+    respo=>{
+      console.log(respo)
+      this.dialog.closeAll()
+      this.myRelativeForm.reset()
+      this.getRelativebyApplicantID(this.id)
+    }
+  )
+}
+saveRelative(){
+// console.log(this.relativeDetails)
+this.saveRelativeFuntion(this.relativeDetails);
+}
+countries: string[] = [
+  "Afghanistan",
+  "Albania",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Antigua and Barbuda",
+  "Argentina",
+  "Armenia",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "Bahamas",
+  "Bahrain",
+  "Bangladesh",
+  "Barbados",
+  "Belarus",
+  "Belgium",
+  "Belize",
+  "Benin",
+  "Bhutan",
+  "Bolivia",
+  "Bosnia and Herzegovina",
+  "Botswana",
+  "Brazil",
+  "Brunei",
+  "Bulgaria",
+  "Burkina Faso",
+  "Burundi",
+  "Cabo Verde",
+  "Cambodia",
+  "Cameroon",
+  "Canada",
+  "Central African Republic",
+  "Chad",
+  "Chile",
+  "China",
+  "Colombia",
+  "Comoros",
+  "Congo",
+  "Costa Rica",
+  "Croatia",
+  "Cuba",
+  "Cyprus",
+  "Czech Republic",
+  "Denmark",
+  "Djibouti",
+  "Dominica",
+  "Dominican Republic",
+  "Ecuador",
+  "Egypt",
+  "El Salvador",
+  "Equatorial Guinea",
+  "Eritrea",
+  "Estonia",
+  "Eswatini",
+  "Ethiopia",
+  "Fiji",
+  "Finland",
+  "France",
+  "Gabon",
+  "Gambia",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Greece",
+  "Grenada",
+  "Guatemala",
+  "Guinea",
+  "Guinea-Bissau",
+  "Guyana",
+  "Haiti",
+  "Honduras",
+  "Hungary",
+  "Iceland",
+  "India",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Ireland",
+  "Israel",
+  "Italy",
+  "Jamaica",
+  "Japan",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Kiribati",
+  "Kosovo",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Laos",
+  "Latvia",
+  "Lebanon",
+  "Lesotho",
+  "Liberia",
+  "Libya",
+  "Liechtenstein",
+  "Lithuania",
+  "Luxembourg",
+  "Madagascar",
+  "Malawi",
+  "Malaysia",
+  "Maldives",
+  "Mali",
+  "Malta",
+  "Marshall Islands",
+  "Mauritania",
+  "Mauritius",
+  "Mexico",
+  "Micronesia",
+  "Moldova",
+  "Monaco",
+  "Mongolia",
+  "Montenegro",
+  "Morocco",
+  "Mozambique",
+  "Myanmar",
+  "Namibia",
+  "Nauru",
+  "Nepal",
+  "Netherlands",
+  "New Zealand",
+  "Nicaragua",
+  "Niger",
+  "Nigeria",
+  "North Korea",
+  "North Macedonia",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Palau",
+  "Palestine",
+  "Panama",
+  "Papua New Guinea",
+  "Paraguay",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Qatar",
+  "Romania",
+  "Russia",
+  "Rwanda",
+  "Saint Kitts and Nevis",
+  "Saint Lucia",
+  "Saint Vincent and the Grenadines",
+  "Samoa",
+  "San Marino",
+  "Sao Tome and Principe",
+  "Saudi Arabia",
+  "Senegal",
+  "Serbia",
+  "Seychelles",
+  "Sierra Leone",
+  "Singapore",
+  "Slovakia",
+  "Slovenia",
+  "Solomon Islands",
+  "Somalia",
+  "South Africa",
+  "South Korea",
+  "South Sudan",
+  "Spain",
+  "Sri Lanka",
+  "Sudan",
+  "Suriname",
+  "Sweden",
+  "Switzerland",
+  "Syria",
+  "Taiwan",
+  "Tajikistan",
+  "Tanzania",
+  "Thailand",
+  "Timor-Leste",
+  "Togo",
+  "Tonga",
+  "Trinidad and Tobago",
+  "Tunisia",
+  "Turkey",
+  "Turkmenistan",
+  "Tuvalu",
+  "Uganda",
+  "Ukraine",
+  "United Arab Emirates",
+  "United Kingdom",
+  "United States",
+  "Uruguay",
+  "Uzbekistan",
+  "Vanuatu",
+  "Vatican City",
+  "Venezuela",
+  "Vietnam",
+  "Yemen",
+  "Zambia",
+  "Zimbabwe"
+];
 }

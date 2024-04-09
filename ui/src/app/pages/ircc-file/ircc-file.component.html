@@ -5,7 +5,7 @@
     <!-- Page Title -->
     <div class="row no-margin-padding" id="header">
         <div class="col-md-6">
-            <h3 class="block-title">IRCC file</h3>
+            <h3 class="block-title">Embassy file</h3>
         </div>
         <div class="col-md-6">
             <ol class="breadcrumb">
@@ -15,7 +15,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">File</li>
-                <li class="breadcrumb-item active">IRCC File</li>
+                <li class="breadcrumb-item active">Embassy File</li>
             </ol>
         </div>
     </div>
@@ -35,7 +35,7 @@
                             <div class="col-md-12">
                                 <div class="widget-area-2 proclinic-box-shadow">
                                     <div class="d-flex justify-content-between">
-                                        <h3 class="widget-title">IRCC Attachment List Categories</h3>
+                                        <h3 class="widget-title">Embassy Attachment List Categories</h3>
                                         <button mat-mini-fab matTooltip="Warn" color="primary"
                                             (click)="openDialogAddFile() ">
                                             <mat-icon>add</mat-icon></button>
@@ -124,6 +124,12 @@
                                         <input matInput placeholder="file name" name="file_nanme"
                                             [(ngModel)]="irccFile.file_name" required>
                                     </mat-form-field>
+                                    <mat-form-field style="width: 100%;">
+                                        <mat-label >Country to Vist</mat-label>
+                                        <mat-select placeholder="Country" name="irccFilecountry" [(ngModel)]="irccFile.country_name" required>
+                                          <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
                                 </mat-card-content>
                                 <mat-card-actions>
                                     <button mat-button mat-raised-button color="primary" [disabled]="!myForm.valid"
@@ -148,6 +154,12 @@
                                         <input matInput placeholder="file name" name="file_nanme"
                                             [(ngModel)]="irccFile.file_name" required>
                                     </mat-form-field>
+                                    <mat-form-field style="width: 100%;">
+                                        <mat-label>Country to Vist</mat-label>
+                                        <mat-select placeholder="Country" name="irccFilecountry" [(ngModel)]="irccFile.country_name" required>
+                                          <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
                                 </mat-card-content>
                                 <mat-card-actions>
                                     <button mat-button mat-raised-button color="primary" [disabled]="!myForm.valid"

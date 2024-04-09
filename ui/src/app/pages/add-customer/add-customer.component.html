@@ -60,31 +60,43 @@
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Business Number</mat-label>
-                                  <input matInput placeholder="Business Number" name="businessNumber" [(ngModel)]="applicantDetails.applicantbusinessNumber">
+                                  <input matInput placeholder="Business Number" name="businessNumber" [(ngModel)]="applicantDetails.applicantbusinessNumber" required>
                                 </mat-form-field>
                               </div>
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Phone Number</mat-label>
-                                  <input matInput placeholder="Phone Number" name="phoneNumber" [(ngModel)]="applicantDetails.applicantphoneNumber">
+                                  <input matInput placeholder="Phone Number" name="phoneNumber" [(ngModel)]="applicantDetails.applicantphoneNumber" required>
                                 </mat-form-field>
                               </div>
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Website</mat-label>
-                                  <input matInput placeholder="Website" name="website" [(ngModel)]="applicantDetails.applicantwebsite">
+                                  <input matInput placeholder="Website" name="website" [(ngModel)]="applicantDetails.applicantwebsite" >
                                 </mat-form-field>
                               </div>
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>National ID Number</mat-label>
-                                  <input matInput placeholder="National ID Number" name="nationalIdNumber" [(ngModel)]="applicantDetails.applicantnationalIdNumber">
+                                  <input matInput placeholder="National ID Number" name="nationalIdNumber" [(ngModel)]="applicantDetails.applicantnationalIdNumber" required>
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Bank Name</mat-label>
+                                  <input matInput placeholder="Bank name" name="bank_name" [(ngModel)]="applicantDetails.bank_name" >
+                                </mat-form-field>
+                              </div>
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Bank Account No</mat-label>
+                                  <input matInput placeholder="Bank Account No." name="bankAccount_no" [(ngModel)]="applicantDetails.bankAccount_no" >
                                 </mat-form-field>
                               </div>
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Passport Number</mat-label>
-                                  <input matInput placeholder="Passport Number" name="passportNumber" [(ngModel)]="applicantDetails.applicantpassportNumber">
+                                  <input matInput placeholder="Passport Number" name="passportNumber" [(ngModel)]="applicantDetails.applicantpassportNumber" required>
                                 </mat-form-field>
                               </div>
                               <div class="col-md-3">
@@ -96,13 +108,20 @@
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Marital Status</mat-label>
-                                  <mat-select placeholder="Marital Status" name="maritalStatus" [(ngModel)]="applicantDetails.applicantmarriedStatus">
+                                  <mat-select placeholder="Marital Status" name="maritalStatus" [(ngModel)]="applicantDetails.applicantmarriedStatus" required>
                                     <mat-option value="married">Married</mat-option>
                                     <mat-option value="single">Single</mat-option>
                                   </mat-select>
                                 </mat-form-field>
                               </div>
-                             
+                              <div class="col-md-3">
+                                <mat-form-field>
+                                  <mat-label>Country to Vist</mat-label>
+                                  <mat-select placeholder="Nationality" name="Applicantdetailscountry_to_visit" [(ngModel)]="applicantDetails.country_to_visit" required>
+                                    <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </div>
 
                                 <!-- <div class="col-md-3">
                                   <label for="profileImage">Upload National ID pdf</label>
@@ -120,6 +139,7 @@
                            
                             <div>
                               <button mat-button (click)="stepper.next()">Next</button>
+                              <!-- <button (click)="save2()">save</button> -->
 
                             </div>
                           <!-- </form> -->
@@ -181,14 +201,14 @@
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Full Name</mat-label>
-                                  <input matInput placeholder="Full Name" name="fatherFullName" [(ngModel)]="fatherDetails.fatherfullName">
+                                  <input matInput placeholder="Full Name" name="fatherFullName" [(ngModel)]="fatherDetails.fatherfullName" required>
                                 </mat-form-field>
                               </div>
                          
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Marriage Status</mat-label>
-                                  <mat-select placeholder="Marriage Status" name="fathermarriedStatus" [(ngModel)]="fatherDetails.fathermarriedStatus">
+                                  <mat-select placeholder="Marriage Status" name="fathermarriedStatus" [(ngModel)]="fatherDetails.fathermarriedStatus" required>
                                     <mat-option value="married">Married</mat-option>
                                     <mat-option value="single">Single</mat-option>
                                     <mat-option value="divorced">Divorced</mat-option>
@@ -199,7 +219,7 @@
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Nationality</mat-label>
-                                  <mat-select placeholder="Nationality" name="fathernationality" [(ngModel)]="fatherDetails.fathernationality">
+                                  <mat-select placeholder="Nationality" name="fathernationality" [(ngModel)]="fatherDetails.fathernationality" required>
                                     <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
                                   </mat-select>
                                 </mat-form-field>
@@ -213,13 +233,13 @@
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Occupation</mat-label>
-                                  <input matInput placeholder="Occupation" name="fatherOccupation" [(ngModel)]="fatherDetails.fatheroccupation">
+                                  <input matInput placeholder="Occupation" name="fatherOccupation" [(ngModel)]="fatherDetails.fatheroccupation" >
                                 </mat-form-field>
                               </div>
                               <div class="col-md-5">
                                 <mat-form-field>
                                   <mat-label>Date of Birth</mat-label>
-                                  <input matInput [matDatepicker]="picker2" placeholder="Date of Birth" name="fatherDateOfBirth" [(ngModel)]="fatherDetails.fatherdateOfBirth">
+                                  <input matInput [matDatepicker]="picker2" placeholder="Date of Birth" name="fatherDateOfBirth" [(ngModel)]="fatherDetails.fatherdateOfBirth" required>
                                   <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                   <mat-datepicker #picker2></mat-datepicker>
                                 </mat-form-field>
@@ -239,7 +259,7 @@
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Full Name</mat-label>
-                                  <input matInput placeholder="Full Name" name="motherFullName" [(ngModel)]="motherDetails.motherfullName">
+                                  <input matInput placeholder="Full Name" name="motherFullName" [(ngModel)]="motherDetails.motherfullName" required>
                                 </mat-form-field>
                               </div>
                              
@@ -247,7 +267,7 @@
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Marriage Status</mat-label>
-                                  <mat-select placeholder="Marriage Status" name="motherMarriageStatus" [(ngModel)]="motherDetails.mothermarriedStatus">
+                                  <mat-select placeholder="Marriage Status" name="motherMarriageStatus" [(ngModel)]="motherDetails.mothermarriedStatus" required>
                                     <mat-option value="married">Married</mat-option>
                                     <mat-option value="single">Single</mat-option>
                                     <mat-option value="divorced">Divorced</mat-option>
@@ -257,7 +277,7 @@
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Nationality</mat-label>
-                                  <mat-select placeholder="Nationality" name="mothernationality" [(ngModel)]="motherDetails.mothernationality">
+                                  <mat-select placeholder="Nationality" name="mothernationality" [(ngModel)]="motherDetails.mothernationality" required>
                                     <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
                                   </mat-select>
                                 </mat-form-field>
@@ -265,19 +285,19 @@
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Home Address</mat-label>
-                                  <input matInput placeholder="Home Address" name="motherHomeAddress" [(ngModel)]="motherDetails.motherhomeAddress">
+                                  <input matInput placeholder="Home Address" name="motherHomeAddress" [(ngModel)]="motherDetails.motherhomeAddress" required>
                                 </mat-form-field>
                               </div>
                               <div class="col-md-3">
                                 <mat-form-field>
                                   <mat-label>Occupation</mat-label>
-                                  <input matInput placeholder="Occupation" name="motherOccupation" [(ngModel)]="motherDetails.motheroccupation">
+                                  <input matInput placeholder="Occupation" name="motherOccupation" [(ngModel)]="motherDetails.motheroccupation" required>
                                 </mat-form-field>
                               </div>
                               <div class="col-md-6">
                                 <mat-form-field>
                                   <mat-label>Date of Birth</mat-label>
-                                  <input matInput [matDatepicker]="picker3" placeholder="Date of Birth" name="motherDateOfBirth" [(ngModel)]="motherDetails.motherdateOfBirth">
+                                  <input matInput [matDatepicker]="picker3" placeholder="Date of Birth" name="motherDateOfBirth" [(ngModel)]="motherDetails.motherdateOfBirth" required>
                                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                                   <mat-datepicker #picker3></mat-datepicker>
                                 </mat-form-field>
@@ -285,7 +305,7 @@
                             </div>
                             <div>
                               <button mat-button (click)="stepper.previous()">Back</button>
-                              <button mat-button type="submit" (click)="Save()">Submit</button>
+                              <button mat-button type="submit" (click)="Save()" [disabled]="!stepperForm.valid">Submit</button>
                             </div>
                           </mat-step>
                           

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators, FormsModule, ReactiveFormsModule, FormGroup} from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {FormBuilder, Validators, FormsModule, ReactiveFormsModule, FormGroup, NgForm} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { ApplicantDetailsServicesService } from 'src/app/services/applicant/applicantDetails/applicant-details-services.service';
 import { FilesServicesService } from 'src/app/services/files/files/files-services.service';
@@ -9,6 +9,7 @@ import { MotherServicesService } from 'src/app/services/applicant/motherDetails/
 import { WifeServicesService } from 'src/app/services/applicant/wifeDetails/wife-services.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { ApplicantStatusServicesService } from 'src/app/services/applicant/applicantStatus/applicant-status-services.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -21,7 +22,9 @@ import { Router } from '@angular/router';
     },
   ],
 })
+
 export class AddCustomerComponent{
+  localDate = new Date().toLocaleDateString(); // Get current local date in string format
   file_model:File_models = new File_models()
   file_data!:FormData
  applicantDetails: any = {
@@ -35,6 +38,11 @@ export class AddCustomerComponent{
   applicantpassportNumber: '',
   applicantoccupation: '',
   applicantmarriedStatus: '',
+  bank_name:'',
+  bankAccount_no:'',
+  registeredBy:'',
+  registeredDate:'',
+  country_to_visit:''
 };
 
 wifeDetails: any = {
@@ -70,13 +78,25 @@ fileDetails:any={
     file: null // To store the entire File object
   
 }
+applicantStatus:any={
+  status:'Pending',
+  applicantID:''
+}
+username:any
+@ViewChild('stepperForm') stepperForm!: NgForm;
 
 constructor(private applicantDetailsServicers:ApplicantDetailsServicesService,
   private fileServices:FilesServicesService,
   private fatherservice:FatherServicesService,
   private motherservice:MotherServicesService,
   private wifeservice:WifeServicesService,
+  private applicantStatusServices:ApplicantStatusServicesService,
   private route:Router) {}
+  ngOnInit(): void {
+    this.username = sessionStorage.getItem("username");
+    this.applicantDetails.registeredBy = this.username
+    this.applicantDetails.registeredDate = this.localDate
+  }
 selectFile(event: any) {
   this.fileDetails = event.target.files[0]; // Assign the selected file to profileImage variable
 }
@@ -88,12 +108,13 @@ selectFile(event: any) {
 //   console.log("Father's Details:", this.fatherDetails);
 //   console.log("Mother's Details:", this.motherDetails);
 // }
-saveFunction(data1:any,data2:any,data3:any,data4:any){
+saveFunction(data1:any,data2:any,data3:any,data4:any,applicantStatusData:any){
   return this.applicantDetailsServicers.creatApplicant(data1).subscribe(
     respo=>{
       this.wifeDetails.applicantID = respo.applicantID
       this.fatherDetails.applicantID = respo.applicantID
       this.motherDetails.applicantID = respo.applicantID
+      this.applicantStatus.applicantID = respo.applicantID
       this.wifeservice.creatWife(data4).subscribe(
         wife_response=>{
           console.log("Mother response  "+wife_response)
@@ -107,6 +128,11 @@ saveFunction(data1:any,data2:any,data3:any,data4:any){
       this.motherservice.creatMother(data3).subscribe(
         mother_response=>{
           console.log("Mother response  "+mother_response)
+        }
+      )
+      this.applicantStatusServices.creatApplicantStatus(applicantStatusData).subscribe(
+        applicantStatus_respo =>{
+            console.log("Applicant Status "+applicantStatus_respo)
         }
       )
       Swal.fire({
@@ -144,12 +170,16 @@ saveFunction(data1:any,data2:any,data3:any,data4:any){
   );
 }
 Save(){
- this.saveFunction(this.applicantDetails,this.fatherDetails,this.motherDetails,this.wifeDetails,);
+ this.saveFunction(this.applicantDetails,this.fatherDetails,this.motherDetails,this.wifeDetails,this.applicantStatus);
 // console.log(this.fileDetails);
   // console.log("Applicant Details:", this.applicantDetails);
   // console.log("Wife Details:", this.wifeDetails);
   // console.log("Father's Details:", this.fatherDetails);
   // console.log("Mother's Details:", this.motherDetails);
+}
+save2(){
+  console.log("Applicant Details:", this.applicantDetails)
+
 }
 // onFileChange(event: any) {
 //   if (event.target.files && event.target.files.length > 0) {

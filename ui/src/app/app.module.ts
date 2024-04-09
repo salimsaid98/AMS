@@ -33,6 +33,8 @@ import { PreparedFileComponent } from './pages/prepared-file/prepared-file.compo
 import { ApplicantFileComponent } from './pages/applicant-file/applicant-file.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { ManageUsersComponent } from './pages/manage-users/manage-users.component';
+import { RegisterUsersComponent } from './pages/register-users/register-users.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +48,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     IrccFileComponent,
     PreparedFileComponent,
     ApplicantFileComponent,
+    ManageUsersComponent,
+    RegisterUsersComponent,
     
   ],
   imports: [

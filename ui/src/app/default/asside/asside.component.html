@@ -9,9 +9,9 @@
     <span class="theme-color theme-violet" data-color="violet"></span>
     <span class="theme-color theme-yellow" data-color="yellow"></span>
 </div> -->
-<div class="wrapper"  [ngClass]="{'sidebar-collapsed': sidebarCollapsed}">
+<div class="wrapper" [ngClass]="{'sidebar-collapsed': sidebarCollapsed}">
     <!-- Sidebar -->
-    <nav id="sidebar" class="bg bg-primary" style="width: 50px;">
+    <nav id="sidebar" class="" style="background-color: #2596be;">
         <div class="sidebar-header">
             <img src="../../../assets/images/airfox.png" alt="Logo" class="logo">
         </div>
@@ -23,10 +23,10 @@
                 </a>
             </li>
             <li>
-                <a href="#nav-patients" data-toggle="collapse" aria-expanded="false">
-                    <span class="ti-user"></span> Applicant
+                <a href="#nav-applicant" data-toggle="collapse" aria-expanded="false">
+                    <span class="ti-tag"></span> Applicant
                 </a>
-                <ul class="collapse list-unstyled" id="nav-patients">
+                <ul class="collapse list-unstyled" id="nav-applicant">
                     <li *ngIf="userOnly">
                         <a [routerLink]="['add-cust']">Add Applicant</a>
                     </li>
@@ -45,7 +45,7 @@
                 </a>
                 <ul class="collapse list-unstyled" id="nav-doctors">
                     <li>
-                        <a [routerLink]="['ircc-file']">IRCC Files</a>
+                        <a [routerLink]="['ircc-file']">Embassy Files</a>
                     </li>
                     <li>
                         <a [routerLink]="['prepared-file']">Prepered Files</a>
@@ -70,17 +70,31 @@
 
                 </ul>
             </li>
+            <li *ngIf="addminOnly">
+                <a href="#nav-users" data-toggle="collapse" aria-expanded="false">
+                    <span class="ti-user"></span> Users
+                </a>
+                <ul class="collapse list-unstyled" id="nav-users">
+                    <li>
+                        <a [routerLink]="['register-users']">Register Users</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['manage-users']">Manage Users</a>
+                    </li>
+
+                </ul>
+            </li>
         </ul>
 
     </nav>
     <!-- /Sidebar -->
     <!-- Page Content -->
-    <div id="content">
+    <div id="content" >
         <!-- Top Navigation -->
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default" >
             <div class="container-fluid">
                 <div class="responsive-logo">
-                    <img src="../../../assets/images/airfox-removebg-preview.png" alt="Logo" class="logo">
+                    <img src="../../../assets/images/airfox-removebg-preview.png" alt="Logo" class="logo2">
                 </div>
                 <ul class="nav">
                     <li class="nav-item" (click)="toggleSidebar()">

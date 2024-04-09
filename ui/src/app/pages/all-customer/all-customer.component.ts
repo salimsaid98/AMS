@@ -12,13 +12,16 @@ import { timer } from 'rxjs';
   styleUrls: ['./all-customer.component.css']
 })
 export class AllCustomerComponent implements OnInit {
-  displayedColumns: string[] = ['applicantID', 'applicantfullName', 'applicantemailAddress','applicantphoneNumber' ,'view'];
+  displayedColumns: string[] = ['index','registeredDate','country_to_visit', 'applicantfullName', 'applicantemailAddress','applicantphoneNumber','registeredBy' ,'view'];
   columnLabels: { [key: string]: string } = {
-    'applicantID': 'Applicant ID',
+    'index': '#',
     'applicantfullName': 'Full Name',
-    'applicantemailAddress': 'Email Address',
-    'applicantphoneNumber' : 'Applicant Phone',
-    'view': 'View'
+    'applicantemailAddress': 'Email ',
+    'applicantphoneNumber' : 'Phone',
+    'registeredBy': 'Register By',
+    'view': 'View',
+    'registeredDate':'Date',
+    'country_to_visit':'Visa Country'
   };
    dataSource = new MatTableDataSource<any>();
   
@@ -32,10 +35,14 @@ export class AllCustomerComponent implements OnInit {
     this.getAllApplicant();
   }
   isLoading: boolean = true; // Flag to track loading state
-
+  currentIndex = 0;
   getAllApplicant() {
     this.applicantService.getAllApplicants().subscribe(
       applicant_response => {
+        applicant_response.forEach((element: any, index: number) => {
+          element['index'] = index + 1; // Assign the index value directly based on the array index
+          console.log(index)
+        });
         this.dataSource.data = applicant_response;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

@@ -16,6 +16,6 @@ public class IRCCFile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long irccID;
-    @Column(unique = true)
     private String file_name;
+    private String country_name;
 }
