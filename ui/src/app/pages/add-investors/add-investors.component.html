@@ -1,0 +1,280 @@
+<div id="content">
+    <!-- Top Navigation -->
+
+    <!-- /Top Navigation -->
+    <!-- Breadcrumb -->
+    <!-- Page Title -->
+    <div class="row no-margin-padding" id="header">
+        <div class="col-md-6">
+            <h3 class="block-title">Add Investors</h3>
+        </div>
+        <div class="col-md-6">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="index.html">
+                        <span class="ti-home"></span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">Investors</li>
+                <li class="breadcrumb-item active">Add Investors</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /Page Title -->
+
+    <!-- /Breadcrumb -->
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Widget Item -->
+            <div class="col-md-12">
+                <div class="widget-area-2 proclinic-box-shadow">
+                    <h3 class="widget-title">Add Investors</h3>
+                    <mat-horizontal-stepper #stepper>
+                        <!-- Step 1: Investors Details -->
+                        <mat-step>
+                            <!-- <form (ngSubmit)="uploadFile()" enctype="multipart/form-data"> -->
+
+                            <ng-template matStepLabel>Investors </ng-template>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Full Name</mat-label>
+                                        <input matInput placeholder="Full Name" name="fullName"
+                                            [(ngModel)]="Investors.investorsfullName" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Email</mat-label>
+                                        <input matInput placeholder="Email" name="email"
+                                            [(ngModel)]="Investors.investorsemailAddress" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Home Address</mat-label>
+                                        <input matInput placeholder="Home Address" name="home_address"
+                                            [(ngModel)]="Investors.investorshomeAddress" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Phone</mat-label>
+                                        <input matInput placeholder="Phone" name="phone"
+                                            [(ngModel)]="Investors.investorsphoneNumber" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>National ID</mat-label>
+                                        <input matInput placeholder="National ID" name="nationalid"
+                                            [(ngModel)]="Investors.investorsnationalIdNumber" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Passport No</mat-label>
+                                        <input matInput placeholder="Passport No." name="passportno"
+                                            [(ngModel)]="Investors.investorspassportNumber" required>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <button mat-button (click)="stepper.next()">Next</button>
+                                </div>
+                            </div>
+
+                        </mat-step>
+                        <!-- Step 2: Kin Details -->
+                        <mat-step>
+                            <!-- <form (ngSubmit)="uploadFile()" enctype="multipart/form-data"> -->
+
+                            <ng-template matStepLabel>Kin Details</ng-template>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Full Name</mat-label>
+                                        <input matInput placeholder="Full Name" name="fullName"
+                                            [(ngModel)]="KinDetails.kinfullName" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Email</mat-label>
+                                        <input matInput placeholder="Email" name="email"
+                                            [(ngModel)]="KinDetails.kinemailAddress" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Home Address</mat-label>
+                                        <input matInput placeholder="Home Address" name="home_address"
+                                            [(ngModel)]="KinDetails.kinhomeAddress" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Phone</mat-label>
+                                        <input matInput placeholder="Phone" name="phone"
+                                            [(ngModel)]="KinDetails.kinphoneNumber" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>National ID</mat-label>
+                                        <input matInput placeholder="National ID" name="nationalid"
+                                            [(ngModel)]="KinDetails.kinnationalIdNumber" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Passport No</mat-label>
+                                        <input matInput placeholder="Passport No." name="passportno"
+                                            [(ngModel)]="KinDetails.kinpassportNumber" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Kin Type</mat-label>
+                                        <input matInput placeholder="Kin Type" name="kinType"
+                                            [(ngModel)]="KinDetails.kinTypes" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Investors ID</mat-label>
+                                        <input matInput placeholder="Investors ID" name="investorsID"
+                                            [(ngModel)]="KinDetails.investorsID" required>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <button mat-button (click)="stepper.previous()">Back</button>
+                                    <button mat-button (click)="stepper.next()">Next</button>
+                                </div>
+                            </div>
+
+                        </mat-step>
+                        <!-- Step 3: Bank Details-->
+                        <mat-step>
+                            <!-- <form (ngSubmit)="uploadFile()" enctype="multipart/form-data"> -->
+
+                            <ng-template matStepLabel>Bank</ng-template>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Bank Name</mat-label>
+                                        <input matInput placeholder="Bank Name" name="bank_name"
+                                            [(ngModel)]="BankDetails.bank_name" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Bank Account No</mat-label>
+                                        <input matInput placeholder="Bank Account No" name="bank_account_no"
+                                            [(ngModel)]="BankDetails.bank_account_no" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Account Holder's Name</mat-label>
+                                        <input matInput placeholder="Account Holder's Name" name="bank_account_holders"
+                                            [(ngModel)]="BankDetails.bank_account_holders" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>SWIFT Code</mat-label>
+                                        <input matInput placeholder="SWIFT Code" name="bank_swift_code"
+                                            [(ngModel)]="BankDetails.bank_swift_code" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Account Currency</mat-label>
+                                        <input matInput placeholder="Account Currency" name="bank_account_currence"
+                                            [(ngModel)]="BankDetails.bank_account_currence" required>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Investors ID</mat-label>
+                                        <input matInput placeholder="Investors ID" name="investorsID"
+                                            [(ngModel)]="BankDetails.investorsID" required>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <button mat-button (click)="stepper.previous()">Back</button>
+                                    <button mat-button (click)="stepper.next()">Next</button>
+                                </div>
+                            </div>
+
+                        </mat-step>
+                        <!-- Step 4: Package-->
+                        <mat-step>
+                            <!-- <form (ngSubmit)="uploadFile()" enctype="multipart/form-data"> -->
+
+                            <ng-template matStepLabel>Package</ng-template>
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <mat-form-field>
+                                            <mat-label>Select Package</mat-label>
+                                            <mat-select placeholder="packages" name="mothernationality"
+                                                [(ngModel)]="Investors_Packages.packageID" required
+                                                (selectionChange)="onPackageSelect($event.value)">
+                                                <mat-option *ngFor="let pkg of packageData"
+                                                    [value]="pkg.packageID">{{pkg.package_name}}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <mat-form-field>
+                                            <mat-label>Currency</mat-label>
+                                            <input matInput disabled [value]="Investors_Package.package_currency">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <mat-form-field>
+                                            <mat-label>Percentage %</mat-label>
+                                            <input matInput disabled [value]="Investors_Package.package_parecentage">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <mat-form-field>
+                                            <mat-label>Profit Earning</mat-label>
+                                            <input matInput disabled [value]="profitEarning"
+                                                [(ngModel)]="Investors_Package.profit_earning">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <mat-form-field>
+                                            <mat-label>Amount Invested</mat-label>
+                                            <input matInput type="number" [(ngModel)]="amountInvested"
+                                                (input)="calculateProfitEarning()" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <mat-form-field>
+                                            <mat-label>Contract</mat-label>
+                                            <input matInput type="number"
+                                                [(ngModel)]="Investors_Packages.contract_limit" required>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+
+
+                                <div>
+                                    <button mat-button (click)="stepper.previous()">Back</button>
+                                    <button mat-button (click)="save()">save</button>
+                                </div>
+                            </div>
+                        </mat-step>
+                    </mat-horizontal-stepper>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -24,17 +24,14 @@
     <!-- /Breadcrumb -->
     <!-- Main Content -->
     <div class="container-fluid">
-
         <div class="row">
-
             <hr>
             <div class="col-md-12">
                 <div class="container-fluid">
-                    <div class="card">
-                        <div class="card-body">
+                    
                             <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
                                 <mat-tab label="Personal">
-                                    <mat-card class="profile-card">
+                                    <mat-card class="profile-card" style="width: auto;">
                                         <mat-card-header>
                                             <!-- <mat-card-title>{{ username }}</mat-card-title> -->
                                         </mat-card-header>
@@ -45,9 +42,7 @@
                                                     <div *ngIf="!profileImage" class="avatar-placeholder mat-elevation-z2">
                                                       <mat-icon>account_circle</mat-icon>
                                                     </div>
-                                                  </div>
-                                                  
-                                                  
+                                                  </div>                                                                                                
                                                 <hr>
 
                                                 <div class="d-flex justify-content-between">
@@ -62,12 +57,6 @@
                                                                 <mat-icon>save_alt</mat-icon>
                                                               </button>
                                                     </div>
-                                                    <!-- <div class="col">
-                                                        <button mat-mini-fab matTooltip="Warn" color="primary"
-                                                            (click)="saveImage() ">
-                                                            <mat-icon>edit</mat-icon></button>
-                                                    </div> -->
-
                                                 </div>
 
 
@@ -78,67 +67,122 @@
                                                     <tbody>
                                                         <tr>
                                                             <td><strong>Full Name</strong></td>
-                                                            <td>{{ applicantDetailsModel.applicantfullName }}</td>
+                                                            <td> 
+                                                          <mat-form-field>
+                                                                <input matInput placeholder="Full Name" name="fullName" [(ngModel)]="applicantDetailsModel.applicantfullName"  value="{{applicantDetailsModel.applicantfullName}}">
+                                                            </mat-form-field>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Email</strong></td>
-                                                            <td>{{ applicantDetailsModel.applicantemailAddress}}</td>
+                                                            <td> 
+                                                                <mat-form-field>
+                                                                      <input matInput placeholder="email" name="email" [(ngModel)]="applicantDetailsModel.applicantemailAddress"  value="{{ applicantDetailsModel.applicantemailAddress}}">
+                                                                  </mat-form-field>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Passport No:</strong></td>
-                                                            <td>{{ applicantDetailsModel.applicantpassportNumber}}</td>
+                                                            <td> 
+                                                                <mat-form-field>
+                                                                      <input matInput placeholder="passport" name="passport" [(ngModel)]="applicantDetailsModel.applicantpassportNumber"  value="{{applicantDetailsModel.applicantpassportNumber}}">
+                                                                  </mat-form-field>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>National ID no:</strong></td>
-                                                            <td>{{ applicantDetailsModel.applicantnationalIdNumber}}
+                                                            <td> 
+                                                                <mat-form-field>
+                                                                      <input matInput placeholder="national" name="national" [(ngModel)]="applicantDetailsModel.applicantnationalIdNumber"  value="{{applicantDetailsModel.applicantpassportNumber}}">
+                                                                  </mat-form-field>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Website</strong></td>
-                                                            <td>{{ applicantDetailsModel.applicantwebsite}}</td>
+                                                            <td> 
+                                                                <mat-form-field>
+                                                                      <input matInput placeholder="national" name="national" [(ngModel)]="applicantDetailsModel.applicantwebsite"  value="{{applicantDetailsModel.applicantwebsite}}">
+                                                                  </mat-form-field>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Occupation</strong></td>
-                                                            <td>{{ applicantDetailsModel.applicantoccupation}}</td>
+                                                            <td> 
+                                                                <mat-form-field>
+                                                                      <input matInput placeholder="occupation" name="occupation" [(ngModel)]="applicantDetailsModel.applicantoccupation"  value="{{applicantDetailsModel.applicantoccupation}}">
+                                                                  </mat-form-field>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Martial Status</strong></td>
-                                                            <td>{{ applicantDetailsModel.applicantmarriedStatus}}</td>
+                                                            <td> 
+                                                                <mat-form-field>
+                                                                    <mat-select placeholder="{{applicantDetailsModel.applicantmarriedStatus}}" name="maritalStatus" [(ngModel)]="applicantDetailsModel.applicantmarriedStatus"  >
+                                                                      <mat-option value="married">Married</mat-option>
+                                                                      <mat-option value="single">Single</mat-option>
+                                                                    </mat-select>
+                                                                  </mat-form-field>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Phone No:</strong></td>
-                                                            <td>{{ applicantDetailsModel.applicantphoneNumber}}</td>
+                                                            <td> 
+                                                                <mat-form-field>
+                                                                      <input matInput placeholder="occupation" name="occupation" [(ngModel)]="applicantDetailsModel.applicantphoneNumber"  value="{{applicantDetailsModel.applicantphoneNumber}}">
+                                                                  </mat-form-field>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Address</strong></td>
-                                                            <td>{{applicantDetailsModel.applicanthomeAddress}}</td>
+                                                            <td>
+                                                                <mat-form-field>
+                                                                    <input matInput placeholder="address" name="address" [(ngModel)]="applicantDetailsModel.applicanthomeAddress"  value="{{applicantDetailsModel.applicanthomeAddress}}">
+                                                                </mat-form-field>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Business Number</strong></td>
-                                                            <td>{{ applicantDetailsModel.applicantbusinessNumber }}</td>
+                                                            <td>
+                                                                <mat-form-field>
+                                                                    <input matInput placeholder="business" name="business" [(ngModel)]="applicantDetailsModel.applicantbusinessNumber"  value="{{applicantDetailsModel.applicantbusinessNumber}}">
+                                                                </mat-form-field>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Bank Name</strong></td>
-                                                            <td>{{ applicantDetailsModel.bank_name }}</td>
+                                                            <td>
+                                                                <mat-form-field>
+                                                                    <input matInput placeholder="bank" name="bank" [(ngModel)]="applicantDetailsModel.bank_name"  value="{{applicantDetailsModel.bank_name}}">
+                                                                </mat-form-field>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Bank Account No.</strong></td>
-                                                            <td>{{ applicantDetailsModel.bankAccount_no }}</td>
+                                                            <td>
+                                                                <mat-form-field>
+                                                                    <input matInput placeholder="bank" name="bank" [(ngModel)]="applicantDetailsModel.bankAccount_no"  value="{{applicantDetailsModel.bankAccount_no}}">
+                                                                </mat-form-field>
+                                                            </td>
                                                         </tr>
                                                         <!-- Add more rows as needed for other fields -->
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </mat-card-content>
+                                        <mat-card-footer style="margin: auto;">
+                                            <button mat-button mat-raised-button color="primary" 
+                                            (click)="saveUpdate(applicantDetailsModel)" > <mat-icon>update</mat-icon></button>
+                                        </mat-card-footer>
 
                                     </mat-card>
+                                    <hr>
                                 </mat-tab>
                                 <mat-tab label="Kin ">
                                     <div class="col-md-12">
                                         <div class="widget-area-2 proclinic-box-shadow" >
                                             <h3 class="text-center"><b>Father Details</b></h3>
                                             <div class="table-responsive">
-                                                <table class="table table-bordered table-striped">
+                                                <table class="table table-bordered table-striped" style="width: 100%;">
                                                     <thead>
                                                         <tr>
                                                             <th>Full Name</th>
@@ -150,20 +194,32 @@
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
+                                                <tbody>
                                                         <tr *ngFor="let fatherDetail of fatherDetailsArray">
-                                                            <td>{{ fatherDetail.fatherfull_name }}</td>
-                                                            <td>{{ fatherDetail.fathernationality }}</td>
-                                                            <td>{{ fatherDetail.fatherhome_address}}</td>
-                                                            <td>{{ fatherDetail.fathermarried_status }}</td>
-                                                            <td>{{ fatherDetail.fatheroccupation }}</td>
-                                                            <td>{{ fatherDetail.fatherdate_of_birth | date: 'yyyy-MM-dd'
-                                                                }}</td>
+                                                            <td><input type="text"  class="form-control "id="" [(ngModel)]="fatherDetail.fatherfull_name" required></td>
+                                                            <td>
+                                                                <select class="form-control" aria-label="Default select example" [(ngModel)]=" fatherDetail.fathernationality" required>
+                                                                    <option selected>{{ fatherDetail.fathernationality }}</option>
+                                                                    <option  *ngFor="let country of countries" [value]="country">{{ country }}</option>
+                                                                  </select>
+                                                            </td>  
+                                                            <td><input type="text"  class="form-control "id="" value=""  [(ngModel)]=" fatherDetail.fatherhome_address" required ></td>
+                                                            <td>
+                                                                <select class="form-control" aria-label="Default select example" [(ngModel)]=" fatherDetail.fathermarried_status" required  value="{{fatherDetail.fathermarried_status}}">
+                                                                    <option selected>{{ fatherDetail.fathermarried_status }}</option>
+                                                                    <option value="Single">Single</option>
+                                                                    <option value="Married">Married</option>
+                                                                    <option value="Divorce">Divorce</option>
+                                                                  </select>
+                                                            </td> 
+                                                            <td><input type="text"  class="form-control "id="" value="{{ fatherDetail.fatheroccupation }}" [(ngModel)]=" fatherDetail.fatheroccupation" required></td>
+                                                            <td><input type="text"  class="form-control "id="" value="{{ fatherDetail.fatherdate_of_birth | date: 'yyyy-MM-dd' }}"[(ngModel)]=" fatherDetail.fatherdate_of_birth" required></td>
+                                                         
 
                                                             <td>
                                                                 <button mat-icon-button color="primary"
-                                                                    (click)="openDialogUpdateFile(fatherDetail) ">
-                                                                    <mat-icon>edit</mat-icon>
+                                                                    (click)="updateFatherDetails(fatherDetail) ">
+                                                                    <mat-icon>update</mat-icon>
                                                                 </button>
                                                             </td>
 
@@ -197,7 +253,7 @@
                                                             <td>
                                                                 <button mat-icon-button color="primary"
                                                                     (click)="openDialogUpdateFile(motherDetail) ">
-                                                                    <mat-icon>edit</mat-icon>
+                                                                    <mat-icon>update</mat-icon>
                                                                 </button>
                                                             </td>
                                                         </tr>
@@ -228,7 +284,7 @@
                                                             <td>
                                                                 <button mat-icon-button color="primary"
                                                                     (click)="openDialogUpdateFile(wifeDetail) ">
-                                                                    <mat-icon>edit</mat-icon>
+                                                                    <mat-icon>update</mat-icon>
                                                                 </button>
                                                             </td>
                                                         </tr>
@@ -240,43 +296,48 @@
                                     </div>
                                 </mat-tab>
                                 <mat-tab  label="Relative ">
-                                    <div class="d-flex justify-content-between">
-                                        <h3 class="widget-title">Relative Information</h3>
-                                        <button mat-mini-fab matTooltip="Warn" color="primary"
-                                            (click)="openDialogRelative() ">
-                                            <mat-icon>add</mat-icon></button>
-                                    </div>  
-                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Relative Type</th>
-                                                    <th>Full Name</th>
-                                                    <th>Nationality </th>
-                                                    <th>Address</th>
-                                                    <th>Occupation</th>
-                                                    <th>DOB</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let relativeDetails of relativeDetailsArray">
-                                                    <td>{{relativeDetails.relative_types}}</td>
-                                                    <td>{{relativeDetails.relativefull_name}}</td>
-                                                    <td>{{relativeDetails.relativenationality}}</td>
-                                                    <td>{{relativeDetails.relativehome_address}}</td>
-                                                    <td>{{relativeDetails.relativeoccupation}}</td>
-                                                    <td>{{ relativeDetails.relativedate_of_birth | date: 'yyyy-MM-dd' }}
-                                                    <td>
-                                                        <button mat-icon-button color="primary"
-                                                            (click)="openDialogUpdateFile(relativeDetails) ">
-                                                            <mat-icon>edit</mat-icon>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="col-md-12">
+                                        <div class="widget-area-2 proclinic-box-shadow">
+                                            <div class="d-flex justify-content-between">
+                                                <h3 class="widget-title">Relative Information</h3>
+                                                <button mat-mini-fab matTooltip="Warn" color="primary"
+                                                    (click)="openDialogRelative() ">
+                                                    <mat-icon>add</mat-icon></button>
+                                            </div>  
+                                             <div class="table-responsive">
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Relative Type</th>
+                                                            <th>Full Name</th>
+                                                            <th>Nationality </th>
+                                                            <th>Address</th>
+                                                            <th>Occupation</th>
+                                                            <th>DOB</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let relativeDetails of relativeDetailsArray">
+                                                            <td>{{relativeDetails.relative_types}}</td>
+                                                            <td>{{relativeDetails.relativefull_name}}</td>
+                                                            <td>{{relativeDetails.relativenationality}}</td>
+                                                            <td>{{relativeDetails.relativehome_address}}</td>
+                                                            <td>{{relativeDetails.relativeoccupation}}</td>
+                                                            <td>{{ relativeDetails.relativedate_of_birth | date: 'yyyy-MM-dd' }}
+                                                            <td>
+                                                                <button mat-icon-button color="primary"
+                                                                    (click)="openDialogUpdateFile(relativeDetails) ">
+                                                                    <mat-icon>update</mat-icon>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
+                                  
                                 </mat-tab>
                                 <mat-tab label="Applicant Files">
                                     <div class="col-md-12">
@@ -502,7 +563,7 @@
                                     <mat-form-field>
                                       <mat-label>Relative Types</mat-label>
                                       <mat-select placeholder="Relative Type" name="relativeTypes" [(ngModel)]="relativeDetails.relativeTypes" required>
-                                        <mat-option value="Sister">Siter</mat-option>
+                                        <mat-option value="Sister">Sister</mat-option>
                                         <mat-option value="Brother">Brother</mat-option>
                                         <mat-option value="Cousin">Cousin</mat-option>
                                       </mat-select>
@@ -548,7 +609,7 @@
                 </div>
             </ng-template>
         </div>
-    </div>
+   
     <!-- /Main Content -->
-</div>
+
 <!-- /Page Content -->

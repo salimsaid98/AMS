@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.todo.model.ApplicantDetails;
@@ -43,9 +45,33 @@ public class ApplicantController {
         return applicant.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-    @GetMapping("/CountAllApplicant/")
+     // Count All Applicant
+@GetMapping("/CountAllApplicant/")
     public ResponseEntity<List<Map<String, Object>>> GetApplicantFileByApplicantID() {
         List<Map<String, Object>> applicant = applicantServices.CountAllApplicant();
         return ResponseEntity.ok(applicant);
     }
+    // Count All Applicant by User
+ @GetMapping("/CountAllApplicantByUser/")
+    public ResponseEntity<List<Map<String, Object>>> CountAllApplicantByRegistered(@RequestParam("register_by") String register_by) {
+        List<Map<String, Object>> applicant = applicantServices.CountAllApplicantByRegistered(register_by);
+        return ResponseEntity.ok(applicant);
+    }
+
+    // Get All Applicant By User
+@GetMapping("/GetAllApplicantByUser/")
+    public ResponseEntity<List<Map<String, Object>>> GetAllApplicantByRegistered(@RequestParam("register_by") String register_by) {
+        List<Map<String, Object>> applicant = applicantServices.GetAllApplicantByRegistered(register_by);
+        return ResponseEntity.ok(applicant);
+    }
+// Update Applicant
+ @PutMapping("/updateApplicant{id}")
+    public ResponseEntity<ApplicantDetails> updateUser(@PathVariable("id") Long id, @RequestBody ApplicantDetails applicantDetails) {
+      try {
+            ApplicantDetails applicantDetails2 = applicantServices.updateApplicant(id, applicantDetails);
+            return new ResponseEntity<>(applicantDetails2, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+     }
 }

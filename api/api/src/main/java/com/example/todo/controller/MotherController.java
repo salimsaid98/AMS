@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,4 +41,15 @@ public class MotherController {
         List<Map<String, Object>> mother = motherServices.getMotherByApplicantID(applicantid);
         return ResponseEntity.ok(mother);
     } 
+
+// Update Mother
+@PutMapping("/updateMother{id}")
+public ResponseEntity<MotherDetails> updateMother(@PathVariable("id") Long id, @RequestBody MotherDetails motherDetails) {
+    try {
+        MotherDetails motherDetails2 = motherServices.updateMother(id, motherDetails);
+        return new ResponseEntity<>(motherDetails2, HttpStatus.OK);
+    } catch (IllegalArgumentException e) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+    }
+}
 }

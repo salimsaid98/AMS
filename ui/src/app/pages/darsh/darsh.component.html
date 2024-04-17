@@ -25,7 +25,7 @@
 
             <div class="row">
                 <!-- Widget Item -->
-                <div class="col-md-4">
+                <div class="col-md-4" *ngIf="addminOnly">
                     <div class="widget-area proclinic-box-shadow color-red">
                         <div class="widget-left">
                             <span class="ti-tag"></span>
@@ -33,6 +33,18 @@
                         <div class="widget-right">
                             <h4 class="wiget-title">Applicants</h4>
                             <span class="numeric color-red">{{total_applicants}}</span>
+                            <!-- <p class="inc-dec mb-0"><span class="ti-angle-up"></span> +20% Increased</p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" *ngIf="userOnly">
+                    <div class="widget-area proclinic-box-shadow color-red">
+                        <div class="widget-left">
+                            <span class="ti-tag"></span>
+                        </div>
+                        <div class="widget-right">
+                            <h4 class="wiget-title">Applicants</h4>
+                            <span class="numeric color-red">{{totalApplicantByUser}}</span>
                             <!-- <p class="inc-dec mb-0"><span class="ti-angle-up"></span> +20% Increased</p> -->
                         </div>
                     </div>
@@ -53,14 +65,41 @@
                 </div>
                 <!-- /Widget Item -->
                 <!-- Widget Item -->
-                <div class="col-md-4">
+                <div class="col-md-4" *ngIf="addminOnly">
+                    <div class="widget-area proclinic-box-shadow color-blue">
+                        <div class="widget-left">
+                            <span class="ti-user"></span>
+                        </div>
+                        
+                        <div class="widget-right">
+                            <h4 class="wiget-title">Users</h4>
+                            <span class="numeric color-blue">0</span>
+                            <!-- <p class="inc-dec mb-0"><span class="ti-angle-up"></span> +10% Increased</p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" *ngIf="userOnly">
                     <div class="widget-area proclinic-box-shadow color-yellow">
                         <div class="widget-left">
                             <span class="ti-user"></span>
                         </div>
+                        
                         <div class="widget-right">
-                            <h4 class="wiget-title">Users</h4>
-                            <span class="numeric color-yellow">0-</span>
+                            <h4 class="wiget-title">Pending</h4>
+                            <span class="numeric color-yellow">{{ totalPendingByuser}}</span>
+                            <!-- <p class="inc-dec mb-0"><span class="ti-angle-up"></span> +10% Increased</p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" *ngIf="addminOnly">
+                    <div class="widget-area proclinic-box-shadow color-yellow">
+                        <div class="widget-left">
+                            <span class="ti-user"></span>
+                        </div>
+                        
+                        <div class="widget-right">
+                            <h4 class="wiget-title">Pending</h4>
+                            <span class="numeric color-yellow">{{ totalPending}}</span>
                             <!-- <p class="inc-dec mb-0"><span class="ti-angle-up"></span> +10% Increased</p> -->
                         </div>
                     </div>

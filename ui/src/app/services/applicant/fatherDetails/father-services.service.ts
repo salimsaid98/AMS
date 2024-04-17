@@ -20,9 +20,9 @@ export class FatherServicesService {
   //   return this.http.get(this.user_details + "/getUserById/" + id);
   // }
 
-  // updateUser_Info(id:any,data:any){
-  //   return this.http.put(this.user_details+"/updateUser"+id,data);
-  // }
+  updatefather(id:any,data:any){
+    return this.http.put(this.father+"/updatefather"+id,data);
+  }
 
   // deleteUser_Info(id:any){
   //   return this.http.delete(this.user_details+"/deleteUser"+id);

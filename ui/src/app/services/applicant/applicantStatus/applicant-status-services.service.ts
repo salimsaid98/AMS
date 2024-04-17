@@ -15,8 +15,17 @@ export class ApplicantStatusServicesService {
   getAllApplicantsStatus():Observable<any>{
     return this.http.get(this.applicantStatus+ "/getAllApplicantStaus");
   }
+  getAllApplicantStatusIsPendingByUser(register_by:any):Observable<any>{
+    return this.http.get<any>(`${this.applicantStatus}/GetAllApplicantStatusIsPendingByUser/?register_by=${register_by}`);
+  }
   getAllApplicantStatusIsPending():Observable<any>{
-    return this.http.get(this.applicantStatus + "/GetAllApplicantStatusIsPending/");
+    return this.http.get(this.applicantStatus+ "/GetAllApplicantStatusIsPending/");
+  }
+  countAllApplicantStatusIsPendingByUser(register_by:any):Observable<any>{
+    return this.http.get<any>(`${this.applicantStatus}/countTotalPendingByUser/?register_by=${register_by}`);
+  }
+  countAllApplicantStatusIsPending():Observable<any>{
+    return this.http.get(this.applicantStatus+ "/countTotalPending/");
   }
 
   // getgeApplicantById(id:any):Observable<any>{

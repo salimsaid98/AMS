@@ -24,8 +24,20 @@ public ApplicantStatus addApplicantStatus(ApplicantStatus applicantStatus){
 public List<ApplicantStatus> getAllApplicantStstus(){
     return this.applicantStatusRepo.findAll();
 }
-// get All Applicant where Status is Pending
-public List<Map<String,Object>> getAllAllApplicantStatusIsPending(String register_by){
-    return applicantStatusRepo.getAllApplicantStatusIsPending(register_by);
+// get All Applicant Details where Status is Pending By User
+public List<Map<String,Object>> getAllAllApplicantStatusIsPendingByUser(String register_by){
+    return applicantStatusRepo.getAllApplicantStatusIsPendingByUser(register_by);
+}
+// get All Applicant Details where Status is Pending 
+public List<Map<String,Object>> getAllAllApplicantStatusIsPending(){
+    return applicantStatusRepo.getAllApplicantStatusIsPending();
+}
+// Count All Applicant Status where Status is Pending By Register User
+public List<Map<String,Object>> countTotalPendingByUser(String register_by){
+    return applicantStatusRepo.countTotalPendingByUser(register_by);
+}
+// Count All Applicant Status where Status is Pending 
+public List<Map<String,Object>> countAllPending(){
+    return applicantStatusRepo.countAllPending();
 }
 }

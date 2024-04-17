@@ -9,9 +9,9 @@
     <span class="theme-color theme-violet" data-color="violet"></span>
     <span class="theme-color theme-yellow" data-color="yellow"></span>
 </div> -->
-<div class="wrapper" [ngClass]="{'sidebar-collapsed': sidebarCollapsed}">
+<div class="wrapper" [ngClass]="{'active': !sidebarCollapsed}">
     <!-- Sidebar -->
-    <nav id="sidebar" class="" style="background-color: #2596be;">
+    <nav id="sidebar" [ngClass]="{'active': sidebarCollapsed}" class="" style="background-color: #2596be; width: 10px;">
         <div class="sidebar-header">
             <img src="../../../assets/images/airfox.png" alt="Logo" class="logo">
         </div>
@@ -30,18 +30,24 @@
                     <li *ngIf="userOnly">
                         <a [routerLink]="['add-cust']">Add Applicant</a>
                     </li>
-                    <li>
+                    <li *ngIf="userOnly">
+                        <a [routerLink]="['all-applicant']" >All Applicants</a>
+                    </li>
+                    <li *ngIf="addminOnly">
                         <a [routerLink]="['all-cust']">All Applicants</a>
                     </li>
-                    <li>
-                        <a [routerLink]="['all-cust']">Pending Applicants</a>
+                    <li *ngIf="userOnly">
+                        <a [routerLink]="['pending-applicant']" >Pending   <span class="badge badge-danger">{{totalPendingByUser}}</span></a>
+                    </li>
+                    <li *ngIf="addminOnly">
+                        <a [routerLink]="['pending-applicant-admin']">Pending  <span class="badge badge-danger">{{totalPending}}</span></a>
                     </li>
 
                 </ul>
             </li>
             <li *ngIf="addminOnly">
                 <a href="#nav-doctors" data-toggle="collapse" aria-expanded="false">
-                    <span class="ti-files"></span> Files Configuration
+                    <span class="ti-files"></span> Files
                 </a>
                 <ul class="collapse list-unstyled" id="nav-doctors">
                     <li>
@@ -62,10 +68,13 @@
                 </a>
                 <ul class="collapse list-unstyled" id="nav-investers">
                     <li>
-                        <a href="add-doctor.html">Add Investors</a>
+                        <a [routerLink]="['add-investos']">Add Investors</a>
                     </li>
                     <li>
-                        <a href="doctors.html">All Investors</a>
+                        <a [routerLink]="['all-investors']">All Investors</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['add-package']">Add Package</a>
                     </li>
 
                 </ul>
@@ -89,7 +98,7 @@
     </nav>
     <!-- /Sidebar -->
     <!-- Page Content -->
-    <div id="content" >
+    <div id="content" [ngClass]="{'sidebar-collapsed': !sidebarCollapsed}">
         <!-- Top Navigation -->
         <nav class="navbar navbar-default" >
             <div class="container-fluid">

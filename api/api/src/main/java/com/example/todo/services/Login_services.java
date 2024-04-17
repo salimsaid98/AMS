@@ -3,6 +3,7 @@ package com.example.todo.services;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -72,5 +73,40 @@ public class Login_services {
             return null;
         }
     }
+
+    public List<Login> getAlluser(){
+        return loginRepository.findAll();
+    }
+// Update user Password
+    public Login updateUser(Login login) {
+        // Check if the user exists
+        Optional<Login> optionalLogin = loginRepository.getByUsername(login.getUsername());
+        if (optionalLogin.isPresent()) {
+            Login existingLogin = optionalLogin.get();
+            
+            // Update the user information
+            existingLogin.setPassword(encryptPassword(login.getPassword(), login.getUsername().length()));
+            // You can update other fields here if needed
+            
+            // Save the updated user information
+            return loginRepository.save(existingLogin);
+        } else {
+            // User does not exist, throw an exception or handle accordingly
+            throw new IllegalArgumentException("User does not exist");
+        }
+    }
+// Change password
+ public Login changePassword(String username, String newPassword) {
+        Optional<Login> optionalLogin = loginRepository.getByUsername(username);
+        if (optionalLogin.isPresent()) {
+            Login login = optionalLogin.get();
+            String encryptedPassword = encryptPassword(newPassword, username.length());
+            login.setPassword(encryptedPassword);
+            return loginRepository.save(login);
+        } else {
+            throw new IllegalArgumentException("User does not exist");
+        }
+    }
+    
     
 }

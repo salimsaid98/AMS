@@ -35,6 +35,15 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ManageUsersComponent } from './pages/manage-users/manage-users.component';
 import { RegisterUsersComponent } from './pages/register-users/register-users.component';
+import { PendingApplicantComponent } from './pages/pending-applicant/pending-applicant.component';
+import { PendingApplicantAdminComponent } from './pages/pending-applicant-admin/pending-applicant-admin.component';
+import { AllApplicantUserComponent } from './pages/all-applicant-user/all-applicant-user.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { AddInvestorsComponent } from './pages/add-investors/add-investors.component';
+import { AddPackegeComponent } from './pages/add-packege/add-packege.component';
+import { AllInvestorsComponent } from './pages/all-investors/all-investors.component';
+import { InvestorDetailsComponent } from './pages/investor-details/investor-details.component';
+import {MatListModule} from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +59,13 @@ import { RegisterUsersComponent } from './pages/register-users/register-users.co
     ApplicantFileComponent,
     ManageUsersComponent,
     RegisterUsersComponent,
+    PendingApplicantComponent,
+    PendingApplicantAdminComponent,
+    AllApplicantUserComponent,
+    AddInvestorsComponent,
+    AddPackegeComponent,
+    AllInvestorsComponent,
+    InvestorDetailsComponent,
     
   ],
   imports: [
@@ -73,7 +89,8 @@ import { RegisterUsersComponent } from './pages/register-users/register-users.co
     MatPaginatorModule,
     MatDialogModule,
     MatTabsModule,
-    MatProgressSpinnerModule,MatProgressBarModule
+    MatProgressSpinnerModule,MatProgressBarModule,MatBadgeModule,
+    MatListModule
     
     
   ],

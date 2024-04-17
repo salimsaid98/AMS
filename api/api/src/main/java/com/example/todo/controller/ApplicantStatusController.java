@@ -37,11 +37,30 @@ public class ApplicantStatusController {
         return new ResponseEntity<>(applicantStatus,HttpStatus.OK);
 
     }
+// get All Applicant where Status is Pending By User
+
+    @GetMapping("/GetAllApplicantStatusIsPendingByUser/")
+    public ResponseEntity<List<Map<String, Object>>> GetAllApplicantStatusIsPendingByUser(@RequestParam("register_by") String register_by) {
+        List<Map<String, Object>> applicantStatusIsPending = applicantStatusServices.getAllAllApplicantStatusIsPendingByUser(register_by); 
+        return ResponseEntity.ok(applicantStatusIsPending);
+    }
 // get All Applicant where Status is Pending
 
-    @GetMapping("/GetAllApplicantStatusIsPending/")
-    public ResponseEntity<List<Map<String, Object>>> GetAllApplicantStatusIsPending(@RequestParam("register_by") String register_by) {
-        List<Map<String, Object>> applicantStatusIsPending = applicantStatusServices.getAllAllApplicantStatusIsPending(register_by); 
+@GetMapping("/GetAllApplicantStatusIsPending/")
+public ResponseEntity<List<Map<String, Object>>> GetAllApplicantStatusIsPending() {
+    List<Map<String, Object>> applicantStatusIsPending = applicantStatusServices.getAllAllApplicantStatusIsPending();
+    return ResponseEntity.ok(applicantStatusIsPending);
+}
+// Count All Applicant Status where Status is Pending By Register User
+    @GetMapping("/countTotalPendingByUser/")
+    public ResponseEntity<List<Map<String, Object>>> countTotalPendingByUser(@RequestParam("register_by") String register_by) {
+        List<Map<String, Object>> applicantStatusIsPending = applicantStatusServices.countTotalPendingByUser(register_by); 
+        return ResponseEntity.ok(applicantStatusIsPending);
+    }
+    // Count All Applicant Status where Status is Pending 
+    @GetMapping("/countTotalPending/")
+    public ResponseEntity<List<Map<String, Object>>> countAllPending() {
+        List<Map<String, Object>> applicantStatusIsPending = applicantStatusServices.countAllPending();
         return ResponseEntity.ok(applicantStatusIsPending);
     }
 }

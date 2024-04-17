@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { ApplicantStatusServicesService } from 'src/app/services/applicant/applicantStatus/applicant-status-services.service';
 
 @Component({
   selector: 'app-asside',
@@ -11,7 +12,9 @@ export class AssideComponent {
   roles!:any
   userOnly:boolean = false
   addminOnly:boolean = false
-  constructor(private router:Router){
+  constructor(
+    private router:Router,
+    private aplicantStatuServices:ApplicantStatusServicesService){
 
   }
 ngOnInit(): void {
@@ -19,6 +22,8 @@ ngOnInit(): void {
   //Add 'implements OnInit' to the class.
   this.username = sessionStorage.getItem("username");
   this.roles= sessionStorage.getItem("roles");
+  this.countAllApplicantPendingByUser(this.username)
+  this.countAllApplicantPending();
   if(this.roles=="Admin"){
       this.userOnly=false
   }else{
@@ -38,6 +43,37 @@ sidebarCollapsed: boolean = false;
 
 // Method to toggle sidebar visibility
 toggleSidebar() {
-  this.sidebarCollapsed = this.sidebarCollapsed;
+  this.sidebarCollapsed = !this.sidebarCollapsed;
+  console.log('Sidebar collapsed:', this.sidebarCollapsed);
 }
+
+totalPendingByUser:any
+countAllApplicantPendingByUser(username:any){
+  return this.aplicantStatuServices.countAllApplicantStatusIsPendingByUser(username).subscribe(
+    respo=>{
+      respo.forEach((array:any) => {
+        this.totalPendingByUser = array.total_pending
+
+
+      });
+      console.log(respo)
+
+    }
+  )
+}
+totalPending :any
+countAllApplicantPending(){
+  return this.aplicantStatuServices.countAllApplicantStatusIsPending().subscribe(
+    respo=>{
+      respo.forEach((array:any) => {
+        this.totalPending = array.total_pending
+
+
+      });
+      console.log(respo)
+
+    }
+  )
+}
+
 }

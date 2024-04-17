@@ -23,9 +23,9 @@ export class ApplicantDetailsServicesService {
     return this.http.get(this.applicantDetails + "/getApplicantByID/" + id);
   }
 
-  // updateUser_Info(id:any,data:any){
-  //   return this.http.put(this.user_details+"/updateUser"+id,data);
-  // }
+  updateApplicant(id:any,data:any){
+    return this.http.put(this.applicantDetails+"/updateApplicant"+id,data);
+  }
 
   // deleteUser_Info(id:any){
   //   return this.http.delete(this.user_details+"/deleteUser"+id);
@@ -33,5 +33,11 @@ export class ApplicantDetailsServicesService {
 
   creatApplicant(data:any):Observable<any>{
     return this.http.post(this.applicantDetails+"/addApplicant",data);
+  }
+  countAllApplicantByUser(register_by:any):Observable<any>{
+    return this.http.get<any>(`${this.applicantDetails}/CountAllApplicantByUser/?register_by=${register_by}`);
+  }
+  getAllApplicantByUser(register_by:any):Observable<any>{
+    return this.http.get<any>(`${this.applicantDetails}/GetAllApplicantByUser/?register_by=${register_by}`);
   }
 }

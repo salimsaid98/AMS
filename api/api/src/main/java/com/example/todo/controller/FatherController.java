@@ -6,7 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,4 +48,15 @@ public class FatherController {
         List<Map<String, Object>> father = fatherDetailsServices.getFatherByApplicantID(applicantid);
         return ResponseEntity.ok(father);
     }
+
+// Update Applicant
+@PutMapping("/updatefather{id}")
+public ResponseEntity<FatherDetails> updateUser(@PathVariable("id") Long id, @RequestBody FatherDetails fatherDetails) {
+    try {
+        FatherDetails fatherDetails2 = fatherDetailsServices.updatefather(id, fatherDetails);
+        return new ResponseEntity<>(fatherDetails2, HttpStatus.OK);
+    } catch (IllegalArgumentException e) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+    }
+}
 }

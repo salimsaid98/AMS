@@ -67,6 +67,16 @@ relativeDetails: any = {
   relativeapplicantID:'',
   relativeTypes:''
 };
+fatherDetail: any = {
+  fatherfullName: '',
+  fatherdateOfBirth: '',
+  fathermarried_status: '',
+  fathernationality: '',
+  fatherhomeAddress: '',
+  fatheroccupation: '',
+  applicantID:'',
+  fatherid:''
+};
 applicantFile:any
 preparedFile:any
 ImageFile:any
@@ -85,7 +95,8 @@ addminOnly:boolean = false
     private applicantPreparedFileServices:ApplicantPreparedFileServicesService ,
     private applicantImageFileServices :ApplicantImageFileServicesService,
   private sanitizer :DomSanitizer ,
-  private relativeServices:RelativeServicesService ){
+  private relativeServices:RelativeServicesService,
+ ){
 
   }
   displayedColumns: string[] = ['fileid', 'file_name', 'filetype', 'actions']; // Define the columns you want to display
@@ -146,11 +157,17 @@ addminOnly:boolean = false
       }
     )
   }
+  fatherID:any
   getFatherByApplicantId(id:any){
     return this.fatherServices.getFatherByApplicantID(id).subscribe(
       respo=>{
+        respo.forEach((item:any) => {
+          this.fatherID=item.fatherid
+          console.log("father id is ",this.fatherID)
+        });
         this.fatherDetailsArray = respo
         console.log(this.fatherDetailsArray);
+
       }
     )
   }
@@ -534,10 +551,30 @@ profileImage: any
 //     reader.readAsDataURL(file);
 //   }
 // }
-
-
+updateFutherFunction(id:any,data:any){
+  return this.fatherServices.updatefather(id,data).subscribe(
+    respo=>{
+      console.log(respo)
+      // location.reload()
+      this.getFatherByApplicantId(id)
+    }
+  )
+}
+updateFatherDetails(element:any){
+  // console.log(element);
+  this.fatherDetail.fatherfullName = element.fatherfull_name
+  this.fatherDetail.fatherhomeAddress = element.fatherhome_address
+  this.fatherDetail.fatherdateOfBirth = element.fatherdate_of_birth
+  this.fatherDetail.fathermarriedStatus= element.fathermarried_status
+  this.fatherDetail.fathernationality = element.fathernationality
+  this.fatherDetail.fatheroccupation = element.fatheroccupation
+  this.fatherDetail.applicantID = this.id
+  this.fatherDetail.fatherid = this.fatherID;
+  // console.log(this.fatherDetail)
+  this.updateFutherFunction(this.fatherID,this.fatherDetail)
+}
 openDialogUpdateFile(element:any){
-  console.log(element);
+
 }
 
 uploadImage(){
@@ -791,4 +828,33 @@ countries: string[] = [
   "Zambia",
   "Zimbabwe"
 ];
+applicantDetails: any = {
+  applicantfullName: '',
+  applicantemailAddress: '',
+  applicanthomeAddress: '',
+  applicantbusinessNumber: '',
+  applicantnationalIdNumber: '',
+  applicantwebsite: '',
+  applicantnationalIdNumbe: '',
+  applicantpassportNumber: '',
+  applicantoccupation: '',
+  applicantmarriedStatus: '',
+  bank_name:'',
+  bankAccount_no:'',
+  registeredBy:'',
+  registeredDate:'',
+  country_to_visit:''
+};
+saveUpdate(element:any){
+  // console.log("update data " ,element)
+  this.updateApplicant(this.id,element)
+}
+updateApplicant(id:any,data:any){
+  this.applicantServices.updateApplicant(id,data).subscribe(
+    respo=>{
+      console.log("success",respo)
+      location.reload()
+    }
+  )
+}
 }

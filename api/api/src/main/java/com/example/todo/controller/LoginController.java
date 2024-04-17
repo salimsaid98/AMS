@@ -1,11 +1,16 @@
 package com.example.todo.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,10 +58,40 @@ public class LoginController{
                 loginDTO.setId(user.get().getId());
                 loginDTO.setUsername(user.get().getUsername());
                 loginDTO.setRoles(user.get().getRoles());
+                loginDTO.setStatus(user.get().getStatus());
                 return ResponseEntity.ok(loginDTO);
             }
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
     }
+    @GetMapping("/GetAllUsers")
+    public ResponseEntity<List<Login>>getAllUsers(){
+            List<Login> login = loginServices.getAlluser();
+            return new ResponseEntity<>(login,HttpStatus.OK);
+    }
+       // Endpoint for updating user information
+       @PutMapping("/updateUser{username}")
+       public ResponseEntity<Login> updateUser(@PathVariable String username, @RequestBody Login updatedLogin) {
+           try {
+               updatedLogin.setUsername(username); // Ensure username consistency
+               
+               Login updatedUser = loginServices.updateUser(updatedLogin);
+               return ResponseEntity.ok(updatedUser);
+           } catch (IllegalArgumentException e) {
+               // User does not exist, return 404 Not Found
+               return ResponseEntity.notFound().build();
+           }
+       }
+    // Endpoint for changing user password
+        @PatchMapping("/{username}/password")
+        public ResponseEntity<Void> changePassword(@PathVariable String username, @RequestParam String newPassword) {
+            try {
+                loginServices.changePassword(username, newPassword);
+                return ResponseEntity.ok().build();
+            } catch (IllegalArgumentException e) {
+                // User does not exist, return 404 Not Found
+                return ResponseEntity.notFound().build();
+            }
+        }
 }

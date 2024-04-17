@@ -23,4 +23,13 @@ export class LoginServicesService {
     user_registrations(data:any):Observable<any>{
       return this.http.post(this.login +'/register',data);
     }
+
+    getAllUsers():Observable<any>{
+      return this.http.get(this.login + "/GetAllUsers");
+    }
+
+    updateUser(username:any,data:any){
+      return this.http.put(this.login+"/updateUser"+username,data);
+    }
+
 }

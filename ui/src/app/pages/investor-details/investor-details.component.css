@@ -1,0 +1,35 @@
+#header{
+    background-color: #e28743;
+}
+img {
+    width: 50px;
+    height: 50px;
+}
+mat-form-field{
+    width: 100%;
+}
+.profile-card {
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.avatar-container {
+  position: relative;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #e0e0e0; /* Placeholder color */
+}
+  

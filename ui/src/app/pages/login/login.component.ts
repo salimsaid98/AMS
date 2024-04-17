@@ -14,26 +14,13 @@ constructor(private route :Router,
   private login_services:LoginServicesService){}
 
   login_model: Login_models = new Login_models();
-  // login_process(username:any,password:any){
-  //   return this.login_services.login_authentication(username,password).subscribe(
-  //     respo=>{
-  //       console.log(respo)
-  //       sessionStorage.setItem("username",respo.username)
-  //       if(respo){
-  //         this.route.navigate(['/home'])
-  //       }else{
-  //         alert("error")
-  //       }
-  //     }
-  //   )
-  // }
   login_process(username: any, password: any) {
     return this.login_services.login_authentication(username, password).subscribe(
       respo => {
         console.log(respo);
         sessionStorage.setItem("username", respo.username);
         sessionStorage.setItem("roles", respo.roles);
-        if (respo) {
+        if (respo.status==0) {
           this.route.navigate(['/home']);
           Swal.fire({
             position: 'top-right',
@@ -49,7 +36,23 @@ constructor(private route :Router,
               icon: 'toast-success-icon'
             }
           });
-        } else {
+        }if(respo.status==1){
+          Swal.fire({
+            position: 'top-right',
+            icon: 'error',
+            title: 'Login Error',
+            text: 'You Are Blocked. Please try again.',
+            toast: true,
+            timer: 1500,
+            showConfirmButton: false,
+            timerProgressBar: true,
+            width: '350px',
+            customClass: {
+              title: 'toast-error-title',
+              icon: 'toast-error-icon'
+            }
+          });
+        }if(!respo){
           Swal.fire({
             position: 'top-right',
             icon: 'error',
@@ -66,6 +69,7 @@ constructor(private route :Router,
             }
           });
         }
+       
       },
       error => {
         console.error(error);

@@ -113,6 +113,7 @@ a:focus {
 	float: right;
     padding: 10px 20px;
     border-radius: 20px;
+	color: #007bff;
 }
 .breadcrumb-item {
 	color: #fff;
