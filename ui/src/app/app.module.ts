@@ -44,6 +44,7 @@ import { AddPackegeComponent } from './pages/add-packege/add-packege.component';
 import { AllInvestorsComponent } from './pages/all-investors/all-investors.component';
 import { InvestorDetailsComponent } from './pages/investor-details/investor-details.component';
 import {MatListModule} from '@angular/material/list';
+import { EditInvestorsDetailsComponent } from './pages/edit-investors-details/edit-investors-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +67,7 @@ import {MatListModule} from '@angular/material/list';
     AddPackegeComponent,
     AllInvestorsComponent,
     InvestorDetailsComponent,
+    EditInvestorsDetailsComponent,
     
   ],
   imports: [

@@ -1,6 +1,7 @@
 package com.example.todo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,10 @@ public class InvestorsServices {
     }
     public List<InvestersDetails> getAllInvestors(){
         return investorsRepo.findAll();
+    }
+
+    // Get Investors By ID
+    public Optional<InvestersDetails> getInvestorsById(long id) {
+        return investorsRepo.findById(id);
     }
 }

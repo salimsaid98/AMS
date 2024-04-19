@@ -1,6 +1,7 @@
 package com.example.todo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.todo.model.KinDetails;
@@ -37,4 +39,9 @@ public class KinController {
         return new ResponseEntity<>(kinDetails, HttpStatus.OK);
 
     }
+    @GetMapping("/GetKinByinvestorsID/")
+    public ResponseEntity<List<Map<String, Object>>> getKinByInvestorsID(@RequestParam("investorsID") Long investorsID) {
+        List<Map<String, Object>> kinDetails =kinServices.getKinByInvestorsID(investorsID);
+        return ResponseEntity.ok(kinDetails);
+    }  
 }

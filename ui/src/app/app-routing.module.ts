@@ -20,6 +20,7 @@ import { AddInvestorsComponent } from './pages/add-investors/add-investors.compo
 import { AddPackegeComponent } from './pages/add-packege/add-packege.component';
 import { AllInvestorsComponent } from './pages/all-investors/all-investors.component';
 import { InvestorDetailsComponent } from './pages/investor-details/investor-details.component';
+import { EditInvestorsDetailsComponent } from './pages/edit-investors-details/edit-investors-details.component';
 
 const routes: Routes = [
   {path:'',redirectTo:"login",pathMatch:'full'},
@@ -41,7 +42,8 @@ const routes: Routes = [
   {path:'add-investos',component:AddInvestorsComponent},
   {path:'add-package',component:AddPackegeComponent},
   {path:'all-investors',component:AllInvestorsComponent},
-  {path:'investor-details',component:InvestorDetailsComponent}
+  {path:'investor-details',component:InvestorDetailsComponent},
+  {path:'edit-investors',component:EditInvestorsDetailsComponent}
   ]}
 ];
 

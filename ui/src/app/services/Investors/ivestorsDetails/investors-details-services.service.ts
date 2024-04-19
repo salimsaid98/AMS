@@ -15,9 +15,9 @@ export class InvestorsDetailsServicesService {
     return this.http.get(this.investors + "/getInvestors");
   }
 
-  // getgetUser_InfoById(id:any):Observable<any>{
-  //   return this.http.get(this.user_details + "/getUserById/" + id);
-  // }
+  getInestorsById(id:any):Observable<any>{
+    return this.http.get(this.investors + "/getInvestorsByID/" + id);
+  }
 
   // updateUser_Info(id:any,data:any){
   //   return this.http.put(this.user_details+"/updateUser"+id,data);
@@ -30,5 +30,6 @@ export class InvestorsDetailsServicesService {
   creatInvestors(data:any):Observable<any>{
     return this.http.post(this.investors+"/addInvestors",data);
   }
+  
 
 }

@@ -31,5 +31,7 @@ export class InvestorsPackageServicesService {
   creatInvestorsPackege(data:any):Observable<any>{
     return this.http.post(this.package+"/addInvestors_package",data);
   }
-
+  getInvestors_PackageByInvestorsID(investorsID: number): Observable<any> {
+    return this.http.get<any>(`${this.package}/GetInvestors_PackageByinvestorsID/?investorsID=${investorsID}`);
+  }
 }

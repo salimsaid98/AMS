@@ -1,6 +1,7 @@
 package com.example.todo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.todo.model.BankAccont;
@@ -36,4 +38,9 @@ public class BankController {
         return new ResponseEntity<>(bankAcconts, HttpStatus.OK);
 
     }
+    @GetMapping("/GetBankByinvestorsID/")
+    public ResponseEntity<List<Map<String, Object>>> getBankByInvestorsID(@RequestParam("investorsID") Long investorsID) {
+        List<Map<String, Object>> bankAccount = bankServices.getBankByInvestorsID(investorsID);
+        return ResponseEntity.ok(bankAccount);
+    }  
 }

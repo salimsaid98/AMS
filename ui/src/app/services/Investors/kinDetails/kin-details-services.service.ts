@@ -30,5 +30,7 @@ export class KinDetailsServicesService {
   creatkin(data:any):Observable<any>{
     return this.http.post(this.kin+"/addKin",data);
   }
-
+  getKinByInvestorsID(investorsID: number): Observable<any> {
+    return this.http.get<any>(`${this.kin}/GetKinByinvestorsID/?investorsID=${investorsID}`);
+  }
 }

@@ -1,59 +1,54 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import html2canvas from 'html2canvas';
+import jspdf from 'jspdf';
 import { BankServicesService } from 'src/app/services/Investors/Bank/bank-services.service';
+import { InvestorsImageServicesService } from 'src/app/services/Investors/investorsImage/investors-image-services.service';
 import { InvestorsPackageServicesService } from 'src/app/services/Investors/investors_Package/investors-package-services.service';
 import { InvestorsDetailsServicesService } from 'src/app/services/Investors/ivestorsDetails/investors-details-services.service';
 import { KinDetailsServicesService } from 'src/app/services/Investors/kinDetails/kin-details-services.service';
-import * as jspdf from 'jspdf';
-import html2canvas from 'html2canvas';
-import { kinDetails } from 'src/app/model/KinDetails';
-import { DomSanitizer } from '@angular/platform-browser';
-import { InvestorsImageServicesService } from 'src/app/services/Investors/investorsImage/investors-image-services.service';
+import { FilesServicesService } from 'src/app/services/files/files/files-services.service';
 
 @Component({
-  selector: 'app-investor-details',
-  templateUrl: './investor-details.component.html',
-  styleUrls: ['./investor-details.component.css']
+  selector: 'app-edit-investors-details',
+  templateUrl: './edit-investors-details.component.html',
+  styleUrls: ['./edit-investors-details.component.css']
 })
-export class InvestorDetailsComponent {
-  user = {
-    name: 'John Doe',
-    email: 'john@example.com',
-    // Add more user properties as needed
-  };
+export class EditInvestorsDetailsComponent {
   id:any
   kinData:any
   bankData:any
   investors_packageData:any
   inveestorsData:any
   InvestorsImageFileModel:any={
-    investorImageFileID:'',
-    fileID:'',
-    investorsID:''
-   }
+   investorImageFileID:'',
+   fileID:'',
+   investorsID:''
+  }
 constructor(private kinDetailsServices:KinDetailsServicesService,
   private route:ActivatedRoute,
   private bankAccountServices:BankServicesService,
   private investors_packageService:InvestorsPackageServicesService,
   private inverstorsDetailsServices:InvestorsDetailsServicesService,
-  private rout:Router,  
- private sanitizer :DomSanitizer,
- private investorImageFileServices : InvestorsImageServicesService,
-
-
+  private rout:Router,
+  private investorImageFileServices : InvestorsImageServicesService,
+  private dialog:MatDialog,
+  private fileServices:FilesServicesService,private sanitizer :DomSanitizer
 ){}
+@ViewChild('addImageFile') addImageFile!: TemplateRef<any>;
+
 ngOnInit(): void {
   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
   //Add 'implements OnInit' to the class.
 this.id = this.route.snapshot.params['id'];
 this.InvestorsImageFileModel.investorsID = this.id
-
 this.getKinByInvestorsID(this.id)
 this.getBankByInvestorsID(this.id)
 this.getInvestors_PackageByInvestorsID(this.id)
 this.getInvestorsByID(this.id)
 this.getInvestorsImageFileByInvestorsID(this.id)
-
 }
 getInvestorsByID(investorsID:any){
   return this.inverstorsDetailsServices.getInestorsById(investorsID).subscribe(
@@ -66,80 +61,74 @@ getInvestorsByID(investorsID:any){
 getKinByInvestorsID(investorsID:any){
   return this.kinDetailsServices.getKinByInvestorsID(investorsID).subscribe(
     respo=>{
-      respo.forEach((items:any) => {
-        this.kinData = items
-      });
-      console.log(this.kinData)
+      console.log(respo)
+      this.kinData = respo
     }
   )
 }
 getBankByInvestorsID(investorsID:any){
   return this.bankAccountServices.getBankByInvestorsID(investorsID).subscribe(
     respo=>{
-      respo.forEach((items:any) => {
-        this.bankData = items
-      });
-      console.log(this.bankData)
+      console.log(respo)
+      this.bankData = respo
     }
   )
 }
 getInvestors_PackageByInvestorsID(investorsID:any){
   return this.investors_packageService.getInvestors_PackageByInvestorsID(investorsID).subscribe(
     respo=>{
-      respo.forEach((items:any) => {
-        this.investors_packageData = items
-      });
-      console.log(this.investors_packageData)
-
+      console.log(respo)
+      this.investors_packageData = respo
     }
   )
 }
-print() {
-  // Add a class to hide all elements except the investor-details-container
-  document.body.classList.add('print-only-investor-details');
-
-  // Initiate printing
-  window.print();
-
-  // Remove the added class after printing is done
-  document.body.classList.remove('print-only-investor-details');
-}
-
-
-
-
-
-
-// Function to load profile image and return as base64 data URL
-loadProfileImage(): Promise<string> {
-  return new Promise<string>((resolve, reject) => {
-    const img = new Image();
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        canvas.width = 150; // Adjust width as needed
-        canvas.height = 150; // Adjust height as needed
-        ctx.drawImage(img, 0, 0, 150, 150); // Adjust width and height as needed
-        resolve(canvas.toDataURL('image/png'));
-      } else {
-        reject(new Error('Failed to get 2D rendering context'));
-      }
-    };
-    img.onerror = (error) => {
-      reject(error);
-    };
-    img.src = this.getBase64Image(this.imageFile[0]); // Assuming this.imageFile contains your image data
-  });
-}
-
-
 
 
 edit(){
   const id = this.id
   this.rout.navigate(['home/edit-investors',{id}])
 }
+SaveInvestorImage(){
+  // console.log(this.selectedFile)
+  if (this.selectedFile) {
+    console.log('Selected file:', this.selectedFile);
+      this.uploadImageFile(this.selectedFile)
+  } else {
+    console.log('No file selected.');
+  }
+}
+selectedFile!: File;
+onImageFileSelected(event: any) {
+  this.selectedFile = event.target.files[0];
+}
+uploadImage(){
+  this.dialog.open(this.addImageFile,{width:'400px'});
+
+}
+uploadImageFile(file:File){
+  return this.fileServices.uploadFile(file).subscribe(
+    respo=>{
+      if (Array.isArray(respo)) {
+        // Loop through the array of objects
+        respo.forEach((item: any) => {
+          // Log each object's properties
+          console.log('File ID:', item.fileID);
+          location.reload()
+          this.InvestorsImageFileModel.fileID = item.fileID;
+        });
+        this.investorImageFileServices.creatInvestorsImageFile(this.InvestorsImageFileModel).subscribe(
+          respo=>{
+            console.log(respo)
+            this.dialog.closeAll();
+            // this.getAllApplicantPreparedFiles(this.id);
+
+          }
+        )
+      }
+    }
+  )
+}  
+
 imageAvailable:boolean=true
 imageFile:any
 imageunAvailable:boolean=false
@@ -174,8 +163,10 @@ getBase64Image(image: any): string {
   return 'data:' + image.file_type + ';base64,' + image.file_byte;
 }
 profileImage: any
+deleteImage(element:any){
+
 }
+saveImage(){
 
-
-
-
+}
+}

@@ -31,4 +31,8 @@ export class BankServicesService {
     return this.http.post(this.bank+"/addBank",data);
   }
 
+  getBankByInvestorsID(investorsID: number): Observable<any> {
+    return this.http.get<any>(`${this.bank}/GetBankByinvestorsID/?investorsID=${investorsID}`);
+  }
+
 }

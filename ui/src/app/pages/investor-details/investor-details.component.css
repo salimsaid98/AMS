@@ -14,7 +14,7 @@ mat-form-field{
 }
 
 .avatar-container {
-  position: relative;
+  position: s;
 }
 
 .profile-img {
@@ -32,4 +32,49 @@ mat-form-field{
   border-radius: 50%;
   background-color: #e0e0e0; /* Placeholder color */
 }
+.watermark-container {
+  position: relative; /* Ensure the container is positioned relative */
+}
+
+.center-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo {
+  width: 100px; /* Adjust the width of the logo as needed */
+  height: 100px; /* Adjust the height of the logo as needed */
+  border-radius: 50%; /* Make the logo circular */
+  object-fit: cover; /* Ensure the image covers the entire circle */
+}
+
+/* Hide all elements except the investor-details-container and its descendants when printing */
+@media print {
+  body * {
+    display: none !important;
+  }
+
+  .card-header button {
+    display: none !important; /* Hide the edit button */
+  }
+  #header {
+    display: none !important; /* Hide the edit button */
+  }
+    /* Adjust font sizes */
+    body {
+      font-size: 10pt;
+    }
+    /* Reduce margins and paddings */
+    #investor-details-container {
+      margin: 0;
+      padding: 0;
+    }
+    /* Optimize table layout */
+    table {
+      table-layout: fixed;
+      width: 100%;
+    }
   
+}
+
+

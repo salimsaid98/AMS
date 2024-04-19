@@ -1,6 +1,7 @@
 package com.example.todo.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,4 +25,8 @@ public class BankServices {
     public List<BankAccont> getAllBankAccont(){
         return bankRepo.findAll();
     }
+    // get Bank By Investors ID
+    public List<Map<String, Object>> getBankByInvestorsID(Long investorsID) {
+    return bankRepo.getBankByinvestorsID(investorsID);
+}
 }

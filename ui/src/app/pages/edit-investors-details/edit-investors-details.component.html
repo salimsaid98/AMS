@@ -1,0 +1,187 @@
+<div id="content">
+
+    <div class="row no-margin-padding" id="header">
+        <div class="col-md-6">
+            <h3 class="block-title">Investors</h3>
+        </div>
+        <div class="col-md-6">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="index.html">
+                        <span class="ti-home"></span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">Investors</li>
+                <li class="breadcrumb-item active">Edit Investors</li>
+            </ol>
+        </div>
+    </div>
+    <div class="container-fluid watermark-container">
+      <div class="watermark"></div>
+      <!-- Your content here -->
+    </div>
+    <div class="container-fluid " >
+
+        <div class="row">
+            <!-- Widget Item -->
+            <div class="col-md-12">
+                <div class="widget-area-2 proclinic-box-shadow " id="investor-details-container" >
+                    <h3 class="widget-title">Investors Details</h3>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mat-card class="example-card" >
+                                <mat-card-header >
+                                  <div mat-card-avatar class="example-header-image"></div>
+                                  <div class="avatar-container" >
+                                    <img *ngIf="profileImage" [src]="getBase64Image(imageFile[0])" class="profile-img" alt="Profile Image" />
+                                    <div *ngIf="!profileImage" class="avatar-placeholder mat-elevation-z2">
+                                      <mat-icon>account_circle</mat-icon>
+                                    </div>
+                                  </div> 
+                                </mat-card-header><hr>
+                                <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+                                <div class="d-flex justify-content-between">
+                                    <div class="col">
+                                        <button mat-mini-fab matTooltip="Warn" color="primary"
+                                        (click)="uploadImage() " *ngIf="imageAvailable">
+                                        <mat-icon>upload</mat-icon></button>
+                                    <button  mat-mini-fab matTooltip="Warn" color="warn"
+                                        (click)="deleteImage(InvestorsImageFileModel.investorsID) "*ngIf="imageunAvailable">
+                                        <mat-icon >delete</mat-icon></button>
+                                        <button mat-mini-fab matTooltip="Download Image" color="primary" (click)="saveImage()" *ngIf="imageunAvailable">
+                                            <mat-icon>save_alt</mat-icon>
+                                          </button>
+                                    </div>
+                                </div>
+                                <mat-card-content>
+                                  <table class="table table-striped">
+                                      <tr>
+                                        <th>Full Name</th>
+                                        <td><input type="text" name="" id="" class="form-control" value="{{inveestorsData.investorsfullName}}"></td>
+                                      </tr>
+                                      <tr>
+                                        <th>Email</th>
+                                        <td><input type="text" class="form-control" value="{{inveestorsData.investorsemailAddress}}"></td>
+                                      </tr>
+                                      <tr>
+                                        <th>Address</th>
+                                        <td><input type="text" class="form-control" value="{{inveestorsData.investorshomeAddress}}"></td>
+                                      </tr>
+                                      <tr>
+                                        <th>Phone</th>
+                                        <td><input type="text" class="form-control" value="{{inveestorsData.investorsphoneNumber}}"></td>
+                                      </tr>
+                                      <tr>
+                                        <th>NIDA</th>
+                                        <td><input type="text" class="form-control" value="{{inveestorsData.investorsnationalIdNumber}}"></td>
+                                      </tr>
+                                      <tr>
+                                        <th>Passport</th>
+                                        <td><input type="text" class="form-control" value="{{inveestorsData.investorspassportNumber}}"></td>
+                                      </tr>
+                                  </table>
+                                    <!-- <mat-list role="list">
+                                        <mat-list-item role="listitem">Item 1</mat-list-item>
+                                        <mat-list-item role="listitem">Item 2</mat-list-item>
+                                        <mat-list-item role="listitem">Item 3</mat-list-item>
+                                      </mat-list>                               -->
+                                </mat-card-content>
+                                <mat-card-actions>
+                                    <button mat-icon-button color="primary"><mat-icon>update</mat-icon></button>
+
+                                </mat-card-actions>
+                              </mat-card>
+                        </div><hr>
+                       
+                    </div>
+                    <div class="col-md-12">
+                      <div class="table-responsive" >
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">Kin Type</th>
+                              <th scope="col">Full Name</th>
+                              <th scope="col">Email</th>
+                              <th scope="col">Addrss</th>
+                              <th scope="col">NIDA</th>
+                              <th scope="col">Passport</th>
+                              <th scope="col">Phone</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let kin of kinData">
+                              <td>{{kin.kin_types}}</td>
+                              <td>{{kin.kinfull_name}}</td>
+                              <td>{{kin.kinemail_address}}</td>
+                              <td>{{kin.kinhome_address}}</td>
+                              <td>{{kin.kinnational_id_number}}</td>
+                              <td>{{kin.kinpassport_number}}</td>
+                              <td>{{kin.kinphone_number}}</td>
+                            </tr>
+                          </tbody>
+                        </table><hr>
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">Bank Name</th>
+                              <th scope="col">Account No</th>
+                              <th scope="col">Holders</th>
+                              <th scope="col">Swift Code</th>
+                              <th scope="col">Currency</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let bank of bankData">
+                              <td>{{bank.bank_name}}</td>
+                              <td>{{bank.bank_account_no}}</td>
+                              <td>{{bank.bank_account_holders}}</td>
+                              <td>{{bank.bank_swift_code}}</td>
+                              <td>{{bank.bank_account_currence}}</td>
+                            </tr>
+                          </tbody>
+                        </table><hr>
+                     
+                      </div>
+                    </div>
+                  
+                      
+                      
+                </div>
+            
+                  
+            </div>
+            <!-- /Widget Item -->
+            <div class="container-fluid ">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <button mat-icon-button color="primary" (click)="edit()"><mat-icon>edit</mat-icon></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<ng-template #addImageFile>
+    <div class="card">
+        <form #myImageForm="ngForm" (ngSubmit)="SaveInvestorImage()" enctype="multipart/form-data">
+
+            <div class="card-header">
+                <h4>Upload File</h4>
+            </div>
+            <div class="card-body">
+               
+                <hr>
+                <input class="form-control" type="file" name="file" (change)="onImageFileSelected($event)" />
+            </div>
+            <div class="card-footer">
+                <button mat-button mat-raised-button color="primary" type="submit" [disabled]="!myImageForm.valid"> <mat-icon>upload-file</mat-icon></button>
+            </div>
+        </form>
+    </div>
+</ng-template>

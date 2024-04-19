@@ -1,6 +1,7 @@
 package com.example.todo.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,10 @@ public class KinServices {
     }
     public List<KinDetails> getAllKinDetails(){
         return kinRepo.findAll();
+    }
+
+    // get Kin By Investors ID
+    public List<Map<String, Object>> getKinByInvestorsID(Long investorsID) {
+        return kinRepo.getKinByinvestorsID(investorsID);
     }
 }

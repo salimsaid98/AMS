@@ -1,6 +1,8 @@
 package com.example.todo.services;
 
+
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +22,9 @@ public class Investor_PackageServices {
     return this.investors_PackageRepo.save(investors_Package);
     }
    
+    // get Kin By Investors ID
+    public List<Map<String, Object>> getInvestors_PackageByinvestorsID(Long investorsID) {
+    return  investors_PackageRepo.getInvestors_PackageByinvestorsID(investorsID);
+}
 
 }
