@@ -71,4 +71,5 @@ username:any
  
     this.router.navigate(["home/applicant-details",{id}])
   }
+  
 }

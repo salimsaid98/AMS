@@ -72,6 +72,91 @@
                                         <td>{{inveestorsData.investorspassportNumber}}</td>
                                       </tr>
                                   </table>
+                                  <table class="table table-striped">
+                                    <tr>
+                                      <h3 class="widget-title">Kin Details</h3>
+                                    </tr>
+                                    <tr>
+                                      <th>Kin Type</th>
+                                      <td>{{kinData.kin_types}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Full Name</th>
+                                      <td>{{kinData.kinfull_name}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Email</th>
+                                      <td>{{kinData.kinemail_address}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Address</th>
+                                      <td>{{kinData.kinhome_address}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>National ID</th>
+                                      <td>{{kinData.kinnational_id_number}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Passport</th>
+                                      <td>{{kinData.kinpassport_number}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Phone</th>
+                                      <td>{{kinData.kinphone_number}}</td>
+                                    </tr>
+                                    <tr>
+                                      <h3 class="widget-title">Bank Information</h3>
+                                    </tr>
+                                    <tr>
+                                      <th>Bank Name</th>
+                                      <td>{{bankData.bank_name}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Account Number</th>
+                                      <td>{{bankData.bank_account_no}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Account holder</th>
+                                      <td>{{bankData.bank_account_holders}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Swift Code</th>
+                                      <td>{{bankData.bank_swift_code}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Currency</th>
+                                      <td>{{bankData.bank_account_currence}}</td>
+                                    </tr>
+                                    <tr>
+                                      <h3 class="widget-title">Packages</h3>
+                                    </tr>
+                                    <tr>
+                                      <th>Package Name</th>
+                                      <td>{{investors_packageData.package_name}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Currency</th>
+                                      <td>{{investors_packageData.package_currency}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Amount Invested </th>
+                                      <td>{{investors_packageData.package_amount_invested}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Percentage %</th>
+                                      <td>{{investors_packageData.package_parecentage}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Profit Earning</th>
+                                      <td>{{investors_packageData.profit_earning}}</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Contract Year</th>
+                                      <td>{{investors_packageData.contract_limit}}</td>
+                                    </tr>
+                                </table>
+                                <h3 class="widget-title" style="text-align: end;">https://airfoxtours.com/</h3>
+
                                     <!-- <mat-list role="list">
                                         <mat-list-item role="listitem">Item 1</mat-list-item>
                                         <mat-list-item role="listitem">Item 2</mat-list-item>
@@ -79,104 +164,14 @@
                                       </mat-list>                               -->
                                 </mat-card-content>
                                 <mat-card-actions>
-                                 
+                                  <button mat-icon-button color="primary" (click)="edit()"><mat-icon>edit</mat-icon></button>
+                                  <button mat-icon-button color="primary" (click)="print()"><mat-icon>print</mat-icon></button>
                                 </mat-card-actions>
                               </mat-card>
-                        </div><hr>
+                        </div>
                        
                     </div>
-                    <div class="col-md-12">
-                      
-                        <mat-card>
-                          <mat-card-content>
-                            <table class="table table-striped">
-                              <tr>
-                                <h3 class="widget-title">Kin Details</h3>
-                              </tr>
-                              <tr>
-                                <th>Kin Type</th>
-                                <td>{{kinData.kin_types}}</td>
-                              </tr>
-                              <tr>
-                                <th>Full Name</th>
-                                <td>{{kinData.kinfull_name}}</td>
-                              </tr>
-                              <tr>
-                                <th>Email</th>
-                                <td>{{kinData.kinemail_address}}</td>
-                              </tr>
-                              <tr>
-                                <th>Address</th>
-                                <td>{{kinData.kinhome_address}}</td>
-                              </tr>
-                              <tr>
-                                <th>National ID</th>
-                                <td>{{kinData.kinnational_id_number}}</td>
-                              </tr>
-                              <tr>
-                                <th>Passport</th>
-                                <td>{{kinData.kinpassport_number}}</td>
-                              </tr>
-                              <tr>
-                                <th>Phone</th>
-                                <td>{{kinData.kinphone_number}}</td>
-                              </tr>
-                              <tr>
-                                <h3 class="widget-title">Bank Information</h3>
-                              </tr>
-                              <tr>
-                                <th>Bank Name</th>
-                                <td>{{bankData.bank_name}}</td>
-                              </tr>
-                              <tr>
-                                <th>Account Number</th>
-                                <td>{{bankData.bank_account_no}}</td>
-                              </tr>
-                              <tr>
-                                <th>Account holder</th>
-                                <td>{{bankData.bank_account_holders}}</td>
-                              </tr>
-                              <tr>
-                                <th>Swift Code</th>
-                                <td>{{bankData.bank_swift_code}}</td>
-                              </tr>
-                              <tr>
-                                <th>Currency</th>
-                                <td>{{bankData.bank_account_currence}}</td>
-                              </tr>
-                              <tr>
-                                <h3 class="widget-title">Packages</h3>
-                              </tr>
-                              <tr>
-                                <th>Package Name</th>
-                                <td>{{investors_packageData.package_name}}</td>
-                              </tr>
-                              <tr>
-                                <th>Currency</th>
-                                <td>{{investors_packageData.package_currency}}</td>
-                              </tr>
-                              <tr>
-                                <th>Amount Invested </th>
-                                <td>{{investors_packageData.package_amount_invested}}</td>
-                              </tr>
-                              <tr>
-                                <th>Percentage %</th>
-                                <td>{{investors_packageData.package_parecentage}}</td>
-                              </tr>
-                              <tr>
-                                <th>Profit Earning</th>
-                                <td>{{investors_packageData.profit_earning}}</td>
-                              </tr>
-                              <tr>
-                                <th>Contract Year</th>
-                                <td>{{investors_packageData.contract_limit}}</td>
-                              </tr>
-                          </table>
-
-                          </mat-card-content>
-                        </mat-card>       
-                    </div>
-                    <h3 class="widget-title" style="text-align: end;">https://airfoxtours.com/</h3>
+                  
                   
                       
                       
@@ -185,18 +180,7 @@
              
             </div>
             <!-- /Widget Item -->
-            <div class="container-fluid ">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="card">
-                    <div class="card-header">
-                      <button mat-icon-button color="primary" (click)="edit()"><mat-icon>edit</mat-icon></button>
-                      <button mat-icon-button color="primary" (click)="print()"><mat-icon>print</mat-icon></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
         </div>
     </div>
 

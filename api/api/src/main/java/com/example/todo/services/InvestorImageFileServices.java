@@ -11,16 +11,22 @@ import com.example.todo.repository.InvestorImageFileRepo;
 
 @Service
 public class InvestorImageFileServices {
-    @Autowired
-    private final InvestorImageFileRepo investorImageFileRepo;
-    public InvestorImageFileServices(InvestorImageFileRepo investorImageFileRepo){
-        this.investorImageFileRepo = investorImageFileRepo;
+@Autowired
+private final InvestorImageFileRepo investorImageFileRepo;
+public InvestorImageFileServices(InvestorImageFileRepo investorImageFileRepo){
+    this.investorImageFileRepo = investorImageFileRepo;
 
-    }
+}
  public InvestorImageFile addInvestorImageFile(InvestorImageFile investorImageFile){
     return this.investorImageFileRepo.save(investorImageFile);
  }
  public List<Map<String,Object>> getInvestorsImageFileByInvestorsID(Long investorsID){
     return this.investorImageFileRepo.getAllImageFileByInvestorsID(investorsID);
+}
+public void deleteInvestImage(long id){
+    investorImageFileRepo.deleteById(id);
+}
+public List<InvestorImageFile> getAllImageFiles(){
+    return this.investorImageFileRepo.findAll();
 }
 }

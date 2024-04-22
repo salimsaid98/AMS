@@ -29,4 +29,23 @@ public class InvestorsServices {
     public Optional<InvestersDetails> getInvestorsById(long id) {
         return investorsRepo.findById(id);
     }
+    
+    // Update Investors 
+    public InvestersDetails updateInvestersDetails(Long id,InvestersDetails updateInvestersDetails){
+        Optional<InvestersDetails> existInvestasDetails = investorsRepo.findById((long)id);
+        if(existInvestasDetails.isPresent()){
+            InvestersDetails investersDetails = existInvestasDetails.get();
+            investersDetails.setInvestorsfullName(updateInvestersDetails.getInvestorsfullName());
+            investersDetails.setInvestorsemailAddress(updateInvestersDetails.getInvestorsemailAddress());
+            investersDetails.setInvestorshomeAddress(updateInvestersDetails.getInvestorshomeAddress());
+            investersDetails.setInvestorsphoneNumber(updateInvestersDetails.getInvestorsphoneNumber());
+            investersDetails.setInvestorsnationalIdNumber(updateInvestersDetails.getInvestorsnationalIdNumber());
+            investersDetails.setInvestorspassportNumber(updateInvestersDetails.getInvestorspassportNumber());
+
+            return investorsRepo.save(investersDetails);
+
+        }else {
+            throw new IllegalArgumentException("User with id " + id + " does not exist.");
+        }
+    }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,10 +39,23 @@ public class InvestorsController {
         return new ResponseEntity<>(investersDetails, HttpStatus.OK);
 
     }
+
     @GetMapping("/getInvestorsByID/{investorsID}")
     public ResponseEntity<InvestersDetails> getInvestorsById(@PathVariable("investorsID") int id) {
         Optional<InvestersDetails> investors = investorsServices.getInvestorsById(id);
         return investors.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    // Update Investors
+    @PutMapping("/updateInvestors{id}")
+    public ResponseEntity<InvestersDetails> updateInvestorsr(@PathVariable("id") Long id,
+            @RequestBody InvestersDetails investersDetails) {
+        try {
+            InvestersDetails investersDetails2 = investorsServices.updateInvestersDetails(id, investersDetails);
+            return new ResponseEntity<>(investersDetails2, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

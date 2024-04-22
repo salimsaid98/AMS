@@ -54,7 +54,7 @@ mat-form-field{
     display: none !important;
   }
 
-  .card-header button {
+  button {
     display: none !important; /* Hide the edit button */
   }
   #header {

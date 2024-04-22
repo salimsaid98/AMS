@@ -107,6 +107,26 @@ public class Login_services {
             throw new IllegalArgumentException("User does not exist");
         }
     }
-    
+    // delete user 
+    public void deleteUser(long id){
+       loginRepository.deleteById(id);
+    }
+    // Update Roles  
+    public Login updateRoles(String username, int status) {
+        // Check if the user exists
+        Optional<Login> optionalLogin = loginRepository.getByUsername(username);
+        if (optionalLogin.isPresent()) {
+            Login existingLogin = optionalLogin.get();
+            
+            // Update the roles
+            existingLogin.setStatus(status);
+            
+            // Save the updated user information
+            return loginRepository.save(existingLogin);
+        } else {
+            // User does not exist, throw an exception or handle accordingly
+            throw new IllegalArgumentException("User does not exist");
+        }
+    }
     
 }

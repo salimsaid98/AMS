@@ -29,4 +29,5 @@ public class KinServices {
     public List<Map<String, Object>> getKinByInvestorsID(Long investorsID) {
         return kinRepo.getKinByinvestorsID(investorsID);
     }
+
 }

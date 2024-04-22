@@ -22,19 +22,22 @@ import com.example.todo.services.Investor_PackageServices;
 public class Investors_PackageController {
     private final Investor_PackageServices ineInvestor_PackageServices;
 
-    public Investors_PackageController(Investor_PackageServices investor_PackageServices){
-                this.ineInvestor_PackageServices = investor_PackageServices;
+    public Investors_PackageController(Investor_PackageServices investor_PackageServices) {
+        this.ineInvestor_PackageServices = investor_PackageServices;
     }
+
     @PostMapping("/addInvestors_package")
-        public  ResponseEntity<Investors_Package> addInvestors_package(@RequestBody Investors_Package investors_Package){
-            Investors_Package investors_Package2 = ineInvestor_PackageServices.addInvestors_Package(investors_Package);
-            return new ResponseEntity<>(investors_Package2,HttpStatus.OK);
-        }
+    public ResponseEntity<Investors_Package> addInvestors_package(@RequestBody Investors_Package investors_Package) {
+        Investors_Package investors_Package2 = ineInvestor_PackageServices.addInvestors_Package(investors_Package);
+        return new ResponseEntity<>(investors_Package2, HttpStatus.OK);
+    }
 
     @GetMapping("/GetInvestors_PackageByinvestorsID/")
-    public ResponseEntity<List<Map<String, Object>>> getInvestors_PackageByinvestorsID(@RequestParam("investorsID") Long investorsID) {
-        List<Map<String, Object>> investors_package = ineInvestor_PackageServices.getInvestors_PackageByinvestorsID(investorsID);
+    public ResponseEntity<List<Map<String, Object>>> getInvestors_PackageByinvestorsID(
+            @RequestParam("investorsID") Long investorsID) {
+        List<Map<String, Object>> investors_package = ineInvestor_PackageServices
+                .getInvestors_PackageByinvestorsID(investorsID);
         return ResponseEntity.ok(investors_package);
-    }  
+    }
 
 }
