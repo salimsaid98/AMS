@@ -38,17 +38,18 @@ export class RegisterUsersComponent {
     country_name:''
   }
   account:any={
-    id:'',
     username:'',
-    roles:'',
-    status:1,
-    password:'12345'
+    status:0,
   }
+  
   constructor( private dialog: MatDialog,private loginService:LoginServicesService ){
   }
+  username:any
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    this.username = sessionStorage.getItem("username");
+
     this.getAllUser()
   }
   
@@ -132,6 +133,7 @@ saveFunction(data: any): void {
   )
 }
 save(){
+  this.account.password = "12345"
   this.saveFunction(this.account)
   // console.log("data",this.account)
 }
@@ -158,8 +160,21 @@ updateFunction(username:any,data:any){
   }
  )
 }
+updateStatusFunction(username:any,status:any){
+  return this.loginService.updateStatus(username,status).subscribe(
+    respo=>{
+      console.log(respo)
+      this.dialog.closeAll()
+      this.getAllUser()
+      location.reload()
+    }
+  )
+}
 update(){
-    this.updateFunction(this.irccFile.irccID,this.irccFile)
+ this.account.username = this.username
+    // this.updateFunction(this.irccFile.irccID,this.irccFile)
+    console.log(this.account)
+    this.updateStatusFunction(this.account.username,this.account.status)
 }
 
 changePassword(element:any){

@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,4 +46,14 @@ public class KinController {
         List<Map<String, Object>> kinDetails =kinServices.getKinByInvestorsID(investorsID);
         return ResponseEntity.ok(kinDetails);
     }  
+        // Update Kin Details
+@PutMapping("/updateKin{id}")
+public ResponseEntity<KinDetails> updateMother(@PathVariable("id") Long id, @RequestBody KinDetails kinDetails) {
+    try {
+        KinDetails kinDetails2 = kinServices.updatekinDetails(id, kinDetails);
+        return new ResponseEntity<>(kinDetails2, HttpStatus.OK);
+    } catch (IllegalArgumentException e) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+    }
+}
 }

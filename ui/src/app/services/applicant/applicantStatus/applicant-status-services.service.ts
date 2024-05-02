@@ -18,14 +18,35 @@ export class ApplicantStatusServicesService {
   getAllApplicantStatusIsPendingByUser(register_by:any):Observable<any>{
     return this.http.get<any>(`${this.applicantStatus}/GetAllApplicantStatusIsPendingByUser/?register_by=${register_by}`);
   }
+  getAllApplicantStatusIsApprovedByUser(register_by:any):Observable<any>{
+    return this.http.get<any>(`${this.applicantStatus}/GetAllApplicantStatusIsApprovedByUser/?register_by=${register_by}`);
+  }
   getAllApplicantStatusIsPending():Observable<any>{
     return this.http.get(this.applicantStatus+ "/GetAllApplicantStatusIsPending/");
+  }
+  getAllApplicantStatusIsApproved():Observable<any>{
+    return this.http.get(this.applicantStatus+ "/GetAllApplicantStatusIsApproved/");
   }
   countAllApplicantStatusIsPendingByUser(register_by:any):Observable<any>{
     return this.http.get<any>(`${this.applicantStatus}/countTotalPendingByUser/?register_by=${register_by}`);
   }
+  countAllApplicantStatusIsApprovedByUser(register_by:any):Observable<any>{
+    return this.http.get<any>(`${this.applicantStatus}/countTotalApprovedByUser/?register_by=${register_by}`);
+  }
   countAllApplicantStatusIsPending():Observable<any>{
     return this.http.get(this.applicantStatus+ "/countTotalPending/");
+  }
+  countAllApplicantStatusIsApproved():Observable<any>{
+    return this.http.get(this.applicantStatus+ "/countTotalApproved/");
+  }
+  getAllApplicantStatusByApplicantID(applicantID:any):Observable<any>{
+    return this.http.get<any>(`${this.applicantStatus}/GetAllApplicantByApplicantID/?applicantID=${applicantID}`);
+  }
+  ChangeApplicantStatusToApproved(applicantStatusID:any,status:any):Observable<any>{
+    // return this.http.get<any>(`${this.applicantStatus}/changingApplicantStatus/?applicantStatusID=${applicantStatusID}&status=${status}`);
+    return this.http.put(this.applicantStatus + '/changingApplicantStatus/', null, { params: { applicantStatusID, status } });
+
+
   }
 
   // getgeApplicantById(id:any):Observable<any>{

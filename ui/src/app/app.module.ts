@@ -45,6 +45,9 @@ import { AllInvestorsComponent } from './pages/all-investors/all-investors.compo
 import { InvestorDetailsComponent } from './pages/investor-details/investor-details.component';
 import {MatListModule} from '@angular/material/list';
 import { EditInvestorsDetailsComponent } from './pages/edit-investors-details/edit-investors-details.component';
+import { ApprovedApplicantAdminComponent } from './pages/approved-applicant-admin/approved-applicant-admin.component';
+import { ApplicantProfileComponent } from './pages/applicant-profile/applicant-profile.component';
+import { ApprovedApplicantUserComponent } from './pages/approved-applicant-user/approved-applicant-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +71,9 @@ import { EditInvestorsDetailsComponent } from './pages/edit-investors-details/ed
     AllInvestorsComponent,
     InvestorDetailsComponent,
     EditInvestorsDetailsComponent,
+    ApprovedApplicantAdminComponent,
+    ApplicantProfileComponent,
+    ApprovedApplicantUserComponent,
     
   ],
   imports: [

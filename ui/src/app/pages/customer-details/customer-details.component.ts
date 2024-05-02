@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { applicantDetailsModel } from 'src/app/model/ApplicantDetalsModel';
 import { File_models } from 'src/app/model/File_models';
 import { ApplicantDetailsServicesService } from 'src/app/services/applicant/applicantDetails/applicant-details-services.service';
@@ -19,6 +19,7 @@ import { ApplicantImageFileServicesService } from 'src/app/services/files/aplica
 import { DomSanitizer } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
 import { RelativeServicesService } from 'src/app/services/applicant/relative/relative-services.service';
+import { ApplicantStatusServicesService } from 'src/app/services/applicant/applicantStatus/applicant-status-services.service';
 
 @Component({
   selector: 'app-customer-details',
@@ -30,10 +31,10 @@ id:any
 files: any[] = []; // Array to hold applicant files
 files2: any[] = []; // Array to hold applicant files
 fileData!: FormData;
-fatherDetailsArray: any[] = []; 
-motherDetailsArray: any[] = []; 
-wifeDetailsArray: any[] = []; 
-relativeDetailsArray: any[] = []; 
+fatherDetailsArray: any
+motherDetailsArray: any
+wifeDetailsArray: any
+relativeDetailsArray: any[] =[]
 applicantDetailsArray!:any[]
 applicantDetailsModel:applicantDetailsModel = new applicantDetailsModel()
 file_model:File_models=new File_models()
@@ -77,6 +78,24 @@ fatherDetail: any = {
   applicantID:'',
   fatherid:''
 };
+motherDetails: any = {
+  motherfullName: '',
+  motherdateOfBirth: '',
+  mothermarriedStatus: '',
+  mothernationality: '',
+  motherhomeAddress: '',
+  motheroccupation: '',
+  applicantID:'',
+  motherID:''
+};
+wifeDetails: any = {
+  wifeName: '',
+  wifedateOfBirth: '',
+  wifenationality: '',
+  wifehomeAddress: '',
+  wifeoccupation: '',
+  applicantID:''
+};
 applicantFile:any
 preparedFile:any
 ImageFile:any
@@ -96,6 +115,8 @@ addminOnly:boolean = false
     private applicantImageFileServices :ApplicantImageFileServicesService,
   private sanitizer :DomSanitizer ,
   private relativeServices:RelativeServicesService,
+  private applicantStatusServices:ApplicantStatusServicesService,
+  private rout:Router
  ){
 
   }
@@ -123,7 +144,7 @@ addminOnly:boolean = false
     this.applicantPreparedFile_model.applicantID = this.id
     this.relativeDetails.applicantID = this.id;
     this.applicantImageFile_model.applicantID = this.id
-
+    
     console.log(this.id)
     this.getFatherByApplicantId(this.id)
     this.getMoherByApplicantId(this.id)
@@ -135,6 +156,8 @@ addminOnly:boolean = false
     this.getRelativebyApplicantID(this.id)
     this.username = sessionStorage.getItem("username");
     this.roles= sessionStorage.getItem("roles");
+    this.getAllApplicantStatusByApplicantID(this.id)
+    this.countAllPending()
     if(this.roles=="Admin"){
       this.userOnly=false
   }else{
@@ -164,25 +187,36 @@ addminOnly:boolean = false
         respo.forEach((item:any) => {
           this.fatherID=item.fatherid
           console.log("father id is ",this.fatherID)
+          this.fatherDetailsArray = item
         });
-        this.fatherDetailsArray = respo
-        console.log(this.fatherDetailsArray);
+       
+        console.log("Father Details is ",this.fatherDetailsArray);
 
       }
     )
   }
+  motherID:any
   getMoherByApplicantId(id:any){
     return this.motherServices.getMotherByApplicantID(id).subscribe(
       respo=>{
-        this.motherDetailsArray = respo
+        respo.forEach((item:any) => {
+          this.motherDetailsArray = item
+          this.motherID = item.motherid          
+        });
+        
         console.log(this.motherDetailsArray);
       }
     )
   }
+  wifeID :any
   getWifeByApplicantId(id:any){
     return this.wifeService.getFatherByApplicantID(id).subscribe(
       respo=>{
-        this.wifeDetailsArray = respo
+        respo.forEach((item:any) => {
+          this.wifeDetailsArray = item
+          this.wifeID = item.wifeid
+        });
+       
         console.log(this.wifeDetailsArray);
       }
     )
@@ -222,6 +256,9 @@ addminOnly:boolean = false
 getRelativebyApplicantID(id:any){
   return this.relativeServices.getRelativeByApplicantID(id).subscribe(
     respo =>{
+      // respo.forEach((item:any) => {
+      //   this.relativeDetailsArray = item
+      // });
       this.relativeDetailsArray = respo
       console.log("Relative " ,this.relativeDetailsArray)
     }
@@ -573,10 +610,48 @@ updateFatherDetails(element:any){
   // console.log(this.fatherDetail)
   this.updateFutherFunction(this.fatherID,this.fatherDetail)
 }
-openDialogUpdateFile(element:any){
+updateMotherFunction(id:any,Data:any){
+  return this.motherServices.updateMother(id,Data).subscribe(
+    respo=>{
+      console.log(respo)
+      this,this.getMoherByApplicantId(id)
+    }
+  )
+}
+openDialogUpdateMother(element:any){
+
+this.motherDetails.motherfullName = element.motherfull_name
+this.motherDetails.motherdateOfBirth = element.motherdate_of_birth
+this.motherDetails.motherhomeAddress = element.motherhome_address
+this.motherDetails.mothermarriedStatus = element.mothermarried_status
+this.motherDetails.motheroccupation = element.motheroccupation
+this.motherDetails.mothernationality = element.mothernationality
+this.motherDetails.applicantID = this.motherID
+// console.log(this.motherID, this.motherDetails)
+this.updateMotherFunction(this.motherID, this.motherDetails)
+}
+updateWifeFunction(id:any,Data:any){
+  return this.wifeService.updateWife(id,Data).subscribe(
+    respo=>{
+      console.log(respo)
+      this.getWifeByApplicantId(id)
+    }
+  )
+}
+openDialogUpdateWife(element:any){
+  this.wifeDetails.wifeName = element.wife_name
+  this.wifeDetails.wifehomeAddress = element.wifehome_address
+  this.wifeDetails.wifenationality = element.wifenationality
+  this.wifeDetails.wifeoccupation = element.wifeoccupation
+  this.wifeDetails.wifedateOfBirth = element.wifedate_of_birth
+  this.wifeDetails.applicantID = this.wifeID
+  
+// console.log(this.wifeID,this.wifeDetails)
+this.updateWifeFunction(this.wifeID,this.wifeDetails)
+}
+openDialogUpdateRelative(element:any){
 
 }
-
 uploadImage(){
   this.dialog.open(this.addImageFile,{width:'400px'});
 
@@ -857,4 +932,48 @@ updateApplicant(id:any,data:any){
     }
   )
 }
+ApprovedAvailable:boolean =true
+ApprovedNotAvailable:boolean =false
+applicant_statusid:any
+getAllApplicantStatusByApplicantID(id:any){
+  this.applicantStatusServices.getAllApplicantStatusByApplicantID(id).subscribe(
+    respo=>{
+      respo.forEach((array:any)=> {
+       this.applicant_statusid = array.applicant_statusid
+       if(array.status =="Approved"){
+        this.ApprovedAvailable = false
+        this.ApprovedNotAvailable = true
+       }
+      });
+      console.log(respo)
+    }
+  )
+}
+approvedFunction(id:any,status:any){
+  this.applicantStatusServices.ChangeApplicantStatusToApproved(id,status).subscribe(
+    respo=>{
+      console.log(respo)
+     
+      this.rout.navigate(['home/approved-applicant-admin'])
+      
+    }
+  )
+}
+countAllPending(){
+  this.applicantStatusServices.getAllApplicantStatusIsPending().subscribe(
+    respo=>{
+      console.log(respo)
+    }
+  )
+}
+approved(){
+const data = {
+  status:'Approved'
+}
+// console.log("Message",this.applicant_statusid,data.status)
+
+this.approvedFunction(this.applicant_statusid,data.status)
+}
+
+
 }

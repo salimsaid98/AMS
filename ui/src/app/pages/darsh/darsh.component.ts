@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginServicesService } from 'src/app/services/Login/login/login-services.service';
 import { ApplicantDetailsServicesService } from 'src/app/services/applicant/applicantDetails/applicant-details-services.service';
 import { ApplicantStatusServicesService } from 'src/app/services/applicant/applicantStatus/applicant-status-services.service';
 
@@ -13,7 +14,8 @@ export class DarshComponent {
   username:any
   roles:any
   constructor(private applicantServices:ApplicantDetailsServicesService,
-    private aplicantStatuServices :ApplicantStatusServicesService
+    private aplicantStatuServices :ApplicantStatusServicesService,
+    private loginServices:LoginServicesService
   ){
 
   }
@@ -23,9 +25,12 @@ export class DarshComponent {
     this.username = sessionStorage.getItem("username");
     this.roles= sessionStorage.getItem("roles");
     this.countAllApplicant()
+    this.  countAllApplicantApproved();
+    this.countAllUser()
     this.countAllApplicantPending()
     this.countAllApplicantPendingByUser(this.username)
     this.countAllApplicantByUser(this.username)
+    this.countAllApplicantApprovedByUser(this.username)
     if(this.roles=="Admin"){
       this.userOnly=false
   }else{
@@ -77,6 +82,20 @@ export class DarshComponent {
       }
     )
   }
+  totalApprovedByAdmin:any
+  countAllApplicantApproved(){
+    return this.aplicantStatuServices.countAllApplicantStatusIsApproved().subscribe(
+      respo=>{
+        respo.forEach((array:any) => {
+          this.totalApprovedByAdmin= array.total_approved
+  
+  
+        });
+        console.log("total Approved",this.totalApprovedByUser)
+  
+      }
+    )
+  }
   totalApplicantByUser:any
   countAllApplicantByUser(username:any){
     return this.applicantServices.countAllApplicantByUser(username).subscribe(
@@ -87,6 +106,34 @@ export class DarshComponent {
   
         });
         console.log(respo)
+  
+      }
+    )
+  }
+  totalUsers:any
+  countAllUser(){
+    return this.loginServices.countAllUsers().subscribe(
+      respo=>{
+        respo.forEach((array:any) => {
+          this.totalUsers = array.total_user
+  
+  
+        });
+        console.log(respo)
+  
+      }
+    )
+  }
+  totalApprovedByUser:any
+  countAllApplicantApprovedByUser(username:any){
+    return this.aplicantStatuServices.countAllApplicantStatusIsApprovedByUser(username).subscribe(
+      respo=>{
+        respo.forEach((array:any) => {
+          this.totalApprovedByUser = array.total_approved
+  
+  
+        });
+        console.log("total Approved By user",this.totalApprovedByUser)
   
       }
     )

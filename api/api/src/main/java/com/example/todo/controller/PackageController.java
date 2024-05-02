@@ -41,9 +41,9 @@ public class PackageController {
 
     }
 
-    // Update Mother
+    // Update Package
     @PutMapping("/updatePackage{id}")
-    public ResponseEntity<PackageDetails> updateMother(@PathVariable("id") Long id,
+    public ResponseEntity<PackageDetails> updatePackage(@PathVariable("id") Long id,
             @RequestBody PackageDetails packageDetails) {
         try {
             PackageDetails packageDetails2 = packegeService.updatePackageDetails(id, packageDetails);

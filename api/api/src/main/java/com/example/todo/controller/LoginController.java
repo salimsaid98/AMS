@@ -1,6 +1,7 @@
 package com.example.todo.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -8,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -88,8 +88,8 @@ public class LoginController {
     }
 
     // Endpoint for changing user password
-    @PatchMapping("changingPassword/{username}/password")
-    public ResponseEntity<Void> changePassword(@PathVariable String username, @RequestParam String newPassword) {
+    @PutMapping("changingPassword")
+    public ResponseEntity<Void> changePassword(@RequestParam String username, @RequestParam String newPassword) {
         try {
             loginServices.changePassword(username, newPassword);
             return ResponseEntity.ok().build();
@@ -108,15 +108,22 @@ public class LoginController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-        // Endpoint for changing user roles
-        @PatchMapping("changingRoles/{username}/status")
-        public ResponseEntity<Void> updateRoles(@PathVariable String username, @RequestParam int status) {
-            try {
-                loginServices.updateRoles(username, status);
-                return ResponseEntity.ok().build();
-            } catch (IllegalArgumentException e) {
-                // User does not exist, return 404 Not Found
-                return ResponseEntity.notFound().build();
-            }
+    // Endpoint for changing user roles
+    @PutMapping("/changingRoles")
+    public ResponseEntity<Void> updateRoles(@RequestParam("username")  String username, @RequestParam() int status) {
+        try {
+            loginServices.updateRoles(username, status);
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            // User does not exist, return 404 Not Found
+            return ResponseEntity.notFound().build();
         }
+    }
+// Count All Applicant
+    @GetMapping("/CountAllUsers/")
+    public ResponseEntity<List<Map<String, Object>>> GetApplicantFileByApplicantID() {
+        List<Map<String, Object>> users = loginServices.getAllAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
 }

@@ -1,0 +1,338 @@
+<div id="content">
+
+    <div class="row no-margin-padding" id="header">
+        <div class="col-md-6">
+            <h3 class="block-title">Applicant</h3>
+        </div>
+        <div class="col-md-6">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="index.html">
+                        <span class="ti-home"></span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">Applicant</li>
+                <li class="breadcrumb-item active">Applicant Profile</li>
+            </ol>
+        </div>
+    </div>
+    <div class="container-fluid watermark-container">
+      <div class="watermark"></div>
+      <!-- Your content here -->
+    </div>
+    <div class="container-fluid " >
+
+        <div class="row">
+            <!-- Widget Item -->
+            <div class="col-md-12">
+                <div class="widget-area-2 proclinic-box-shadow " id="applicant-details-container" >
+                 <div class="d-flex justify-content-between">
+                  <h3 class="widget-title">Applicant Profile</h3>
+                  <img src="../../../assets/images/airfox.png" alt="Logo" class="logo">
+                 </div> 
+                 <div class="row">
+                    <div class="col-md-12">
+                        <mat-card class="example-card" >
+                          <mat-card-header >
+                            <div mat-card-avatar class="example-header-image"></div>
+                            <div class="avatar-container">
+                              <img *ngIf="profileImage" [src]="getBase64Image(imageFile[0])" class="profile-img" alt="Profile Image" />
+                              <div *ngIf="!profileImage" class="avatar-placeholder mat-elevation-z2">
+                                <mat-icon>account_circle</mat-icon>
+                              </div>
+                            </div>  
+                          </mat-card-header><hr>
+                            <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+                            <mat-card-content>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <h3 class="widget-title">Personal Information</h3>
+                                <table class="table table-striped">
+                                  <tbody>
+                                      <tr>
+                                        <th width="30%"><strong>Full Name</strong></th>
+                                        <td width="70%"> 
+                                              {{applicantDetails.applicantfullName}}
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <th width="30%"><strong>Address</strong></th>
+                                        <td width="70%"> 
+                                          {{applicantDetails.applicantemailAddress}} 
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <th width="30%"><strong>Phone No.</strong></th>
+                                        <td width="70%">  
+                                          {{applicantDetails.applicantpassportNumber}} 
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <th width="30%"><strong>NIDA</strong></th>
+                                        <td width="70%"> 
+                                          {{applicantDetails.applicantnationalIdNumber}} 
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <th width="30%"><strong>Website</strong></th>
+                                        <td width="70%"> 
+                                          {{applicantDetails.applicantwebsite}} 
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <th width="30%"><strong>Occupation</strong></th>
+                                        <td width="70%"> 
+                                          {{applicantDetails.applicantoccupation}} 
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <th width="30%"><strong>Martial Status</strong></th>
+                                        <td width="70%"> 
+                                          {{applicantDetails.applicantmarriedStatus}} 
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <th width="30%"><strong>Phone </strong></th>
+                                        <td width="70%"> 
+                                          {{applicantDetails.applicantphoneNumber}} 
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <th width="30%"><strong>Address  </strong></th>
+                                        <td width="70%"> 
+                                          {{applicantDetails.applicanthomeAddress}} 
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <th width="30%"><strong>Bussiness No. </strong></th>
+                                        <td width="70%"> 
+                                          {{applicantDetails.applicantbusinessNumber}} 
+                                          </td>
+                                      </tr>
+                                     <tr>
+                                        <th width="30%"><strong>Bank Name </strong></th>
+                                        <td width="70%"> 
+                                          {{applicantDetails.bank_name}} 
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                        <th width="30%"><strong>Bank Account No.</strong></th>
+                                        <td width="70%"> 
+                                          {{applicantDetails.bankAccount_no}} 
+                                          </td>
+                                      </tr>
+                                
+                                      <!-- Add more rows as needed for other fields -->
+                                  </tbody>
+                              </table>
+                              </div>
+                              <div class="col-md-6">
+                                <h3 class="widget-title">Father</h3>
+                                <table class="table table-striped">
+                                  <tbody>
+                                      <tr>
+                                        <th width="30%"><strong>Full Name</strong></th>
+                                        <td width="70%"> 
+                                              {{fatherDetails.fatherfull_name}}
+                                         </td>
+                                       </tr>
+                                       <tr>
+                                       <th width="30%"><strong>Date of Birth</strong></th>
+                                        <td width="70%"> 
+                                              {{fatherDetails.fatherdate_of_birth }}
+                                         </td>
+                                       </tr>
+                                       <tr>
+                                        <th width="30%"><strong>Martial  Status</strong></th>
+                                         <td width="70%"> 
+                                               {{fatherDetails.fathermarried_status}}
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <th width="30%"><strong>Address </strong></th>
+                                           <td width="70%"> 
+                                                 {{fatherDetails.fatherhome_address}}
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th width="30%"><strong>Nationality </strong></th>
+                                             <td width="70%"> 
+                                                   {{fatherDetails.fathernationality}}
+                                                  
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <th width="30%"><strong>Occupation </strong></th>
+                                               <td width="70%"> 
+                                                     {{fatherDetails.fatheroccupation}}
+                                                     
+                                                </td>
+                                              </tr>
+                                      <!-- Add more rows as needed for other fields -->
+                                  </tbody>
+                              </table>
+                              <h3 class="widget-title">Mother </h3>
+                              <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                      <th width="30%"><strong>Full Name</strong></th>
+                                      <td width="70%"> 
+                                            {{motherDetails.motherfull_name}}
+                                       </td>
+                                     </tr>
+                                     <tr>
+                                     <th width="30%"><strong>Date of Birth</strong></th>
+                                      <td width="70%"> 
+                                            {{motherDetails.motherdate_of_birth }}
+                                       </td>
+                                     </tr>
+                                     <tr>
+                                      <th width="30%"><strong>Martial  Status</strong></th>
+                                       <td width="70%"> 
+                                             {{motherDetails.mothermarried_status}}
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <th width="30%"><strong>Address </strong></th>
+                                         <td width="70%"> 
+                                               {{motherDetails.motherhome_address}}
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <th width="30%"><strong>Nationality </strong></th>
+                                           <td width="70%"> 
+                                                 {{motherDetails.mothernationality}}
+                                                
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th width="30%"><strong>Occupation </strong></th>
+                                             <td width="70%"> 
+                                                   {{motherDetails.motheroccupation}}
+                                                   
+                                              </td>
+                                            </tr>
+                                    <!-- Add more rows as needed for other fields -->
+                                </tbody>
+                            </table>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <h3 class="widget-title">Husband / Wife</h3>
+                                <table class="table table-striped">
+                                  <tbody>
+                                      <tr>
+                                        <th width="30%"><strong>Full Name</strong></th>
+                                        <td width="70%"> 
+                                              {{wifeDetails.wife_name}}
+                                         </td>
+                                       </tr>
+                                       <tr>
+                                       <th width="30%"><strong>Date of Birth</strong></th>
+                                        <td width="70%"> 
+                                              {{wifeDetails.wifedate_of_birth}}
+                                         </td>
+                                    
+                                        <tr>
+                                          <th width="30%"><strong>Address </strong></th>
+                                           <td width="70%"> 
+                                                 {{wifeDetails.wifehome_address}}
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th width="30%"><strong>Nationality </strong></th>
+                                             <td width="70%"> 
+                                                   {{wifeDetails.wifenationality}}
+                                                  
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <th width="30%"><strong>Occupation </strong></th>
+                                               <td width="70%"> 
+                                                     {{wifeDetails.wifeoccupation}}
+                                                     
+                                                </td>
+                                              </tr>
+                                      <!-- Add more rows as needed for other fields -->
+                                  </tbody>
+                              </table>
+                              </div>
+                             
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <h3 class="widget-title">Applicant Files </h3>
+                                <table class="table table-striped">
+                                  <tbody>
+                                     
+                                       <tr>
+                                        <th>#</th>
+                                        <th>File Name</th>
+                                        <th>File Type</th>
+                                       </tr>
+                                       <tr *ngFor="let data of applicantAndfile ">
+                                        <td>
+                                        
+                                        <td>
+                                         {{data.file_name}}
+                                        </td>
+                                        <td>
+                                          {{data.filetype}}
+                                        </td>
+                                       </tr>
+                                      <!-- Add more rows as needed for other fields -->
+                                  </tbody>
+                              </table>
+                              </div>
+                              <div class="col-md-6">
+                                <h3 class="widget-title">Prepared Files </h3>
+                                <table class="table table-striped">
+                                  <tbody>
+                                     
+                                       <tr>
+                                        <th>#</th>
+                                        <th>File Name</th>
+                                        <th>File Type</th>
+                                       </tr>
+                                       <tr *ngFor="let data of applicantPreparedFile ">
+                                        <td>
+                                        
+                                        <td>
+                                         {{data.file_name}}
+                                        </td>
+                                        <td>
+                                          {{data.filetype}}
+                                        </td>
+                                       </tr>
+                                      <!-- Add more rows as needed for other fields -->
+                                  </tbody>
+                              </table>
+                              </div>
+                            </div>
+                            
+                            <h3 class="widget-title" style="text-align: end;">https://airfoxtours.com/</h3>
+    
+                                <!-- <mat-list role="list">
+                                    <mat-list-item role="listitem">Item 1</mat-list-item>
+                                    <mat-list-item role="listitem">Item 2</mat-list-item>
+                                    <mat-list-item role="listitem">Item 3</mat-list-item>
+                                  </mat-list>                               -->
+                            </mat-card-content>
+                            <mat-card-actions>
+                              <!-- <button mat-icon-button color="primary" (click)="edit()"><mat-icon>edit</mat-icon></button> -->
+                              <button mat-icon-button color="primary" (click)="print()"><mat-icon>print</mat-icon></button>
+                            </mat-card-actions>
+                          </mat-card>
+                    </div>
+                   
+                </div>          
+                </div>         
+            </div>
+            <!-- /Widget Item -->
+          
+
+        </div>
+    </div>
+
+</div>

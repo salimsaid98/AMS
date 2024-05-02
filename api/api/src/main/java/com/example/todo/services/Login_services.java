@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -129,4 +130,7 @@ public class Login_services {
         }
     }
     
+    public List<Map<String,Object>> getAllAllUsers(){
+        return loginRepository.countAllUsers();
+    }
 }

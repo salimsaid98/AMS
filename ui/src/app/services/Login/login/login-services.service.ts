@@ -32,4 +32,14 @@ export class LoginServicesService {
       return this.http.put(this.login+"/updateUser"+username,data);
     }
 
-}
+    updateStatus(username: any, status: any): Observable<any> {
+      return this.http.put(this.login + '/changingRoles', null, { params: { username, status } });
+    }
+
+    countAllUsers():Observable<any>{
+      return this.http.get(this.login+ "/CountAllUsers/");
+    }
+    changePassword(username: any, newPassword: any): Observable<any> {
+      return this.http.put(this.login + '/changingPassword', null, { params: { username, newPassword } });
+    }
+  }

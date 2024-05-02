@@ -37,10 +37,16 @@
                         <a [routerLink]="['all-cust']">All Applicants</a>
                     </li>
                     <li *ngIf="userOnly">
-                        <a [routerLink]="['pending-applicant']" >Pending   <span class="badge badge-danger">{{totalPendingByUser}}</span></a>
+                        <a [routerLink]="['pending-applicant']" >Pending   <span class="badge badge-danger" *ngIf="pendingIsZerobyUser">{{totalPendingByUser}}</span></a>
                     </li>
                     <li *ngIf="addminOnly">
-                        <a [routerLink]="['pending-applicant-admin']">Pending  <span class="badge badge-danger">{{totalPending}}</span></a>
+                        <a [routerLink]="['pending-applicant-admin']">Pending  <span class="badge badge-danger" *ngIf="pendingIsZerobyAdmin">{{totalPending}}</span></a>
+                    </li>
+                    <li *ngIf="addminOnly">
+                        <a [routerLink]="['approved-applicant-admin']">Approved</a>
+                    </li>
+                    <li *ngIf="userOnly">
+                        <a [routerLink]="['approved-applicant-user']">Approved</a>
                     </li>
 
                 </ul>
@@ -50,9 +56,9 @@
                     <span class="ti-files"></span> Files
                 </a>
                 <ul class="collapse list-unstyled" id="nav-doctors">
-                    <li>
+                    <!-- <li>
                         <a [routerLink]="['ircc-file']">Embassy Files</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a [routerLink]="['prepared-file']">Prepered Files</a>
                     </li>
@@ -87,9 +93,9 @@
                     <li>
                         <a [routerLink]="['register-users']">Register Users</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a [routerLink]="['manage-users']">Manage Users</a>
-                    </li>
+                    </li> -->
 
                 </ul>
             </li>
@@ -116,7 +122,7 @@
                         </a>
                         <div class="dropdown-menu proclinic-box-shadow2 profile animated flipInY">
                             <h5 class="text-center ">{{username}}</h5>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" type="button" (click)="openDialogAdd()">
                                 <span class="ti-settings"></span> Settings</a>
                             <!-- <a class="dropdown-item" href="#">
                                 <span class="ti-help-alt"></span> Help</a> -->
@@ -142,3 +148,27 @@
 <a id="back-to-top" href="#" class="back-to-top">
     <span class="ti-angle-up"></span>
 </a>
+<ng-template #addFile>
+    <div class="card">
+        <div class="card-body">
+            <mat-card>
+                <form #myForm="ngForm">
+                    <mat-card-header>
+                        <mat-card-title>Change Password</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-form-field style="width: 100%;">
+                            <mat-label>Enter new Password</mat-label>
+                            <input matInput placeholder="password" name="file_nanme"
+                                [(ngModel)]="User.newPassword" required>
+                        </mat-form-field>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button mat-raised-button color="primary" [disabled]="!myForm.valid"
+                            (click)="save()"> <mat-icon>save</mat-icon></button>
+                    </mat-card-actions>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</ng-template>

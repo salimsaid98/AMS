@@ -71,7 +71,7 @@ motherDetails: any = {
   mothernationality: '',
   motherhomeAddress: '',
   motheroccupation: '',
-  motherapplicantID:''
+  applicantID:''
 };
 fileDetails:any={
     name: '', // To store file name
@@ -150,7 +150,7 @@ saveFunction(data1:any,data2:any,data3:any,data4:any,applicantStatusData:any){
         }
       });
       // Perform any additional actions after successful creation
-      this.route.navigate(['/home/all-cust'])
+      this.route.navigate(['/home/pending-applicant'])
 
     },
     error => {
@@ -176,6 +176,7 @@ Save(){
   // console.log("Wife Details:", this.wifeDetails);
   // console.log("Father's Details:", this.fatherDetails);
   // console.log("Mother's Details:", this.motherDetails);
+  // console.log("Status",this.applicantStatus)
 }
 save2(){
   console.log("Applicant Details:", this.applicantDetails)

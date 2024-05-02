@@ -21,6 +21,9 @@ import { AddPackegeComponent } from './pages/add-packege/add-packege.component';
 import { AllInvestorsComponent } from './pages/all-investors/all-investors.component';
 import { InvestorDetailsComponent } from './pages/investor-details/investor-details.component';
 import { EditInvestorsDetailsComponent } from './pages/edit-investors-details/edit-investors-details.component';
+import { ApprovedApplicantAdminComponent } from './pages/approved-applicant-admin/approved-applicant-admin.component';
+import { ApplicantProfileComponent } from './pages/applicant-profile/applicant-profile.component';
+import { ApprovedApplicantUserComponent } from './pages/approved-applicant-user/approved-applicant-user.component';
 
 const routes: Routes = [
   {path:'',redirectTo:"login",pathMatch:'full'},
@@ -43,7 +46,10 @@ const routes: Routes = [
   {path:'add-package',component:AddPackegeComponent},
   {path:'all-investors',component:AllInvestorsComponent},
   {path:'investor-details',component:InvestorDetailsComponent},
-  {path:'edit-investors',component:EditInvestorsDetailsComponent}
+  {path:'edit-investors',component:EditInvestorsDetailsComponent},
+  {path:'approved-applicant-admin',component:ApprovedApplicantAdminComponent},
+  {path:'approved-applicant-user',component:ApprovedApplicantUserComponent},
+  {path:'applicant-profile',component:ApplicantProfileComponent}
   ]}
 ];
 
