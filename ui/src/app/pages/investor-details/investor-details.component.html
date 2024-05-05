@@ -154,14 +154,42 @@
                                       <th>Contract Year</th>
                                       <td>{{investors_packageData.contract_limit}}</td>
                                     </tr>
-                                </table>
-                                <h3 class="widget-title" style="text-align: end;">https://airfoxtours.com/</h3>
+                                    <tr>
+                                      <th width="30%">Date Issued</th>
+                                      <td width="70%">
+                                        {{currentDateTime}}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th>Status</th>
+                                      <td>
+                                        <select class="form-control" aria-label="Default select example"  required >
+                                          <option selected>--Choose Status--</option>
+                                          <option value="approve">Approve</option>
+                                          <option value="Pending">Pending</option>
+                                        </select> 
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th>
+                                        Sign
+                                      </th>
+                                     
+                                    </tr>
+                                    <tr style="border: 1px solid black;">
 
-                                    <!-- <mat-list role="list">
-                                        <mat-list-item role="listitem">Item 1</mat-list-item>
-                                        <mat-list-item role="listitem">Item 2</mat-list-item>
-                                        <mat-list-item role="listitem">Item 3</mat-list-item>
-                                      </mat-list>                               -->
+                                    </tr>
+                                    <hr>
+                                  
+                                </table>
+                                
+                               <div class="d-flex justify-content-between">
+                                <h3 class="widget-title" >Address :
+                                  St. Nicholaus Church, Plot No> 497, Arusha street Ilala Dar es salaam Tanzania</h3>
+                                  <img class="qr-code"  src="https://api.qrserver.com/v1/create-qr-code/?data=https://airfoxtours.com/&size=200x200" alt="QR Code">
+                               </div>
+
+                                                         
                                 </mat-card-content>
                                 <mat-card-actions>
                                   <button mat-icon-button color="primary" (click)="edit()"><mat-icon>edit</mat-icon></button>

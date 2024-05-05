@@ -29,5 +29,9 @@ public class ApplicantDetails_and_File_Services {
     public List<Map<String,Object>> getApplicantFileByID(Long applicantid){
             return this.applicantDetails_and_File_Repo.getAllFileByApplicantID(applicantid);
     }
+
+   public void deleteApplicantAndFile(long id) {
+        applicantDetails_and_File_Repo.deleteById(id);
+    }
  
 }

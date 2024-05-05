@@ -23,9 +23,9 @@ export class ApplicAndFileServicesService {
   //   return this.http.put(this.user_details+"/updateUser"+id,data);
   // }
 
-  // deleteUser_Info(id:any){
-  //   return this.http.delete(this.user_details+"/deleteUser"+id);
-  // }
+  deleteApplicantAndFile(id:any){
+    return this.http.delete(this.applicantAndFile+"/deleteApplicantAndFile"+id);
+  }
 
   creatApplicantAndFile(data:any):Observable<any>{
     return this.http.post(this.applicantAndFile+"/addApplicant_and_file",data);

@@ -29,4 +29,8 @@ public class ApplicantPreparedFileServices {
       public List<Map<String,Object>> getApplicantFileByID(Long applicantid){
         return this.applicantPreparedFileRepo.getAllFileByApplicantID(applicantid);
 }
+           // Delete Prepared File
+           public void deleteApplicantPreparedile(long id) {
+            applicantPreparedFileRepo.deleteById(id);
+        }
 }

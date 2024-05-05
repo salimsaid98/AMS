@@ -6,7 +6,9 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +45,14 @@ public ApplicantDetails_and_File_Controller(ApplicantDetails_and_File_Services a
         return ResponseEntity.ok(apfile);
     }
 
-
+    @DeleteMapping("/deleteApplicantAndFile{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") int id) {
+        try {
+            applicantDetails_and_File_Services.deleteApplicantAndFile(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
 

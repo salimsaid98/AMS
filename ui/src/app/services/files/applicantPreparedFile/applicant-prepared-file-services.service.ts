@@ -23,9 +23,9 @@ export class ApplicantPreparedFileServicesService {
   //   return this.http.put(this.user_details+"/updateUser"+id,data);
   // }
 
-  // deleteUser_Info(id:any){
-  //   return this.http.delete(this.user_details+"/deleteUser"+id);
-  // }
+  deleteApplicantPreparedFile(id:any){
+    return this.http.delete(this.applicantPreparedFile+"/deleteApplicantPreparedFile"+id);
+  }
 
   creatApplicantPreparedFile(data:any):Observable<any>{
     return this.http.post(this.applicantPreparedFile+"/addApplicantPreparedFile",data);

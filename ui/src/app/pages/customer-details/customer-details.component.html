@@ -451,6 +451,10 @@
                                                                 (click)="openDialogUpdateRelative(relativeDetails) ">
                                                                 <mat-icon>update</mat-icon>
                                                             </button>
+                                                            <button mat-icon-button color="warn"
+                                                            (click)="deleteRelative(relativeDetails) ">
+                                                            <mat-icon>delete</mat-icon>
+                                                        </button>
                                                             </td>
                                                           </tr>
                                                     </table>
@@ -549,7 +553,7 @@
                                                                 <button mat-icon-button color="primary" (click)="previewFile(element)">
                                                                     <mat-icon>visibility</mat-icon>
                                                                 </button>
-                                                                <button mat-icon-button color="warn" (click)="deleteFile(element)">
+                                                                <button mat-icon-button color="warn" (click)="deletePFile(element)">
                                                                     <mat-icon>delete</mat-icon>
                                                                 </button>
                                                             </ng-template>
@@ -696,6 +700,7 @@
                                         <mat-option value="Sister">Sister</mat-option>
                                         <mat-option value="Brother">Brother</mat-option>
                                         <mat-option value="Cousin">Cousin</mat-option>
+                                        <mat-option value="Cousin">children</mat-option>
                                       </mat-select>
                                     </mat-form-field>
                                   </div>

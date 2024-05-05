@@ -76,5 +76,10 @@ mat-form-field{
     }
   
 }
+.qr-code{
+  width: 100px; 
+  height:100px;
+ 
+}
 
 

@@ -6,7 +6,9 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +43,17 @@ public class ApplicantPreparedFileController {
     public ResponseEntity<List<Map<String, Object>>> GetApplicantFileByApplicantID(@RequestParam("applicantid") Long applicantid) {
         List<Map<String, Object>> apfile = applicantPreparedFileServices.getApplicantFileByID(applicantid);
         return ResponseEntity.ok(apfile);
+    }
+
+    
+    @DeleteMapping("/deleteApplicantPreparedFile{id}")
+    public ResponseEntity<Void> deletePrepared(@PathVariable("id") int id) {
+        try {
+            applicantPreparedFileServices.deleteApplicantPreparedile(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }

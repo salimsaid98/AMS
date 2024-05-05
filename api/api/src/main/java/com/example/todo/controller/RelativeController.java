@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,4 +56,13 @@ public ResponseEntity<Relative> updateMother(@PathVariable("id") Long id, @Reque
         return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
     }
 }
+    @DeleteMapping("/deleterelative{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") int id) {
+        try {
+            relativeServices.deleteRelative(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

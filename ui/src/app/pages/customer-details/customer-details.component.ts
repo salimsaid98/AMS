@@ -65,7 +65,6 @@ relativeDetails: any = {
   relativenationality: '',
   relativehomeAddress: '',
   relativeoccupation: '',
-  relativeapplicantID:'',
   relativeTypes:''
 };
 fatherDetail: any = {
@@ -253,12 +252,13 @@ addminOnly:boolean = false
       }
     );
   }
+relativeID:any
 getRelativebyApplicantID(id:any){
   return this.relativeServices.getRelativeByApplicantID(id).subscribe(
     respo =>{
-      // respo.forEach((item:any) => {
-      //   this.relativeDetailsArray = item
-      // });
+      respo.forEach((item:any) => {
+        this.relativeID = item.relativeid
+      });
       this.relativeDetailsArray = respo
       console.log("Relative " ,this.relativeDetailsArray)
     }
@@ -408,6 +408,7 @@ getAllApplicantFiles(applicantid2: any): void {
       this.files = response;
       this.dataSource = new MatTableDataSource<any>(this.files);
       this.dataSource.paginator = this.paginator;
+      console.log("Applicant And file ",this.files)
     },
     (error) => {
       console.error('Error retrieving files:', error);
@@ -529,9 +530,143 @@ deleteImage(element:any){
   // console.log(element)
   this.deleteFunction(element)
 }
+deleteApplicantFileFunction(id:any){
+
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You will not be able to recover this File!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, keep it'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // User confirmed, proceed with deletion
+      this.applicantandfileService.deleteApplicantAndFile(id).subscribe(
+            respo=>{
+          console.log(respo);
+          // location.reload()
+          this.getAllApplicantFiles(this.id)
+
+          // Show success message
+          // Swal.fire({
+          //   title: 'Deleted!',
+          //   text: 'Your file name has been deleted.',
+          //   icon: 'success',
+          //   timer: 1500,
+          //   timerProgressBar: true,
+          //   showConfirmButton: false
+          // });
+          Swal.fire({
+            position: 'top-right',
+            icon: 'success',
+            text: 'Your File has been deleted.',
+            toast: true,
+            timer: 1800,
+            showConfirmButton: false,
+            timerProgressBar: true,
+            width: '350px',
+            customClass: {
+              title: 'toast-success-title',
+              icon: 'toast-success-icon'
+            }
+          });
+          
+          // Perform any additional actions after successful deletion
+          // this.getIRCCFile();
+        },
+        error => {
+          console.error(error);
+          // Show error message
+          Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred while deleting the file. Please try again later.',
+            icon: 'error',
+            timer: 1500,
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
+        }
+      );
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      // User canceled, do nothing
+    }
+  });
+}
 deleteFile(file: any): void {
   // Implement your file delete logic here
-  console.log('Deleting file:', file);
+  // console.log('Deleting file:', file.fileid);
+  this.deleteApplicantFileFunction(file.app_dtails_and_app_files_id)
+
+}
+deleteApplicantPFileFunction(id:any){
+
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You will not be able to recover this File!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, keep it'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // User confirmed, proceed with deletion
+      this.applicantPreparedFileServices.deleteApplicantPreparedFile(id).subscribe(
+            respo=>{
+          console.log(respo);
+          // location.reload()
+          this.getAllApplicantPreparedFiles(this.id)
+
+          // Show success message
+          // Swal.fire({
+          //   title: 'Deleted!',
+          //   text: 'Your file name has been deleted.',
+          //   icon: 'success',
+          //   timer: 1500,
+          //   timerProgressBar: true,
+          //   showConfirmButton: false
+          // });
+          Swal.fire({
+            position: 'top-right',
+            icon: 'success',
+            text: 'Your File has been deleted.',
+            toast: true,
+            timer: 1800,
+            showConfirmButton: false,
+            timerProgressBar: true,
+            width: '350px',
+            customClass: {
+              title: 'toast-success-title',
+              icon: 'toast-success-icon'
+            }
+          });
+          
+          // Perform any additional actions after successful deletion
+          // this.getIRCCFile();
+        },
+        error => {
+          console.error(error);
+          // Show error message
+          Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred while deleting the file. Please try again later.',
+            icon: 'error',
+            timer: 1500,
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
+        }
+      );
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      // User canceled, do nothing
+    }
+  });
+}
+deletePFile(file: any): void {
+  // Implement your file delete logic here
+  // console.log('Deleting Applicant Prepare file:', file.applicant_prepared_fileid);
+  this.deleteApplicantPFileFunction(file.applicant_prepared_fileid)
+
 }
 previewFile(file: any): void {
   const { file_byte, file_name, filetype } = file;
@@ -593,7 +728,34 @@ updateFutherFunction(id:any,data:any){
     respo=>{
       console.log(respo)
       // location.reload()
+      Swal.fire({
+        position: 'top-right',
+        icon: 'success',
+        text: 'Father Update successfully.',
+        toast: true,
+        timer: 1800,
+        showConfirmButton: false,
+        timerProgressBar: true,
+        width: '350px',
+        customClass: {
+          title: 'toast-success-title',
+          icon: 'toast-success-icon'
+        }
+      });
       this.getFatherByApplicantId(id)
+    },
+    
+    error => {
+      console.error(error);
+      // Show error message
+      Swal.fire({
+        title: 'Error!',
+        text: 'An error occurred while Updating the Father. Please try again later.',
+        icon: 'error',
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
     }
   )
 }
@@ -614,7 +776,33 @@ updateMotherFunction(id:any,Data:any){
   return this.motherServices.updateMother(id,Data).subscribe(
     respo=>{
       console.log(respo)
-      this,this.getMoherByApplicantId(id)
+      Swal.fire({
+        position: 'top-right',
+        icon: 'success',
+        text: 'Mother Update successfully.',
+        toast: true,
+        timer: 1800,
+        showConfirmButton: false,
+        timerProgressBar: true,
+        width: '350px',
+        customClass: {
+          title: 'toast-success-title',
+          icon: 'toast-success-icon'
+        }
+      });
+      this.getMoherByApplicantId(id)
+    },
+    error => {
+      console.error(error);
+      // Show error message
+      Swal.fire({
+        title: 'Error!',
+        text: 'An error occurred while Updating the Mother. Please try again later.',
+        icon: 'error',
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
     }
   )
 }
@@ -634,7 +822,33 @@ updateWifeFunction(id:any,Data:any){
   return this.wifeService.updateWife(id,Data).subscribe(
     respo=>{
       console.log(respo)
+      Swal.fire({
+        position: 'top-right',
+        icon: 'success',
+        text: 'Wife Update successfully.',
+        toast: true,
+        timer: 1800,
+        showConfirmButton: false,
+        timerProgressBar: true,
+        width: '350px',
+        customClass: {
+          title: 'toast-success-title',
+          icon: 'toast-success-icon'
+        }
+      });
       this.getWifeByApplicantId(id)
+    },
+    error => {
+      console.error(error);
+      // Show error message
+      Swal.fire({
+        title: 'Error!',
+        text: 'An error occurred while Updating the Wife. Please try again later.',
+        icon: 'error',
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
     }
   )
 }
@@ -644,13 +858,121 @@ openDialogUpdateWife(element:any){
   this.wifeDetails.wifenationality = element.wifenationality
   this.wifeDetails.wifeoccupation = element.wifeoccupation
   this.wifeDetails.wifedateOfBirth = element.wifedate_of_birth
-  this.wifeDetails.applicantID = this.wifeID
+  this.wifeDetails.applicantID = this.id
   
 // console.log(this.wifeID,this.wifeDetails)
 this.updateWifeFunction(this.wifeID,this.wifeDetails)
 }
+updateRelativeFunction(id:any,data:any){
+  return this.relativeServices.updateRelative(id,data).subscribe(
+    respo=>{
+      console.log(respo)
+      Swal.fire({
+        position: 'top-right',
+        icon: 'success',
+        text: 'Relative Update successfully.',
+        toast: true,
+        timer: 1800,
+        showConfirmButton: false,
+        timerProgressBar: true,
+        width: '350px',
+        customClass: {
+          title: 'toast-success-title',
+          icon: 'toast-success-icon'
+        }
+      });
+      this.getRelativebyApplicantID(this.id)
+      this.myRelativeForm.reset()
+    },
+    error => {
+      console.error(error);
+      // Show error message
+      Swal.fire({
+        title: 'Error!',
+        text: 'An error occurred while Updating the Relative. Please try again later.',
+        icon: 'error',
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
+    }
+  )
+}
 openDialogUpdateRelative(element:any){
+  this.relativeDetails.relativefullName = element.relativefull_name
+  this.relativeDetails.relativenationality = element.relativenationality
+  this.relativeDetails.relativehomeAddress = element.relativehome_address
+  this.relativeDetails.relativemarriedStatus = element.relativemarried_status
+  this.relativeDetails.relativeoccupation = element.relativeoccupation
+  this.relativeDetails.applicantID = this.id
+  this.relativeDetails.relativeTypes = element.relative_types
+  this.relativeDetails.relativedateOfBirth = element.relativedate_of_birth
 
+// console.log(element.relativeid,this.relativeDetails)
+this.updateRelativeFunction(element.relativeid,this.relativeDetails)
+}
+deleteRelativeFunction(id: any): void {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You will not be able to recover this Relative!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, keep it'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // User confirmed, proceed with deletion
+      this.relativeServices.deleteRealtive(id).subscribe(
+        respo => {
+          console.log(respo);
+          // Show success message
+          // Swal.fire({
+          //   title: 'Deleted!',
+          //   text: 'Your file name has been deleted.',
+          //   icon: 'success',
+          //   timer: 1500,
+          //   timerProgressBar: true,
+          //   showConfirmButton: false
+          // });
+          Swal.fire({
+            position: 'top-right',
+            icon: 'success',
+            text: 'Relative has been deleted.',
+            toast: true,
+            timer: 1800,
+            showConfirmButton: false,
+            timerProgressBar: true,
+            width: '350px',
+            customClass: {
+              title: 'toast-success-title',
+              icon: 'toast-success-icon'
+            }
+          });
+          
+          // Perform any additional actions after successful deletion
+          this.getRelativebyApplicantID(this.id)
+        },
+        error => {
+          console.error(error);
+          // Show error message
+          Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred while deleting the relative. Please try again later.',
+            icon: 'error',
+            timer: 1500,
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
+        }
+      );
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      // User canceled, do nothing
+    }
+  });
+}
+deleteRelative(element:any){
+this.deleteRelativeFunction(element.relativeid);
+// console.log(element.relativeid)
 }
 uploadImage(){
   this.dialog.open(this.addImageFile,{width:'400px'});
@@ -927,9 +1249,36 @@ saveUpdate(element:any){
 updateApplicant(id:any,data:any){
   this.applicantServices.updateApplicant(id,data).subscribe(
     respo=>{
-      console.log("success",respo)
-      location.reload()
-    }
+      Swal.fire({
+        position: 'top-right',
+        icon: 'success',
+        text: 'Applicant Update successfully.',
+        toast: true,
+        timer: 1800,
+        showConfirmButton: false,
+        timerProgressBar: true,
+        width: '350px',
+        customClass: {
+          title: 'toast-success-title',
+          icon: 'toast-success-icon'
+        }
+      });
+      // console.log("success",respo)
+      // location.reload()
+      this.getApplicantDetailsByID(id)
+    },
+    error => {
+      console.error(error);
+      // Show error message
+      Swal.fire({
+        title: 'Error!',
+        text: 'An error occurred while Updating the Applicant. Please try again later.',
+        icon: 'error',
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
+    },
   )
 }
 ApprovedAvailable:boolean =true

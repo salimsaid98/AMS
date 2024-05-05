@@ -19,13 +19,13 @@ export class PackageServicesService {
   //   return this.http.get(this.user_details + "/getUserById/" + id);
   // }
 
-  // updateUser_Info(id:any,data:any){
-  //   return this.http.put(this.user_details+"/updateUser"+id,data);
-  // }
+  updatePackage(id:any,data:any){
+    return this.http.put(this.package+"/updatePackage"+id,data);
+  }
 
-  // deleteUser_Info(id:any){
-  //   return this.http.delete(this.user_details+"/deleteUser"+id);
-  // }
+  deletePackage(id:any){
+    return this.http.delete(this.package+"/deletePackage"+id);
+  }
 
   creatPackege(data:any):Observable<any>{
     return this.http.post(this.package+"/addPackage",data);

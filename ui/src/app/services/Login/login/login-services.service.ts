@@ -18,8 +18,6 @@ export class LoginServicesService {
     return this.http.post(this.login + '/login', null, { params: { username, password } });
   }
 
-
-
     user_registrations(data:any):Observable<any>{
       return this.http.post(this.login +'/register',data);
     }
@@ -42,4 +40,5 @@ export class LoginServicesService {
     changePassword(username: any, newPassword: any): Observable<any> {
       return this.http.put(this.login + '/changingPassword', null, { params: { username, newPassword } });
     }
+    
   }

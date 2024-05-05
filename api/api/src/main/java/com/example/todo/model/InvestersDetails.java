@@ -21,4 +21,6 @@ public class InvestersDetails {
     private String investorsnationalIdNumber;
     private String investorspassportNumber;
     private String registerDate;
+    private String Status;
+    private String investorsgender;
 }

@@ -57,7 +57,11 @@ mat-form-field{
 #header{
   background-color: #e28743;
 }
+.qr-code{
+  width: 200px; 
+  height:200px;
  
+}
 
   
 

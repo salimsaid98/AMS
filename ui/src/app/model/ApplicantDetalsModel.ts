@@ -13,6 +13,7 @@ export class applicantDetailsModel {
       bank_name:any
       bankAccount_no :any
       registeredBy:any
+      applicantgender:any
     
   }
   

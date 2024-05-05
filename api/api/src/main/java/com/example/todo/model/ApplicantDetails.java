@@ -31,6 +31,7 @@ public class ApplicantDetails {
     private String bank_name;
     private String bankAccount_no;
     private String country_to_visit;
+    private String applicantgender;
   
 
 }

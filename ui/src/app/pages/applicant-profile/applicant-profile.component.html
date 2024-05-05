@@ -271,9 +271,9 @@
                                         <th>File Name</th>
                                         <th>File Type</th>
                                        </tr>
-                                       <tr *ngFor="let data of applicantAndfile ">
+                                       <tr *ngFor="let data of applicantAndfile; let i=index ">
                                         <td>
-                                        
+                                        {{i+1}}
                                         <td>
                                          {{data.file_name}}
                                         </td>
@@ -295,9 +295,9 @@
                                         <th>File Name</th>
                                         <th>File Type</th>
                                        </tr>
-                                       <tr *ngFor="let data of applicantPreparedFile ">
+                                       <tr *ngFor="let data of applicantPreparedFile ; let i=index">
                                         <td>
-                                        
+                                        {{i+1}}
                                         <td>
                                          {{data.file_name}}
                                         </td>
@@ -308,16 +308,18 @@
                                       <!-- Add more rows as needed for other fields -->
                                   </tbody>
                               </table>
+
                               </div>
                             </div>
-                            
-                            <h3 class="widget-title" style="text-align: end;">https://airfoxtours.com/</h3>
+                           <div class="row">
+                            <div class="d-flex justify-content-between">
+                              <h3  >Address :
+                                St. Nicholaus Church, Plot No> 497, Arusha street Ilala Dar es salaam Tanzania</h3>
+                                <img class="qr-code" style="width:100px;height:100px"  src="https://api.qrserver.com/v1/create-qr-code/?data=https://airfoxtours.com/&size=200x200" alt="QR Code">
+                             </div>
+                           </div>
     
-                                <!-- <mat-list role="list">
-                                    <mat-list-item role="listitem">Item 1</mat-list-item>
-                                    <mat-list-item role="listitem">Item 2</mat-list-item>
-                                    <mat-list-item role="listitem">Item 3</mat-list-item>
-                                  </mat-list>                               -->
+                            
                             </mat-card-content>
                             <mat-card-actions>
                               <!-- <button mat-icon-button color="primary" (click)="edit()"><mat-icon>edit</mat-icon></button> -->

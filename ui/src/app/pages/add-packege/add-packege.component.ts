@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { timer } from 'rxjs';
 import { PackageServicesService } from 'src/app/services/Investors/package/package-services.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-packege',
@@ -14,6 +15,8 @@ import { PackageServicesService } from 'src/app/services/Investors/package/packa
 })
 export class AddPackegeComponent {
   @ViewChild('addPackage') addPackage!: TemplateRef<any>;
+  @ViewChild('editPackage') editPackage!: TemplateRef<any>;
+
   @ViewChild('myForm') myForm!: NgForm;
   displayedColumns: string[] = ['index', 'package_name','package_currency','package_parecentage', 'action']; // Define the columns you want to display
   columnLabels: { [key: string]: string } = {
@@ -45,6 +48,7 @@ ngOnInit(): void {
 openaddpackage(){
   this.dialog.open(this.addPackage,{width:'400px'});
 }
+
 saveFunction(data:any){
   this.packageService.creatPackege(data).subscribe(
     respo=>{
@@ -68,7 +72,7 @@ save(){
 //   )
 // }
 isLoading: boolean = true; // Flag to track loading state
-
+pakageData:any
 currentIndex = 0;
 getAllpackeges(){
   return this.packageService.getAllPackage().subscribe(
@@ -97,10 +101,71 @@ applyFilter(event: Event) {
   }
 }
 openDialogUpdatePackage(element:any){
+  this.dialog.open(this.editPackage,{width:'400px'});
+  this.pakageData = element
 
 }
+deleteFunction(id:any){
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You will not be able to recover this Package!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, keep it'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // User confirmed, proceed with deletion
+      this.packageService.deletePackage(id).subscribe(
+        respo => {
+          console.log(respo);
+          // Show success message
+          // Swal.fire({
+          //   title: 'Deleted!',
+          //   text: 'Your file name has been deleted.',
+          //   icon: 'success',
+          //   timer: 1500,
+          //   timerProgressBar: true,
+          //   showConfirmButton: false
+          // });
+          Swal.fire({
+            position: 'top-right',
+            icon: 'success',
+            text: 'Your Package has been deleted.',
+            toast: true,
+            timer: 1800,
+            showConfirmButton: false,
+            timerProgressBar: true,
+            width: '350px',
+            customClass: {
+              title: 'toast-success-title',
+              icon: 'toast-success-icon'
+            }
+          });
+          
+          // Perform any additional actions after successful deletion
+          this.getAllpackeges()
+        },
+        error => {
+          console.error(error);
+          // Show error message
+          Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred while deleting Package. Please try again later.',
+            icon: 'error',
+            timer: 1500,
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
+        }
+      );
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      // User canceled, do nothing
+    }
+  });
+}
 delete(element:any){
-
+  this.deleteFunction(element.packageID)
 }
  currencies: string[] = [
   'USD - United States Dollar',
@@ -126,5 +191,45 @@ delete(element:any){
   'IDR - Indonesian Rupiah',
   // Add more currencies as needed
 ];
-
+updateFunction(id:any,Data:any){
+  this.packageService.updatePackage(id,Data).subscribe(
+    respo=>{
+      // console.log(respo)
+      Swal.fire({
+        position: 'top-right',
+        icon: 'success',
+        text: 'Package Update successfully.',
+        toast: true,
+        timer: 1800,
+        showConfirmButton: false,
+        timerProgressBar: true,
+        width: '350px',
+        customClass: {
+          title: 'toast-success-title',
+          icon: 'toast-success-icon'
+        }
+      });
+      this.getAllpackeges()
+      this.myForm.reset()
+      this.dialog.closeAll();
+      // location.reload()
+    },
+    error => {
+      console.error(error);
+      // Show error message
+      Swal.fire({
+        title: 'Error!',
+        text: 'An error occurred while Updating the Package. Please try again later.',
+        icon: 'error',
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
+    }
+  )
+}
+update(element:any){
+// console.log(element.packageID,element)
+this.updateFunction(element.packageID,element)
+}
 }

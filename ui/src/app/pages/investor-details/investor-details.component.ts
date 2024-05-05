@@ -53,6 +53,11 @@ this.getBankByInvestorsID(this.id)
 this.getInvestors_PackageByInvestorsID(this.id)
 this.getInvestorsByID(this.id)
 this.getInvestorsImageFileByInvestorsID(this.id)
+this.updateDateTime();
+
+setInterval(() => {
+  this.updateDateTime();
+}, 1000);
 
 }
 getInvestorsByID(investorsID:any){
@@ -174,6 +179,21 @@ getBase64Image(image: any): string {
   return 'data:' + image.file_type + ';base64,' + image.file_byte;
 }
 profileImage: any
+currentDateTime!: string;
+updateDateTime() {
+  const currentDate = new Date();
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    timeZoneName: 'short'
+  };
+  this.currentDateTime = currentDate.toLocaleDateString('en-US', options);
+}
 }
 
 

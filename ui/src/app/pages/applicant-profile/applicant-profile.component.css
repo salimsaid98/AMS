@@ -65,5 +65,9 @@
       table-layout: fixed;
       width: 100%;
     }
+    .qr-code{
+      width:150px;
+      height:150px
+    }
   
 }

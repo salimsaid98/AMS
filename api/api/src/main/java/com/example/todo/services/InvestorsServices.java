@@ -41,7 +41,8 @@ public class InvestorsServices {
             investersDetails.setInvestorsphoneNumber(updateInvestersDetails.getInvestorsphoneNumber());
             investersDetails.setInvestorsnationalIdNumber(updateInvestersDetails.getInvestorsnationalIdNumber());
             investersDetails.setInvestorspassportNumber(updateInvestersDetails.getInvestorspassportNumber());
-
+            investersDetails.setInvestorsgender(updateInvestersDetails.getInvestorsgender());
+            investersDetails.setStatus(updateInvestersDetails.getStatus());
             return investorsRepo.save(investersDetails);
 
         }else {

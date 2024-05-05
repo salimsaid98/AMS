@@ -20,13 +20,13 @@ export class RelativeServicesService {
   //   return this.http.get(this.user_details + "/getUserById/" + id);
   // }
 
-  // updateUser_Info(id:any,data:any){
-  //   return this.http.put(this.user_details+"/updateUser"+id,data);
-  // }
+  updateRelative(id:any,data:any){
+    return this.http.put(this.relative+"/updateRelative"+id,data);
+  }
 
-  // deleteUser_Info(id:any){
-  //   return this.http.delete(this.user_details+"/deleteUser"+id);
-  // }
+  deleteRealtive(id:any){
+    return this.http.delete(this.relative+"/deleterelative"+id);
+  }
 
   creatRelative(data:any):Observable<any>{
     return this.http.post(this.relative+"/addRelative",data);

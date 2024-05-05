@@ -61,16 +61,22 @@ getInvestorsByID(investorsID:any){
 getKinByInvestorsID(investorsID:any){
   return this.kinDetailsServices.getKinByInvestorsID(investorsID).subscribe(
     respo=>{
+      respo.forEach((items:any)=> {
+        this.kinData = items
+      });
       console.log(respo)
-      this.kinData = respo
+      // this.kinData = respo
     }
   )
 }
 getBankByInvestorsID(investorsID:any){
   return this.bankAccountServices.getBankByInvestorsID(investorsID).subscribe(
     respo=>{
+      respo.forEach((items:any)=> {
+        this.bankData = items
+      });
       console.log(respo)
-      this.bankData = respo
+      // this.bankData = respo
     }
   )
 }
@@ -168,5 +174,15 @@ deleteImage(element:any){
 }
 saveImage(){
 
+}
+
+updateInvestors(element:any){
+console.log(element)
+}
+updateKin(element:any){
+  console.log(element)
+}
+updateBank(element:any){
+  console.log(element)
 }
 }

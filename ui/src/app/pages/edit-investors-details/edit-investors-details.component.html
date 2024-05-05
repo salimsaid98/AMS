@@ -58,38 +58,43 @@
                                   <table class="table table-striped">
                                       <tr>
                                         <th>Full Name</th>
-                                        <td><input type="text" name="" id="" class="form-control" value="{{inveestorsData.investorsfullName}}"></td>
+                                        <td><input type="text" name="" id="" class="form-control" [(ngModel)]="inveestorsData.investorsfullName" ></td>
                                       </tr>
                                       <tr>
                                         <th>Email</th>
-                                        <td><input type="text" class="form-control" value="{{inveestorsData.investorsemailAddress}}"></td>
+                                        <td><input type="text" class="form-control" [(ngModel)]="inveestorsData.investorsemailAddress"></td>
                                       </tr>
                                       <tr>
                                         <th>Address</th>
-                                        <td><input type="text" class="form-control" value="{{inveestorsData.investorshomeAddress}}"></td>
+                                        <td><input type="text" class="form-control" [(ngModel)] ="inveestorsData.investorshomeAddress"></td>
                                       </tr>
                                       <tr>
                                         <th>Phone</th>
-                                        <td><input type="text" class="form-control" value="{{inveestorsData.investorsphoneNumber}}"></td>
+                                        <td><input type="text" class="form-control" [(ngModel)]="inveestorsData.investorsphoneNumber"></td>
                                       </tr>
                                       <tr>
                                         <th>NIDA</th>
-                                        <td><input type="text" class="form-control" value="{{inveestorsData.investorsnationalIdNumber}}"></td>
+                                        <td><input type="text" class="form-control" [(ngModel)]="inveestorsData.investorsnationalIdNumber"></td>
                                       </tr>
                                       <tr>
                                         <th>Passport</th>
-                                        <td><input type="text" class="form-control" value="{{inveestorsData.investorspassportNumber}}"></td>
+                                        <td><input type="text" class="form-control" [(ngModel)]="inveestorsData.investorspassportNumber"></td>
+                                      </tr>
+                                      <tr>
+                                        <th>Status</th>
+                                        <td>
+                                          <select class="form-control" aria-label="Default select example" [(ngModel)]="inveestorsData.status"equired>
+                                            <option selected>{{inveestorsData.status }}</option>
+                                            <option   value="Approve">Approved</option>
+                                            <option   value="Pending">Pending</option>
+                                         </select>  
+                                        </td>
                                       </tr>
                                   </table>
-                                    <!-- <mat-list role="list">
-                                        <mat-list-item role="listitem">Item 1</mat-list-item>
-                                        <mat-list-item role="listitem">Item 2</mat-list-item>
-                                        <mat-list-item role="listitem">Item 3</mat-list-item>
-                                      </mat-list>                               -->
+                            
                                 </mat-card-content>
                                 <mat-card-actions>
-                                    <button mat-icon-button color="primary"><mat-icon>update</mat-icon></button>
-
+                                    <button mat-icon-button color="primary" (click)="updateInvestors(inveestorsData)"><mat-icon>update</mat-icon></button>
                                 </mat-card-actions>
                               </mat-card>
                         </div><hr>
@@ -98,48 +103,86 @@
                     <div class="col-md-12">
                       <div class="table-responsive" >
                         <table class="table table-striped">
-                          <thead>
-                            <tr>
-                              <th scope="col">Kin Type</th>
-                              <th scope="col">Full Name</th>
-                              <th scope="col">Email</th>
-                              <th scope="col">Addrss</th>
-                              <th scope="col">NIDA</th>
-                              <th scope="col">Passport</th>
-                              <th scope="col">Phone</th>
-                            </tr>
-                          </thead>
+                         
                           <tbody>
-                            <tr *ngFor="let kin of kinData">
-                              <td>{{kin.kin_types}}</td>
-                              <td>{{kin.kinfull_name}}</td>
-                              <td>{{kin.kinemail_address}}</td>
-                              <td>{{kin.kinhome_address}}</td>
-                              <td>{{kin.kinnational_id_number}}</td>
-                              <td>{{kin.kinpassport_number}}</td>
-                              <td>{{kin.kinphone_number}}</td>
+                            
+                            <tr>
+                              <th>Kin Type</th>
+                              <td><input type="text" name="" id="" class="form-control" [(ngModel)]="kinData.kin_types" ></td>
                             </tr>
+                            <tr>
+                              <th>Full Name</th>
+                              <td><input type="text" name="" id="" class="form-control" [(ngModel)]="kinData.kinfull_name" ></td>
+                            </tr>
+                             <tr>
+                              <th>Address</th>
+                              <td><input type="text" name="" id="" class="form-control" [(ngModel)]="kinData.kinemail_address" ></td>
+                            </tr>
+                            <tr>
+                              <th>National ID</th>
+                              <td><input type="text" name="" id="" class="form-control" [(ngModel)]="kinData.kinnational_id_number" ></td>
+                            </tr>
+                            <tr>
+                              <th>Passport No </th>
+                              <td><input type="text" name="" id="" class="form-control" [(ngModel)]="kinData.kinpassport_number" ></td>
+                            </tr>
+                            <tr>
+                              <th>Phone </th>
+                              <td><input type="text" name="" id="" class="form-control" [(ngModel)]="kinData.kinphone_number" ></td>
+                            </tr>
+                           
                           </tbody>
+                          <tr>
+                            <td>
+                              <button mat-icon-button color="primary" (click)="updateKin(kinData)"><mat-icon>update</mat-icon></button>
+                            </td>
+                          </tr>
                         </table><hr>
                         <table class="table table-striped">
-                          <thead>
-                            <tr>
-                              <th scope="col">Bank Name</th>
-                              <th scope="col">Account No</th>
-                              <th scope="col">Holders</th>
-                              <th scope="col">Swift Code</th>
-                              <th scope="col">Currency</th>
-                            </tr>
-                          </thead>
+                   
                           <tbody>
-                            <tr *ngFor="let bank of bankData">
-                              <td>{{bank.bank_name}}</td>
-                              <td>{{bank.bank_account_no}}</td>
-                              <td>{{bank.bank_account_holders}}</td>
-                              <td>{{bank.bank_swift_code}}</td>
-                              <td>{{bank.bank_account_currence}}</td>
+                          
+                            <tr>
+                              <th>
+                                Bank Name
+                              </th>
+                              <td><input type="text" name="" id="" class="form-control" [(ngModel)]="bankData.bank_name" ></td>
+
+                            </tr>
+                            <tr>
+                              <th>
+                                Bank Account No.
+                              </th>
+                              <td><input type="text" name="" id="" class="form-control" [(ngModel)]="bankData.bank_account_no" ></td>
+
+                            </tr>
+                            <tr>
+                              <th>
+                                Account Holders
+                              </th>
+                              <td><input type="text" name="" id="" class="form-control" [(ngModel)]="bankData.bank_account_holders" ></td>
+
+                            </tr>
+                            <tr>
+                              <th>
+                               Bank Swift Code 
+                              </th>
+                              <td><input type="text" name="" id="" class="form-control" [(ngModel)]="bankData.bank_swift_code" ></td>
+
+                            </tr>
+                            <tr>
+                              <th>
+                               Currency
+                              </th>
+                              <td><input type="text" name="" id="" class="form-control" [(ngModel)]="bankData.bank_account_currence" ></td>
+
                             </tr>
                           </tbody>
+                          <tr>
+                            <td>
+                              <button mat-icon-button color="primary" (click)="updateBank(bankData)"><mat-icon>update</mat-icon></button>
+                            </td>
+                          </tr>
                         </table><hr>
                      
                       </div>

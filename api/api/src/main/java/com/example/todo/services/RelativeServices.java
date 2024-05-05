@@ -49,4 +49,7 @@ public Relative updateRelative(Long id, Relative updaterelative) {
         throw new IllegalArgumentException("User with id " + id + " does not exist.");
     }
 }
+public void deleteRelative(long id) {
+    relativeRepo.deleteById(id);
+}
 }
