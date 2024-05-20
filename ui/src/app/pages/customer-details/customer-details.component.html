@@ -125,6 +125,17 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
+                                                            <th width="30%"> <strong>Gender</strong></th>
+                                                            <td width="70%"> 
+                                                                <mat-form-field>
+                                                                    <mat-select placeholder="{{applicantDetailsModel.applicantgender}}" name="gender" [(ngModel)]="applicantDetailsModel.applicantgender"  >
+                                                                      <mat-option value="Male">Male</mat-option>
+                                                                      <mat-option value="Female">Female</mat-option>
+                                                                    </mat-select>
+                                                                  </mat-form-field>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
                                                             <th width="30%"> <strong>Phone Number</strong></th>
                                                             <td width="70%"> 
                                                              
@@ -322,12 +333,12 @@
                                                   </tr>
                                                 </table>
                                             </div>
-                                            <h3 class="text-center"><b>Wife Details</b></h3>
+                                            <h3 class="text-center"><b>Husband / Wife Details</b></h3>
                                             <div class="table-responsive">
                                                 <table class="table table-striped">
                                                     <tr>
                                                         <th>
-                                                            Wife Name
+                                                            Full Name
                                                         </th>
                                                         <td>
                                                            <input type="text" class="form-control" [(ngModel)]="  wifeDetailsArray.wife_name ">

@@ -16,13 +16,13 @@ export class InvestorsPackageServicesService {
   //   return this.http.get(this.package + "/getAllPackage");
   // }
 
-  // getgetUser_InfoById(id:any):Observable<any>{
-  //   return this.http.get(this.user_details + "/getUserById/" + id);
-  // }
+  getInvest_PackageById(id:any):Observable<any>{
+    return this.http.get(this.package + "/getInvestors_PackagebyID/" + id);
+  }
 
-  // updateUser_Info(id:any,data:any){
-  //   return this.http.put(this.user_details+"/updateUser"+id,data);
-  // }
+  updateInvestors_Package(id:any,data:any){
+    return this.http.put(this.package+"/updateInvestorsPackage"+id,data);
+  }
 
   // deleteUser_Info(id:any){
   //   return this.http.delete(this.user_details+"/deleteUser"+id);

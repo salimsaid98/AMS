@@ -47,11 +47,11 @@
                                         (click)="uploadImage() " *ngIf="imageAvailable">
                                         <mat-icon>upload</mat-icon></button>
                                     <button  mat-mini-fab matTooltip="Warn" color="warn"
-                                        (click)="deleteImage(InvestorsImageFileModel.investorsID) "*ngIf="imageunAvailable">
+                                        (click)="deleteImage(InvestorsImageFileModel.investor_image_fileid) "*ngIf="imageunAvailable">
                                         <mat-icon >delete</mat-icon></button>
-                                        <button mat-mini-fab matTooltip="Download Image" color="primary" (click)="saveImage()" *ngIf="imageunAvailable">
+                                        <!-- <button mat-mini-fab matTooltip="Download Image" color="primary" (click)="saveImage()" *ngIf="imageunAvailable">
                                             <mat-icon>save_alt</mat-icon>
-                                          </button>
+                                          </button> -->
                                     </div>
                                 </div>
                                 <mat-card-content>
@@ -69,6 +69,16 @@
                                         <td><input type="text" class="form-control" [(ngModel)] ="inveestorsData.investorshomeAddress"></td>
                                       </tr>
                                       <tr>
+                                        <th>Gender</th>
+                                       <td>
+                                        <select class="form-control" aria-label="Default select example" [(ngModel)]="inveestorsData.investorsgender "equired>
+                                          <option selected>{{inveestorsData.investorsgender}}</option>
+                                          <option   value="Male">Male</option>
+                                          <option   value="Female">Female</option>
+                                       </select>  
+                                       </td>                             
+                                     </tr>
+                                      <tr>
                                         <th>Phone</th>
                                         <td><input type="text" class="form-control" [(ngModel)]="inveestorsData.investorsphoneNumber"></td>
                                       </tr>
@@ -85,11 +95,25 @@
                                         <td>
                                           <select class="form-control" aria-label="Default select example" [(ngModel)]="inveestorsData.status"equired>
                                             <option selected>{{inveestorsData.status }}</option>
-                                            <option   value="Approve">Approved</option>
+                                            <option   value="Approved">Approved</option>
                                             <option   value="Pending">Pending</option>
                                          </select>  
                                         </td>
                                       </tr>
+                                      <tr>
+                         
+                                        <th> 
+                                          Invoice Date 
+                                       </th>
+                                       <td>
+                                        <mat-form-field>
+                                          <input matInput [matDatepicker]="picker" placeholder="Select Date" name="" [(ngModel)]="inveestorsData.packageDate">
+                                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                          <mat-datepicker #picker></mat-datepicker>
+                                        </mat-form-field>
+                                        
+                                                                                                                    
+                                       </td>
                                   </table>
                             
                                 </mat-card-content>
@@ -174,7 +198,10 @@
                               <th>
                                Currency
                               </th>
-                              <td><input type="text" name="" id="" class="form-control" [(ngModel)]="bankData.bank_account_currence" ></td>
+                              <td>
+                                <input type="text" name="" id="" class="form-control" [(ngModel)]="bankData.bank_account_currence" >
+                                
+                              </td>
 
                             </tr>
                           </tbody>
@@ -183,7 +210,22 @@
                               <button mat-icon-button color="primary" (click)="updateBank(bankData)"><mat-icon>update</mat-icon></button>
                             </td>
                           </tr>
-                        </table><hr>
+                        </table>
+                        <hr>
+                        <!-- <table>
+                          <tr>
+                         
+                              <th><mat-form-field>
+                                <input matInput [matDatepicker]="picker" placeholder="{{investors_packageData.package_date}}" name=""  [(ngModel)]="investors_packageData.packageDate">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field>
+                            </th>
+                          <td>
+                            <button mat-icon-button color="primary" (click)="updateInvest_pack(investors_packageData)"><mat-icon>update</mat-icon></button>
+                          </td>
+                          </tr>
+                        </table> -->
                      
                       </div>
                     </div>

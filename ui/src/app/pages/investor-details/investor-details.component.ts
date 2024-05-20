@@ -68,6 +68,15 @@ getInvestorsByID(investorsID:any){
     }
   )
 }
+getStatusColor(): string {
+  if (this.inveestorsData && this.inveestorsData.status === 'Pending') {
+    return 'red';
+  } if (this.inveestorsData && this.inveestorsData.status === 'Approved') {
+    return 'blue';
+  } else {
+    return 'black'; // Default color
+  }
+}
 getKinByInvestorsID(investorsID:any){
   return this.kinDetailsServices.getKinByInvestorsID(investorsID).subscribe(
     respo=>{

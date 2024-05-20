@@ -20,7 +20,7 @@ export class AllCustomerComponent implements OnInit {
     'applicantphoneNumber' : 'Phone',
     'registeredBy': 'Register By',
     'view': 'View',
-    'registeredDate':'Date',
+    'registeredDate':'Date (MM/DD/YYYY)',
     'country_to_visit':'Visa Country'
   };
    dataSource = new MatTableDataSource<any>();

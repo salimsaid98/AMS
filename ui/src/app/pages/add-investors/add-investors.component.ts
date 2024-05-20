@@ -17,6 +17,7 @@ export class AddInvestorsComponent {
 localDate = new Date().toLocaleDateString(); // Get current local date in string format
 amountInvested: number = 0;
 profitEarning: number = 0;
+profitEarningYear: number = 0;
 @ViewChild('myForm') myForm!: NgForm;
 
 constructor(private packageService:PackageServicesService,
@@ -35,7 +36,10 @@ Investors:any={
   investorsphoneNumber:'',
   investorsnationalIdNumber:'',
   investorspassportNumber:'',
-  registerDate:this.localDate
+  registerDate:this.localDate,
+  investorsgender:'',
+  status:'',
+  packageDate:''
 }
 KinDetails:any={
   kinfullName:'',
@@ -55,6 +59,7 @@ BankDetails:any={
   bank_account_currence:'',
   investorsID:''
 }
+
 Investors_Package:any={
 }
 Investors_Packages:any={
@@ -62,7 +67,9 @@ Investors_Packages:any={
   profit_earning:'',
   contract_limit:'',
   investorsID:'',
-  packageID:''
+  packageID:'',
+  profitEarningYear:''
+  
 }
 ngOnInit(): void {
   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -80,10 +87,13 @@ getAllPackage(){
   )
 }
 save(){
-  // console.log(this.Investors_Packages)
+  // console.log(this.Investors,this.BankDetails,this.KinDetails,this.Investors_Packages)
+
+
   this.saveInvestors(this.Investors,this.BankDetails,this.KinDetails,this.Investors_Packages)
 }
 saveInvestors(investors:any,bank:any,kin:any,investor_package:any){
+  // console.log(this.Investors,this.BankDetails,this.KinDetails,this.Investors_Packages)
 
   return this.investorsServices.creatInvestors(investors).subscribe(
     invest=>{
@@ -162,12 +172,22 @@ onPackageSelect(packageID: number) {
 calculateProfitEarning() {
   if (this.amountInvested && this.Investors_Package.package_parecentage) {
     this.profitEarning = (this.amountInvested * this.Investors_Package.package_parecentage) / 100;
+    // this.profitEarningYear = (((this.amountInvested * this.Investors_Package.package_parecentage) / 100));
     this.Investors_Packages.profit_earning = this.profitEarning
     this.Investors_Packages.package_amount_invested = this.amountInvested
   } else {
     this.profitEarning = 0;
   }
 }
-
+calculateProfitEarningYear(){
+  if (this.amountInvested && this.Investors_Package.package_parecentage) {
+    // this.profitEarning = (this.amountInvested * this.Investors_Package.package_parecentage) / 100;
+    this.profitEarningYear = (((this.amountInvested * this.Investors_Package.package_parecentage *(this.Investors_Packages.contract_limit*12)) / 100));
+    this.Investors_Packages.profitEarningYear = this.profitEarningYear
+    this.Investors_Packages.package_amount_invested = this.amountInvested
+  } else {
+    this.profitEarning = 0;
+  }
+}
 
 }

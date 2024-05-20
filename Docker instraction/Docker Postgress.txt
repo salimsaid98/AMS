@@ -1,0 +1,13 @@
+after pulling >
+docker run --name postgres-0 -e POSTGRES_PASSWORD=925356 -d -p 5433:5433 postgres:latest
+docker exec -it postgres-0 bash
+psql -U postgres
+\du
+
+#docker build spring boot 
+docker build -t my-spring-boot-app . first initiate application with image 
+docker-compose up --build for compose file 
+docker network create app for create network
+this is for targeting file 
+docker-compose -f docker-compose-applicationfilename.yml up --build
+make sure image name must be same with docker-compose image name when u build then u deckorize

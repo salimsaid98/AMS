@@ -19,5 +19,7 @@ public class Investors_Package {
     private Long profit_earning;
     private Long contract_limit;
     private Long investorsID;
+    private Long profitEarningYear;
     private Long packageID;
+    private String packageDate;
 }

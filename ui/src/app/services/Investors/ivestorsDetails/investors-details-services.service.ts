@@ -19,17 +19,19 @@ export class InvestorsDetailsServicesService {
     return this.http.get(this.investors + "/getInvestorsByID/" + id);
   }
 
-  // updateUser_Info(id:any,data:any){
-  //   return this.http.put(this.user_details+"/updateUser"+id,data);
-  // }
+  updateInvestorDetails(id:any,data:any){
+    return this.http.put(this.investors+"/updateInvestors"+id,data);
+  }
 
-  // deleteUser_Info(id:any){
-  //   return this.http.delete(this.user_details+"/deleteUser"+id);
-  // }
+  deleteInvestors(id:any){
+    return this.http.delete(this.investors+"/deleteInvestors"+id);
+  }
 
   creatInvestors(data:any):Observable<any>{
     return this.http.post(this.investors+"/addInvestors",data);
   }
-  
+  CountAllInvestors():Observable<any>{
+    return this.http.get(this.investors+ "/CountAllInvestors/");
+  }
 
 }

@@ -60,7 +60,7 @@ public ApplicantDetails updateApplicant(Long id, ApplicantDetails updateapplican
         applicantDetails.setBank_name(updateapplicantDetails.getBank_name());
         applicantDetails.setBankAccount_no(updateapplicantDetails.getBankAccount_no());
         applicantDetails.setCountry_to_visit(updateapplicantDetails.getCountry_to_visit());
-        
+        applicantDetails.setApplicantgender(updateapplicantDetails.getApplicantgender());
         // Update other properties as needed
         return applicantRepo.save(applicantDetails);
     } else {

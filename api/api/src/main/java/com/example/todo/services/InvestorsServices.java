@@ -1,6 +1,7 @@
 package com.example.todo.services;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +44,19 @@ public class InvestorsServices {
             investersDetails.setInvestorspassportNumber(updateInvestersDetails.getInvestorspassportNumber());
             investersDetails.setInvestorsgender(updateInvestersDetails.getInvestorsgender());
             investersDetails.setStatus(updateInvestersDetails.getStatus());
+            investersDetails.setPackageDate((updateInvestersDetails.getPackageDate()));
             return investorsRepo.save(investersDetails);
 
         }else {
             throw new IllegalArgumentException("User with id " + id + " does not exist.");
         }
     }
+
+    public void deleteInvestors(long id){
+         investorsRepo.deleteById(id);
+    }
+    // Count All Investors
+    public List<Map<String,Object>> CountAllInvestors(){
+        return investorsRepo.CountAllInvestors();
+}
 }

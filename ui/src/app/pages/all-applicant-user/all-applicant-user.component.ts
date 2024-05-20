@@ -20,7 +20,7 @@ export class AllApplicantUserComponent {
     'applicantphone_number' : 'Phone',
     // 'registeredBy': 'Register By',
     'view': 'View',
-    'registered_date':'Date',
+    'registered_date':'Date  (MM/DD/YYYY)',
     'country_to_visit':'Visa Country'
   };
    dataSource = new MatTableDataSource<any>();

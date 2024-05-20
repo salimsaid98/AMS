@@ -19,9 +19,9 @@ export class BankServicesService {
   //   return this.http.get(this.user_details + "/getUserById/" + id);
   // }
 
-  // updateUser_Info(id:any,data:any){
-  //   return this.http.put(this.user_details+"/updateUser"+id,data);
-  // }
+  updateBank(id:any,data:any){
+    return this.http.put(this.bank+"/updateBank"+id,data);
+  }
 
   // deleteUser_Info(id:any){
   //   return this.http.delete(this.user_details+"/deleteUser"+id);

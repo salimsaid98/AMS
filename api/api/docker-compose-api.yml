@@ -1,0 +1,65 @@
+# version: '3.8'
+
+# services:
+#   # postgres:
+#   #   image: postgres:13
+#   #   container_name: postgres
+#   #   environment:
+#   #     POSTGRES_USER: postgres
+#   #     POSTGRES_PASSWORD: 12345
+#   #     POSTGRES_DB: staff
+#   #   ports:
+#   #     - "5432:5432"
+#   #   networks:
+#   #     - spring-boot-app-network
+#   #   restart: unless-stopped
+
+#   springbootapp:
+#     build: .
+#     image: staff-spring-app
+#     container_name: spring-app
+#     ports:
+#       - "8080:8080"
+#     # environment:
+#     #   - SPRING_DATASOURCE_URL=jdbc:postgresql://127.0.0.1:5432/staff
+#     #   - SPRING_DATASOURCE_USERNAME=postgres
+#     #   - SPRING_DATASOURCE_PASSWORD=12345
+#     #   - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#     #   - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+#     #   - SPRING_SERVLET_MULTIPART_ENABLED=true
+#     #   - SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=10MB
+#     #   - SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE=10MB
+#     # depends_on:
+#     #   - postgres
+#     networks:
+#       - spring-boot-app-network
+#     restart: unless-stopped
+
+# networks:
+#   spring-boot-app-network:
+#     driver: bridge
+version: '3.9'
+services:
+  api:
+    build: .
+    image: api-aifox-image
+    container_name: api-airfox-container
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://172.21.0.1/airfoxDatabase
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=12345
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_SERVLET_MULTIPART_ENABLED=true
+      - SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE=10MB
+      - SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE=10MB
+    # depends_on:
+    #   - postgres
+    networks:
+      - app-network
+    restart: unless-stopped
+networks:
+  app-network:
+    external: true

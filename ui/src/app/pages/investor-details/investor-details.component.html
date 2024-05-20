@@ -26,181 +26,195 @@
             <!-- Widget Item -->
             <div class="col-md-12">
                 <div class="widget-area-2 proclinic-box-shadow " id="investor-details-container" >
-                 <div class="d-flex justify-content-between">
-                  <h3 class="widget-title">Investors Details</h3>
-                  <img src="../../../assets/images/airfox.png" alt="Logo" class="logo">
-                 </div>
-
-                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <mat-card class="example-card" >
-                              <mat-card-header >
-                                <div mat-card-avatar class="example-header-image"></div>
-                                <div class="avatar-container" >
-                                  <img *ngIf="profileImage" [src]="getBase64Image(imageFile[0])" class="profile-img" alt="Profile Image" />
-                                  <div *ngIf="!profileImage" class="avatar-placeholder mat-elevation-z2">
-                                    <mat-icon>account_circle</mat-icon>
-                                  </div>
-                                </div> 
-                              </mat-card-header><hr>
-                                <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-                                <mat-card-content>
-                                  <table class="table table-striped">
-                                      <tr>
-                                        <th>Full Name</th>
-                                        <td>{{inveestorsData.investorsfullName}}</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Email</th>
-                                        <td>{{inveestorsData.investorsemailAddress}}</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Address</th>
-                                        <td>{{inveestorsData.investorshomeAddress}}</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Phone</th>
-                                        <td>{{inveestorsData.investorsphoneNumber}}</td>
-                                      </tr>
-                                      <tr>
-                                        <th>NIDA</th>
-                                        <td>{{inveestorsData.investorsnationalIdNumber}}</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Passport</th>
-                                        <td>{{inveestorsData.investorspassportNumber}}</td>
-                                      </tr>
-                                  </table>
-                                  <table class="table table-striped">
-                                    <tr>
-                                      <h3 class="widget-title">Kin Details</h3>
-                                    </tr>
-                                    <tr>
-                                      <th>Kin Type</th>
-                                      <td>{{kinData.kin_types}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Full Name</th>
-                                      <td>{{kinData.kinfull_name}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Email</th>
-                                      <td>{{kinData.kinemail_address}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Address</th>
-                                      <td>{{kinData.kinhome_address}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>National ID</th>
-                                      <td>{{kinData.kinnational_id_number}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Passport</th>
-                                      <td>{{kinData.kinpassport_number}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Phone</th>
-                                      <td>{{kinData.kinphone_number}}</td>
-                                    </tr>
-                                    <tr>
-                                      <h3 class="widget-title">Bank Information</h3>
-                                    </tr>
-                                    <tr>
-                                      <th>Bank Name</th>
-                                      <td>{{bankData.bank_name}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Account Number</th>
-                                      <td>{{bankData.bank_account_no}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Account holder</th>
-                                      <td>{{bankData.bank_account_holders}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Swift Code</th>
-                                      <td>{{bankData.bank_swift_code}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Currency</th>
-                                      <td>{{bankData.bank_account_currence}}</td>
-                                    </tr>
-                                    <tr>
-                                      <h3 class="widget-title">Packages</h3>
-                                    </tr>
-                                    <tr>
-                                      <th>Package Name</th>
-                                      <td>{{investors_packageData.package_name}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Currency</th>
-                                      <td>{{investors_packageData.package_currency}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Amount Invested </th>
-                                      <td>{{investors_packageData.package_amount_invested}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Percentage %</th>
-                                      <td>{{investors_packageData.package_parecentage}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Profit Earning</th>
-                                      <td>{{investors_packageData.profit_earning}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Contract Year</th>
-                                      <td>{{investors_packageData.contract_limit}}</td>
-                                    </tr>
-                                    <tr>
-                                      <th width="30%">Date Issued</th>
-                                      <td width="70%">
-                                        {{currentDateTime}}
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <th>Status</th>
-                                      <td>
-                                        <select class="form-control" aria-label="Default select example"  required >
-                                          <option selected>--Choose Status--</option>
-                                          <option value="approve">Approve</option>
-                                          <option value="Pending">Pending</option>
-                                        </select> 
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <th>
-                                        Sign
-                                      </th>
-                                     
-                                    </tr>
-                                    <tr style="border: 1px solid black;">
-
-                                    </tr>
-                                    <hr>
-                                  
-                                </table>
-                                
-                               <div class="d-flex justify-content-between">
-                                <h3 class="widget-title" >Address :
-                                  St. Nicholaus Church, Plot No> 497, Arusha street Ilala Dar es salaam Tanzania</h3>
-                                  <img class="qr-code"  src="https://api.qrserver.com/v1/create-qr-code/?data=https://airfoxtours.com/&size=200x200" alt="QR Code">
-                               </div>
-
-                                                         
-                                </mat-card-content>
-                                <mat-card-actions>
-                                  <button mat-icon-button color="primary" (click)="edit()"><mat-icon>edit</mat-icon></button>
-                                  <button mat-icon-button color="primary" (click)="print()"><mat-icon>print</mat-icon></button>
-                                </mat-card-actions>
-                              </mat-card>
-                        </div>
-                       
-                    </div>
+               
                   
-                  
+                    <div class="background-logo">
+                      <div class="d-flex justify-content-between">
+                        <h3 class="widget-title">Investors Invoice</h3>
+                        <img src="../../../assets/images/airfox.png" alt="Logo" class="logo">
+                       </div>
+      
+                          
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <mat-card class="example-card" >
+                                    <mat-card-header >
+                                      <div mat-card-avatar class="example-header-image"></div>
+                                      <div class="avatar-container" >
+                                        <img *ngIf="profileImage" [src]="getBase64Image(imageFile[0])" class="profile-img" alt="Profile Image" />
+                                        <div *ngIf="!profileImage" class="avatar-placeholder mat-elevation-z2">
+                                          <mat-icon>account_circle</mat-icon>
+                                        </div>
+                                      </div> 
+                                    </mat-card-header><hr>
+                                      <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+                                      <mat-card-content>
+                                        <table class="table table-striped">
+                                            <tr>
+                                              <th>Full Name</th>
+                                              <td>{{inveestorsData.investorsfullName}}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>Email</th>
+                                              <td>{{inveestorsData.investorsemailAddress}}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>Address</th>
+                                              <td>{{inveestorsData.investorshomeAddress}}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>Phone</th>
+                                              <td>{{inveestorsData.investorsphoneNumber}}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>NIDA</th>
+                                              <td>{{inveestorsData.investorsnationalIdNumber}}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>Passport</th>
+                                              <td>{{inveestorsData.investorspassportNumber}}</td>
+                                            </tr>
+                                            <tr>
+                                              <th>
+                                                Gender
+                                              </th>
+                                              <td>
+                                                {{inveestorsData.investorsgender}}
+                                              </td>
+                                            </tr>
+                                        </table>
+                                        <table class="table table-striped">
+                                          <tr>
+                                            <h3 class="widget-title">Kin Details</h3>
+                                          </tr>
+                                          <tr>
+                                            <th>Kin Type</th>
+                                            <td>{{kinData.kin_types}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Full Name</th>
+                                            <td>{{kinData.kinfull_name}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Email</th>
+                                            <td>{{kinData.kinemail_address}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Address</th>
+                                            <td>{{kinData.kinhome_address}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>National ID</th>
+                                            <td>{{kinData.kinnational_id_number}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Passport</th>
+                                            <td>{{kinData.kinpassport_number}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Phone</th>
+                                            <td>{{kinData.kinphone_number}}</td>
+                                          </tr>
+                                          <tr>
+                                            <h3 class="widget-title">Bank Information</h3>
+                                          </tr>
+                                          <tr>
+                                            <th>Bank Name</th>
+                                            <td>{{bankData.bank_name}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Account Number</th>
+                                            <td>{{bankData.bank_account_no}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Account holder</th>
+                                            <td>{{bankData.bank_account_holders}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Swift Code</th>
+                                            <td>{{bankData.bank_swift_code}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Currency</th>
+                                            <td>{{bankData.bank_account_currence}}</td>
+                                          </tr>
+                                          <tr>
+                                            <h3 class="widget-title">Packages</h3>
+                                          </tr>
+                                          <tr>
+                                            <th>Invoice Date</th>
+                                            <td>{{ inveestorsData.packageDate | date: 'dd/MM/yyyy' }}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Package Name</th>
+                                            <td>{{investors_packageData.package_name}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Currency</th>
+                                            <td>{{investors_packageData.package_currency}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Amount Invested </th>
+                                            <td>{{investors_packageData.package_amount_invested}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Percentage %</th>
+                                            <td>{{investors_packageData.package_parecentage}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Profit Earning / Mounth</th>
+                                            <td>{{investors_packageData.profit_earning}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Total Earning Year of Contract : ({{investors_packageData.contract_limit}}) </th>
+                                            <td>{{investors_packageData.profit_earning_year}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Contract Year</th>
+                                            <td>{{investors_packageData.contract_limit}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Status</th>
+                                            <td width="70%" [style.color]="getStatusColor()">                                        {{inveestorsData.status}}
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <th width="30%">Date Issued</th>
+                                            <td width="70%">
+                                              {{currentDateTime}}
+                                            </td>
+                                          </tr>
+                                       
+                                          <tr>
+                                            <th>
+                                              Sign
+                                            </th>
+                                           
+                                          </tr>
+                                          <tr style="border: 1px solid black;">
+      
+                                          </tr>
+                                          <hr>
+                                        
+                                      </table>
+                                      
+                                     <div class="d-flex justify-content-between">
+                                      <h3 class="widget-title" >Address :
+                                        St. Nicholaus Church, Plot No> 497, Arusha street Ilala Dar es salaam Tanzania</h3>
+                                        <img class="qr-code"  src="https://api.qrserver.com/v1/create-qr-code/?data= Investor ID = {{inveestorsData.investorsID}}  Name : {{inveestorsData.investorsfullName}} Email : {{inveestorsData.investorsemailAddress}} website:https://airfoxtours.com/&size=200x200" alt="QR Code">
+                                     </div>
+      
+                                                               
+                                      </mat-card-content>
+                                      <mat-card-actions>
+                                        <button mat-icon-button color="primary" (click)="edit()"><mat-icon>edit</mat-icon></button>
+                                        <button mat-icon-button color="primary" (click)="print()"><mat-icon>print</mat-icon></button>
+                                      </mat-card-actions>
+                                    </mat-card>
+                              </div>
+                             
+                          </div>
+                      </div>
                       
                       
                 </div>

@@ -79,6 +79,15 @@
                                             [(ngModel)]="Investors.investorspassportNumber" required>
                                     </mat-form-field>
                                 </div>
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>Gender</mat-label>
+                                        <mat-select placeholder="Marital Status" name="maritalStatus" [(ngModel)]="Investors.investorsgender" required>
+                                          <mat-option value="Male">Male</mat-option>
+                                          <mat-option value="Female">Female</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                </div>
                                 <div>
                                     <button mat-button (click)="stepper.next()">Next</button>
                                 </div>
@@ -134,19 +143,27 @@
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-3">
-                                    <mat-form-field>
+                                    <!-- <mat-form-field>
                                         <mat-label>Kin Type</mat-label>
                                         <input matInput placeholder="Kin Type" name="kinType"
                                             [(ngModel)]="KinDetails.kinTypes" required>
-                                    </mat-form-field>
+                                    </mat-form-field>\ -->
+                                    <mat-form-field>
+                                        <mat-label>Kin Type</mat-label>
+                                        <mat-select placeholder="Choose Kin Type" name="kin type" [(ngModel)]="KinDetails.kinTypes" required>
+                                          <mat-option value="Brother">Brother</mat-option>
+                                          <mat-option value="Sister">Sister</mat-option>
+                                          <mat-option value="Childres">Children</mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
+                                <!-- <div class="col-md-3">
                                     <mat-form-field>
                                         <mat-label>Investors ID</mat-label>
                                         <input matInput placeholder="Investors ID" name="investorsID"
                                             [(ngModel)]="KinDetails.investorsID" required>
                                     </mat-form-field>
-                                </div>
+                                </div> -->
                                 <div>
                                     <button mat-button (click)="stepper.previous()">Back</button>
                                     <button mat-button (click)="stepper.next()">Next</button>
@@ -195,13 +212,14 @@
                                             [(ngModel)]="BankDetails.bank_account_currence" required>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
+                                <!-- <div class="col-md-3">
                                     <mat-form-field>
                                         <mat-label>Investors ID</mat-label>
                                         <input matInput placeholder="Investors ID" name="investorsID"
                                             [(ngModel)]="BankDetails.investorsID" required>
                                     </mat-form-field>
-                                </div>
+                                </div> -->
+                            
                                 <div>
                                     <button mat-button (click)="stepper.previous()">Back</button>
                                     <button mat-button (click)="stepper.next()">Next</button>
@@ -257,8 +275,32 @@
                                         <mat-form-field>
                                             <mat-label>Contract</mat-label>
                                             <input matInput type="number"
-                                                [(ngModel)]="Investors_Packages.contract_limit" required>
+                                                [(ngModel)]="Investors_Packages.contract_limit" 
+                                                (input)="calculateProfitEarningYear()" required>
                                         </mat-form-field>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <mat-form-field>
+                                            <mat-label>Year Earning </mat-label>
+                                            <input matInput disabled [value]="profitEarningYear"
+                                             [(ngModel)]="Investors_Package.profitEarningYear"  >
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <mat-form-field>
+                                            <mat-label>Status</mat-label>
+                                            <mat-select placeholder="Status" name="Status" [(ngModel)]="Investors.status" required>
+                                              <mat-option value="Approved">Approved</mat-option>
+                                              <mat-option value="Pending">Pending</mat-option>
+                                            </mat-select>
+                                          </mat-form-field>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <mat-form-field>
+                                            <input matInput [matDatepicker]="picker" placeholder="Invoice Date" name="" [(ngModel)]="Investors.packageDate">
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                          </mat-form-field>
                                     </div>
                                 </div>
 

@@ -1,11 +1,13 @@
 package com.example.todo.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,5 +59,21 @@ public class InvestorsController {
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @DeleteMapping("/deleteInvestors{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") int id) {
+        try {
+            investorsServices.deleteInvestors(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+     // Count All Investors
+@GetMapping("/CountAllInvestors/")
+    public ResponseEntity<List<Map<String, Object>>> countInvestors() {
+        List<Map<String, Object>> investors = investorsServices.CountAllInvestors();
+        return ResponseEntity.ok(investors);
     }
 }

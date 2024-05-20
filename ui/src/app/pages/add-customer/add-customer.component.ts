@@ -42,7 +42,8 @@ export class AddCustomerComponent{
   bankAccount_no:'',
   registeredBy:'',
   registeredDate:'',
-  country_to_visit:''
+  country_to_visit:'',
+  applicantgender:''
 };
 
 wifeDetails: any = {

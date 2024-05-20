@@ -23,4 +23,6 @@ public class InvestersDetails {
     private String registerDate;
     private String Status;
     private String investorsgender;
+    private String packageDate;
+
 }

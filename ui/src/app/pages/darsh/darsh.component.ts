@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { InvestorsDetailsServicesService } from 'src/app/services/Investors/ivestorsDetails/investors-details-services.service';
 import { LoginServicesService } from 'src/app/services/Login/login/login-services.service';
 import { ApplicantDetailsServicesService } from 'src/app/services/applicant/applicantDetails/applicant-details-services.service';
 import { ApplicantStatusServicesService } from 'src/app/services/applicant/applicantStatus/applicant-status-services.service';
@@ -15,7 +16,8 @@ export class DarshComponent {
   roles:any
   constructor(private applicantServices:ApplicantDetailsServicesService,
     private aplicantStatuServices :ApplicantStatusServicesService,
-    private loginServices:LoginServicesService
+    private loginServices:LoginServicesService,
+    private investorsServices:InvestorsDetailsServicesService
   ){
 
   }
@@ -28,6 +30,7 @@ export class DarshComponent {
     this.  countAllApplicantApproved();
     this.countAllUser()
     this.countAllApplicantPending()
+    this.countAllinvestors();
     this.countAllApplicantPendingByUser(this.username)
     this.countAllApplicantByUser(this.username)
     this.countAllApplicantApprovedByUser(this.username)
@@ -137,5 +140,16 @@ export class DarshComponent {
   
       }
     )
+  }
+  totalInvestors:any
+  countAllinvestors(){
+    return this.investorsServices.CountAllInvestors().subscribe(
+      respo=>{
+      respo.forEach((element:any) => {
+          this.totalInvestors = element.total_investors
+        });
+      console.log("TOTAL INVESTORS",this.totalInvestors)
+     
+    })
   }
 }

@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: saidhadimu@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 825356
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true

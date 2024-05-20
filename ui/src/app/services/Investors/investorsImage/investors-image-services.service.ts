@@ -23,9 +23,9 @@ export class InvestorsImageServicesService {
   //   return this.http.put(this.user_details+"/updateUser"+id,data);
   // }
 
-  // deleteUser_Info(id:any){
-  //   return this.http.delete(this.user_details+"/deleteUser"+id);
-  // }
+  deleteInvestorsImage(id:any){
+    return this.http.delete(this.investors+"/deleteInvestImages"+id);
+  }
 
   creatInvestorsImageFile(data:any):Observable<any>{
     return this.http.post(this.investors+"/addInvestorImageFile",data);

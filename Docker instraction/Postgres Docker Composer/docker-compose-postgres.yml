@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-db_container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: staff
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
+

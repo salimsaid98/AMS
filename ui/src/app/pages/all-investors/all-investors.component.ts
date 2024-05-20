@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { timer } from 'rxjs';
 import { InvestorsDetailsServicesService } from 'src/app/services/Investors/ivestorsDetails/investors-details-services.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-all-investors',
@@ -12,14 +13,15 @@ import { InvestorsDetailsServicesService } from 'src/app/services/Investors/ives
   styleUrls: ['./all-investors.component.css']
 })
 export class AllInvestorsComponent {
-  displayedColumns: string[] = ['index','registerDate', 'investorsfullName', 'investorsemailAddress','investorsphoneNumber' ,'view'];
+  displayedColumns: string[] = ['index','investorsID','registerDate', 'investorsfullName', 'investorsemailAddress','investorsphoneNumber' ,'view'];
   columnLabels: { [key: string]: string } = {
     'index': '#',
+    'investorsID':'Investors ID',
     'investorsfullName': 'Full Name',
     'investorsemailAddress': 'Email ',
     'investorsphoneNumber' : 'Phone',
     'view': 'View',
-    'registerDate':'Date',
+    'registerDate':'Date Register',
     'country_to_visit':'Visa Country'
     
   };
@@ -73,5 +75,69 @@ export class AllInvestorsComponent {
       });  
       }
     )
+  }
+  deleteInvestorsFunction(id: any): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this Investors Details!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // User confirmed, proceed with deletion
+        this.investorsService.deleteInvestors(id).subscribe(
+          respo => {
+            console.log(respo);
+            // Show success message
+            // Swal.fire({
+            //   title: 'Deleted!',
+            //   text: 'Your file name has been deleted.',
+            //   icon: 'success',
+            //   timer: 1500,
+            //   timerProgressBar: true,
+            //   showConfirmButton: false
+            // });
+            Swal.fire({
+              position: 'top-right',
+              icon: 'success',
+              text: 'Your file name has been deleted.',
+              toast: true,
+              timer: 1800,
+              showConfirmButton: false,
+              timerProgressBar: true,
+              width: '350px',
+              customClass: {
+                title: 'toast-success-title',
+                icon: 'toast-success-icon'
+              }
+            });
+            
+            // Perform any additional actions after successful deletion
+            this.getAllInvestors()
+          
+          },
+          error => {
+            console.error(error);
+            // Show error message
+            Swal.fire({
+              title: 'Error!',
+              text: 'An error occurred while deleting Investor Details. Please try again later.',
+              icon: 'error',
+              timer: 1500,
+              timerProgressBar: true,
+              showConfirmButton: false
+            });
+          }
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        // User canceled, do nothing
+      }
+    });
+  }
+  deleteInvestor(element:any){
+    // console.log(element)
+    this.deleteInvestorsFunction(element.investorsID)
   }
 }
