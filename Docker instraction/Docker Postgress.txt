@@ -11,3 +11,4 @@ docker network create app for create network
 this is for targeting file 
 docker-compose -f docker-compose-applicationfilename.yml up --build
 make sure image name must be same with docker-compose image name when u build then u deckorize
+docker builder prune detele catch

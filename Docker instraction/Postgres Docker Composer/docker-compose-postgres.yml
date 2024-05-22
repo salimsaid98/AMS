@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 12345
-      POSTGRES_DB: staff
+      POSTGRES_DB: airfoxDatabase
     ports:
       - "5432:5432"
     restart: unless-stopped

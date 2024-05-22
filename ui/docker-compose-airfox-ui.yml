@@ -1,18 +1,40 @@
-version: '3'
+# version: '3.8'
+
+# services:
+#   angular-app:
+#     build: .
+#     image: aifox-ui-image
+#     container_name: airfox-ui-container
+#     ports:
+#       - "4200:4200"  # Map container port 8080 to host port 4200
+#     enviroment:
+#       - url: 'http://172.18.0.1:8080/api/'
+
+#     restart: unless-stopped
+#     networks:
+#       - app-network
+
+# networks:
+#   app-network:
+#     external: true
+version: '3.8'
 
 services:
   angular-app:
-    build: .
+    build:
+      context: .
+      args:
+        BACKEND_URL: http://172.18.0.1:8080/api/
     image: aifox-ui-image
     container_name: airfox-ui-container
     ports:
-      - "4200:4200"  # Map container port 80 to host port 4200
-    volumes:
-      - .:/app  # Mount the current directory to /app in the container
-
+      - "4200:4200"  # Map container port 4200 to host port 4200
+    environment:
+      - url=http://172.18.0.1:8080/api/
+    restart: unless-stopped
     networks:
       - app-network
-    restart: unless-stopped
+
 networks:
   app-network:
     external: true

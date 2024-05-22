@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    ports:
+      - "8000:8000"  # Port for Edge agent
+      - "9000:9000"  # Port for Portainer UI
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # This allows Portainer to communicate with the Docker daemon
+      - portainer_data:/data  # Persistent storage for Portainer data
+
+volumes:
+  portainer_data:
