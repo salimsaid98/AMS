@@ -12,3 +12,5 @@ this is for targeting file
 docker-compose -f docker-compose-applicationfilename.yml up --build
 make sure image name must be same with docker-compose image name when u build then u deckorize
 docker builder prune detele catch
+
+https://drive.google.com/drive/folders/19vCMe7sqbR2-EuQe2pPI0YTHaowgCjTw?usp=drive_link
