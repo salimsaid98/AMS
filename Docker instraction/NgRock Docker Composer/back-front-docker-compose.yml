@@ -1,0 +1,20 @@
+version: '3'
+services:
+  backend:
+    image: api-aifox-image
+    ports:
+      - "8080:8080"
+
+  frontend:
+    image: aifox-ui-image
+    ports:
+      - "4200:4200"
+
+  ngrok:
+    image: ngrok-image
+    depends_on:
+      - backend
+      - frontend
+    volumes:
+      - ~/.ngrok2/ngrok.yml:/root/.ngrok2/ngrok.yml
+    network_mode: "host"

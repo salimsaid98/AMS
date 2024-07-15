@@ -83,7 +83,7 @@ getKinByInvestorsID(investorsID:any){
       respo.forEach((items:any) => {
         this.kinData = items
       });
-      console.log(this.kinData)
+      // console.log(this.kinData)
     }
   )
 }
@@ -93,7 +93,7 @@ getBankByInvestorsID(investorsID:any){
       respo.forEach((items:any) => {
         this.bankData = items
       });
-      console.log(this.bankData)
+      // console.log(this.bankData)
     }
   )
 }
@@ -103,7 +103,7 @@ getInvestors_PackageByInvestorsID(investorsID:any){
       respo.forEach((items:any) => {
         this.investors_packageData = items
       });
-      console.log(this.investors_packageData)
+      // console.log(this.investors_packageData)
 
     }
   )
